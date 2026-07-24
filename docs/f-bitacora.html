@@ -18,6 +18,7 @@
     --f-rule: rgba(36, 31, 28, 0.12);
     --f-line-strong: rgba(36, 31, 28, 0.28);
     --f-tape: rgba(201, 184, 150, 0.55);
+    --f-whatsapp: #3F6D58;
     --font-f-display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
     --font-f-label: "American Typewriter", "Courier New", ui-monospace, monospace;
     --font-f-body: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
@@ -27,12 +28,14 @@
     --f-ground: #201C16; --f-page: #2A251D; --f-ink: #ECE4D3; --f-ink-soft: #B7AC96;
     --f-wine: #D97A90; --f-wine-soft: #E8A5B4; --f-stamp: #E2725B; --f-sage: #93A87A;
     --f-rule: rgba(236, 228, 211, 0.12); --f-line-strong: rgba(236, 228, 211, 0.26); --f-tape: rgba(201, 184, 150, 0.26);
+    --f-whatsapp: #6FA98D;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --f-ground: #201C16; --f-page: #2A251D; --f-ink: #ECE4D3; --f-ink-soft: #B7AC96;
       --f-wine: #D97A90; --f-wine-soft: #E8A5B4; --f-stamp: #E2725B; --f-sage: #93A87A;
       --f-rule: rgba(236, 228, 211, 0.12); --f-line-strong: rgba(236, 228, 211, 0.26); --f-tape: rgba(201, 184, 150, 0.26);
+      --f-whatsapp: #6FA98D;
     }
   }
   * { box-sizing: border-box; }
@@ -53,9 +56,12 @@
   .f-shell { max-width: 700px; margin: 0 auto; padding-left: 64px; padding-right: 26px; }
   @media (max-width: 640px) { .f-shell { padding-left: 26px; } }
 
-  .f-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
+  .f-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; flex-wrap: wrap; gap: 6px; }
   .f-wordmark { font-size: 17px; letter-spacing: 0.04em; }
   .f-nav-tag { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.08em; color: var(--f-ink-soft); text-transform: uppercase; }
+  .f-nav-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .f-nav-links a { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--f-ink-soft); text-decoration: none; }
+  .f-nav-links a:hover { color: var(--f-wine); }
 
   .f-hero { position: relative; padding: 34px 0 56px; overflow: hidden; }
   .f-topo { position: absolute; inset: -20px -26px auto auto; width: 420px; height: 260px; opacity: 0.4; pointer-events: none; }
@@ -66,10 +72,16 @@
     font-family: var(--font-f-label); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase;
     background: var(--f-wine); color: var(--f-page); border: none; padding: 13px 20px;
     text-decoration: none; display: inline-flex; align-items: center; gap: 8px; position: relative;
+    cursor: pointer;
   }
   .f-btn:hover { background: var(--f-wine-soft); }
   .f-btn:focus-visible { outline: 2px solid var(--f-stamp); outline-offset: 3px; }
+  .f-btn.f-btn-outline { background: transparent; color: var(--f-wine); border: 1.5px solid var(--f-wine); }
+  .f-btn.f-btn-outline:hover { background: var(--f-wine); color: var(--f-page); }
+  .f-btn.f-btn-whatsapp { background: var(--f-whatsapp); }
+  .f-btn.f-btn-whatsapp:hover { filter: brightness(1.08); }
   .f-meta { margin-top: 12px; font-family: var(--font-f-label); font-size: 11.5px; color: var(--f-ink-soft); letter-spacing: 0.03em; position: relative; }
+  .f-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; position: relative; }
 
   .f-entry { padding: 6px 0 46px; max-width: 540px; }
   .f-entry-label { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--f-ink-soft); }
@@ -77,8 +89,9 @@
   .f-sig { font-family: var(--font-f-hand); font-size: 24px; color: var(--f-ink); }
 
   .f-tape-strip { width: 68px; height: 22px; background: var(--f-tape); margin: 0 0 -14px 18px; transform: rotate(-4deg); position: relative; z-index: 2; }
-  .f-polaroid { background: var(--f-page); padding: 10px 10px 30px; box-shadow: 0 6px 14px rgba(0,0,0,0.18); transform: rotate(-1.2deg); width: 220px; margin: 0 0 40px; }
-  .f-polaroid-inner { aspect-ratio: 4/3; background: linear-gradient(140deg, #7C8C4A 0%, #C9A227 55%, #E8B25C 100%); }
+  .f-polaroid { background: var(--f-page); padding: 10px 10px 30px; box-shadow: 0 6px 14px rgba(0,0,0,0.18); transform: rotate(-1.2deg); width: 260px; margin: 0 0 40px; }
+  .f-polaroid-inner { aspect-ratio: 4/3; overflow: hidden; background: var(--f-ground); }
+  .f-polaroid-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .f-polaroid-cap { font-family: var(--font-f-hand); font-size: 14px; text-align: center; margin-top: 8px; }
 
   .f-card { background: var(--f-page); border: 1px solid var(--f-line-strong); padding: 36px 30px; margin-bottom: 60px; position: relative; }
@@ -93,6 +106,9 @@
   .f-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 13px; }
   .f-list li { display: flex; gap: 12px; font-size: 15px; }
   .f-list li::before { content: ""; width: 6px; height: 6px; background: var(--f-sage); border-radius: 50%; flex: none; margin-top: 6px; }
+  .f-price-row { display: flex; gap: 22px; flex-wrap: wrap; margin: 0 0 22px; padding: 14px 0; border-top: 1px dashed var(--f-line-strong); border-bottom: 1px dashed var(--f-line-strong); }
+  .f-price-item .f-price-label { display: block; font-family: var(--font-f-label); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--f-ink-soft); margin-bottom: 4px; }
+  .f-price-item .f-price-value { font-family: var(--font-f-display); font-size: 16px; }
   .f-waitlist { display: flex; gap: 10px; flex-wrap: wrap; }
   .f-waitlist input { font-family: var(--font-f-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--f-line-strong); background: var(--f-ground); color: var(--f-ink); flex: 1 1 200px; }
   .f-waitlist input:focus-visible { outline: 2px solid var(--f-stamp); outline-offset: 2px; }
@@ -100,12 +116,52 @@
 
   .f-origin { max-width: 560px; margin-bottom: 60px; }
   .f-origin p { color: var(--f-ink); max-width: 56ch; font-size: 15.5px; }
+  .f-origin-price { font-family: var(--font-f-label); font-size: 12px; color: var(--f-wine); margin-top: 10px; display: block; }
+
+  .f-para-quien { max-width: 560px; margin-bottom: 60px; }
+  .f-para-quien p { font-size: 17px; margin: 12px 0 0; max-width: 46ch; }
+  .f-para-quien .f-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .f-para-quien .f-tag-pill { font-family: var(--font-f-label); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; border: 1px solid var(--f-line-strong); padding: 5px 10px; color: var(--f-ink-soft); }
+
+  .f-about { background: var(--f-page); border: 1px solid var(--f-line-strong); padding: 36px 30px; margin-bottom: 60px; }
+  .f-about-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .f-about h2 { font-size: clamp(22px, 3.4vw, 27px); text-transform: uppercase; }
+  .f-about p { margin: 0 0 14px; font-size: 15.5px; }
+  .f-about p:last-of-type { margin-bottom: 0; }
+  .f-about .f-sig { margin-top: 16px; display: block; }
 
   .f-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--f-line-strong); border: 1px solid var(--f-line-strong); margin-bottom: 56px; }
   @media (max-width: 560px) { .f-principles { grid-template-columns: 1fr; } }
   .f-principle { background: var(--f-ground); padding: 22px 18px; }
   .f-principle .tag { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.06em; color: var(--f-sage); text-transform: uppercase; }
   .f-principle p { margin: 8px 0 0; font-size: 13.5px; color: var(--f-ink-soft); }
+
+  .f-faq { max-width: 620px; margin-bottom: 60px; }
+  .f-faq-item { border-bottom: 1px solid var(--f-line-strong); padding: 18px 0; }
+  .f-faq-item:first-of-type { border-top: 1px solid var(--f-line-strong); }
+  .f-faq-q { font-family: var(--font-f-display); font-size: 15.5px; margin: 0 0 8px; font-weight: 700; }
+  .f-faq-a { margin: 0; color: var(--f-ink-soft); font-size: 14.5px; max-width: 54ch; }
+  .f-faq-note { font-family: var(--font-f-label); font-size: 10px; color: var(--f-ink-soft); margin-top: 14px; }
+
+  .f-contact { background: var(--f-page); border: 1px solid var(--f-line-strong); padding: 36px 30px; margin-bottom: 70px; }
+  .f-contact h2 { font-size: clamp(22px, 3.4vw, 27px); text-transform: uppercase; margin-bottom: 10px; }
+  .f-contact > p { color: var(--f-ink-soft); max-width: 50ch; margin: 0 0 22px; }
+  .f-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  @media (max-width: 560px) { .f-contact-grid { grid-template-columns: 1fr; } }
+  .f-contact-direct .f-phone { font-family: var(--font-f-label); font-size: 15px; margin: 10px 0 16px; display: block; }
+  .f-form { display: grid; gap: 10px; }
+  .f-form input, .f-form textarea { font-family: var(--font-f-body); font-size: 14px; padding: 11px 13px; border: 1px solid var(--f-line-strong); background: var(--f-ground); color: var(--f-ink); width: 100%; }
+  .f-form textarea { resize: vertical; min-height: 80px; }
+  .f-form input:focus-visible, .f-form textarea:focus-visible { outline: 2px solid var(--f-stamp); outline-offset: 2px; }
+
+  .f-whatsapp-float {
+    position: fixed; right: 20px; bottom: 20px; z-index: 10;
+    background: var(--f-whatsapp); color: #fff; width: 54px; height: 54px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+    text-decoration: none;
+  }
+  .f-whatsapp-float:hover { filter: brightness(1.08); }
+  .f-whatsapp-float svg { width: 26px; height: 26px; }
 
   .f-footer { border-top: 1px dashed var(--f-line-strong); padding: 28px 0 50px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
   .f-footer .f-wordmark { font-size: 14px; }
@@ -115,12 +171,17 @@
 <body>
 <div class="f-root">
   <div class="f-margin" aria-hidden="true"></div>
-  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción F para Experiencia Residente: bitácora de expedición, mezcla del sistema de coordenadas y mapas de la opción A con la textura de cuaderno y sellos de la opción D.</h2>
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción F para Experiencia Residente: bitácora de expedición, con about de Romi, para quién es esto, preguntas frecuentes y contacto por WhatsApp.</h2>
 
   <div class="f-shell">
     <div class="f-nav">
       <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
-      <span class="f-nav-tag">Bitácora de Romi</span>
+      <div class="f-nav-links">
+        <a href="#f-mendoza">Mendoza</a>
+        <a href="#f-sobre-romi">Sobre Romi</a>
+        <a href="#f-faq">FAQ</a>
+        <a href="#f-contacto">Contacto</a>
+      </div>
     </div>
 
     <header class="f-hero">
@@ -137,7 +198,10 @@
       <span class="f-coord">33.9°S · MENDOZA — VIAJES N.º 001</span>
       <h1>No visitás el lugar. Lo vivís.</h1>
       <p>Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.</p>
-      <a class="f-btn" href="#f-mendoza">Ver la página de Mendoza →</a>
+      <div class="f-hero-ctas">
+        <a class="f-btn" href="#f-mendoza">Ver la página de Mendoza →</a>
+        <a class="f-btn f-btn-whatsapp" href="https://wa.me/5491168841224?text=Hola%20Romi%2C%20quiero%20saber%20m%C3%A1s%20del%20viaje%20a%20Mendoza" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+      </div>
       <div class="f-meta">PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO</div>
     </header>
 
@@ -149,32 +213,60 @@
 
     <div class="f-tape-strip"></div>
     <div class="f-polaroid">
-      <div class="f-polaroid-inner"></div>
+      <div class="f-polaroid-inner"><img src="assets/vinedo-atardecer.jpg" alt="Atardecer sobre un viñedo en Mendoza, con la cordillera de fondo" loading="lazy" /></div>
       <div class="f-polaroid-cap">viñedo, atardecer — Mendoza</div>
     </div>
 
     <section class="f-card" id="f-mendoza">
       <div class="f-card-top">
         <span class="f-stamp-badge">Solo mujeres</span>
-        <span class="f-date-tag">4 días<br>octubre 2026<br>cupo 10</span>
+        <span class="f-date-tag">5 días · 4 noches<br>octubre 2026<br>cupo 10</span>
       </div>
       <h2>Viñedo, atardecer y bienestar</h2>
-      <p class="f-desc">Cuatro días viviendo Mendoza desde adentro: la cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local.</p>
+      <p class="f-desc">Cinco días viviendo Mendoza desde adentro: la cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local.</p>
+      <div class="f-price-row">
+        <div class="f-price-item"><span class="f-price-label">Duración</span><span class="f-price-value">5 días, 4 noches</span></div>
+        <div class="f-price-item"><span class="f-price-label">Incluye</span><span class="f-price-value">Alojamiento, comidas y Experiencias</span></div>
+        <div class="f-price-item"><span class="f-price-label">Valor</span><span class="f-price-value">A confirmar — consultanos</span></div>
+      </div>
       <ul class="f-list">
         <li>Cosecha y atardecer en un viñedo, guiadas por quien lo trabaja todos los días</li>
         <li>Ritual de bienestar en una clínica de residente, pensado para mujeres</li>
-        <li>Casa compartida y comidas en grupo, sin el apuro de un tour</li>
+        <li>Alojamiento y comidas en grupo, sin el apuro de un tour</li>
       </ul>
       <form class="f-waitlist" onsubmit="return false;">
         <input type="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" />
         <button type="submit" class="f-btn">Sumarme</button>
       </form>
-      <p class="f-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+      <p class="f-form-note">MOCKUP DE DISEÑO — EL FORMULARIO Y EL VALOR TODAVÍA NO ESTÁN CONFIRMADOS.</p>
+    </section>
+
+    <section class="f-para-quien">
+      <span class="f-entry-label">¿Para quién es esto?</span>
+      <p>Para gente con alma de aventurera. Que prefiere un atardecer entre montañas antes que una vidriera. Que busca vivir el momento, no consumirlo.</p>
+      <div class="f-tags">
+        <span class="f-tag-pill">25 a 55 años</span>
+        <span class="f-tag-pill">Naturaleza</span>
+        <span class="f-tag-pill">Grupos chicos</span>
+        <span class="f-tag-pill">Sin apuro</span>
+      </div>
+    </section>
+
+    <section class="f-about" id="f-sobre-romi">
+      <div class="f-about-head">
+        <h2>Sobre Romi</h2>
+        <span class="f-entry-label">La entrada más larga del cuaderno</span>
+      </div>
+      <p>Tengo 38 años y nací en Capital. Crecí en Avellaneda, zona sur del conurbano, hasta que de adolescente nos mudamos al campo — ahí entendí que el aire libre no es un lujo, es necesario.</p>
+      <p>Estudié Comercio Exterior y pasé más de 12 años trabajando en un banco. Hasta que un día decidí cambiar de vida: viajar más, disfrutar más, y dejar de guardar todo para "después".</p>
+      <p>Desde entonces no paro de moverme. Todavía sueño con encontrar esa ciudad tranquila pero con vida donde plantar una base — mientras tanto, la sigo buscando viaje a viaje. Por eso armo estas experiencias: para compartir esa misma búsqueda con quien quiera sumarse.</p>
+      <span class="f-sig">Romi</span>
     </section>
 
     <section class="f-origin">
       <span class="f-entry-label">40.1°S · SAN MARTÍN DE LOS ANDES — entrada anterior</span>
       <p style="margin-top:12px;">Salimos a remar temprano, cuando el lago todavía tenía hielo en los bordes. Después subimos la montaña para bajarla haciendo snow. De esa entrada del cuaderno salió la pregunta que arma cada viaje: ¿qué hace alguien que ya vive ahí?</p>
+      <span class="f-origin-price">Ese viaje costaba USD 990 por persona.</span>
     </section>
 
     <section>
@@ -186,11 +278,61 @@
       </div>
     </section>
 
+    <section class="f-faq" id="f-faq">
+      <span class="f-entry-label" style="display:block; margin-bottom:6px;">Preguntas frecuentes</span>
+      <h2 style="margin-bottom:18px;">Antes de anotarte</h2>
+
+      <div class="f-faq-item">
+        <p class="f-faq-q">¿Voy sola? No conozco a nadie.</p>
+        <p class="f-faq-a">La mayoría viaja sola y arma amigas ahí mismo. El grupo es chico a propósito, para que nadie se sienta de más.</p>
+      </div>
+      <div class="f-faq-item">
+        <p class="f-faq-q">¿Qué incluye exactamente?</p>
+        <p class="f-faq-a">Alojamiento, comidas y todas las Experiencias del itinerario — cosecha, atardecer en el viñedo y el ritual de bienestar. El traslado hasta Mendoza se coordina aparte.</p>
+      </div>
+      <div class="f-faq-item">
+        <p class="f-faq-q">¿Cuántas somos?</p>
+        <p class="f-faq-a">Grupo reducido, cupo máximo de 10 personas.</p>
+      </div>
+      <div class="f-faq-item">
+        <p class="f-faq-q">¿Hay algún requisito físico?</p>
+        <p class="f-faq-a">Nada exigente — se camina entre viñedos, no es un viaje de trekking técnico.</p>
+      </div>
+      <div class="f-faq-item">
+        <p class="f-faq-q">¿Cómo reservo mi lugar?</p>
+        <p class="f-faq-a">Escribinos por WhatsApp y coordinamos la seña para guardarte el cupo.</p>
+      </div>
+      <p class="f-faq-note">RESPUESTAS DE EJEMPLO PARA EL MOCKUP — A CONFIRMAR CON ROMI ANTES DE PUBLICAR.</p>
+    </section>
+
+    <section class="f-contact" id="f-contacto">
+      <h2>Hablemos</h2>
+      <p>¿Dudas antes de anotarte? Escribinos, la que responde del otro lado es Romi.</p>
+      <div class="f-contact-grid">
+        <div class="f-contact-direct">
+          <span class="f-entry-label">Directo</span>
+          <span class="f-phone">+54 9 11 6884-1224</span>
+          <a class="f-btn f-btn-whatsapp" href="https://wa.me/5491168841224?text=Hola%20Romi%2C%20tengo%20una%20consulta" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+        </div>
+        <form class="f-form" onsubmit="return false;">
+          <input type="text" placeholder="Tu nombre" aria-label="Nombre" />
+          <input type="email" placeholder="tu@email.com" aria-label="Email" />
+          <textarea placeholder="Contanos qué querés saber" aria-label="Mensaje"></textarea>
+          <button type="submit" class="f-btn f-btn-outline">Enviar mensaje</button>
+        </form>
+      </div>
+      <p class="f-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+    </section>
+
     <footer class="f-footer">
       <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
       <div class="f-foot-meta">@residente.viajes<br>mockup de diseño</div>
     </footer>
   </div>
+
+  <a class="f-whatsapp-float" href="https://wa.me/5491168841224?text=Hola%20Romi%2C%20quiero%20saber%20m%C3%A1s" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.09c-.24.68-1.4 1.32-1.93 1.4-.51.08-1.15.11-1.86-.12-.43-.13-.98-.32-1.68-.62-2.96-1.28-4.89-4.25-5.04-4.45-.15-.2-1.21-1.61-1.21-3.07 0-1.46.77-2.17 1.04-2.47.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.24.6.83 2.06.9 2.21.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.4-.44.53-.15.15-.3.31-.13.61.17.3.76 1.27 1.63 2.05 1.12 1.01 2.06 1.33 2.36 1.48.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.68-.15.28.1 1.77.85 2.07 1 .3.15.5.23.58.36.07.13.07.75-.17 1.43z"/></svg>
+  </a>
 </div>
 </body>
 </html>
