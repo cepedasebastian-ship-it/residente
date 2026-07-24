@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Residente — opción D, cuaderno de viaje</title>
+<style>
+  :root {
+    --d-paper: #EAE1CC;
+    --d-page: #F1EADA;
+    --d-ink: #23262B;
+    --d-ink-soft: #5B5F5A;
+    --d-red: #B23A2E;
+    --d-teal: #3F6D68;
+    --d-tape: rgba(201, 184, 150, 0.55);
+    --d-rule: rgba(35, 38, 43, 0.12);
+    --d-line-strong: rgba(35, 38, 43, 0.28);
+    --font-d-display: "American Typewriter", "Courier New", ui-monospace, monospace;
+    --font-d-body: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    --font-d-hand: "Noteworthy", "Bradley Hand", "Segoe Script", cursive;
+  }
+  :root[data-theme="dark"] {
+    --d-paper: #211E1A;
+    --d-page: #2A2621;
+    --d-ink: #EDE3D0;
+    --d-ink-soft: #B7AC96;
+    --d-red: #E2725B;
+    --d-teal: #7FA69E;
+    --d-tape: rgba(201, 184, 150, 0.28);
+    --d-rule: rgba(237, 227, 208, 0.12);
+    --d-line-strong: rgba(237, 227, 208, 0.26);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --d-paper: #211E1A;
+      --d-page: #2A2621;
+      --d-ink: #EDE3D0;
+      --d-ink-soft: #B7AC96;
+      --d-red: #E2725B;
+      --d-teal: #7FA69E;
+      --d-tape: rgba(201, 184, 150, 0.28);
+      --d-rule: rgba(237, 227, 208, 0.12);
+      --d-line-strong: rgba(237, 227, 208, 0.26);
+    }
+  }
+  * { box-sizing: border-box; }
+  .d-root {
+    background: var(--d-paper);
+    color: var(--d-ink);
+    font-family: var(--font-d-body);
+    line-height: 1.65;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--d-rule) 28px);
+    position: relative;
+    padding-left: 46px;
+  }
+  .d-root::before {
+    content: "";
+    position: absolute;
+    left: 34px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--d-red);
+    opacity: 0.35;
+  }
+  .d-root h1, .d-root h2, .d-root h3 { font-family: var(--font-d-display); font-weight: 400; margin: 0; text-wrap: balance; }
+  .d-container { max-width: 620px; margin: 0 auto; padding: 0 26px; }
+  .d-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 30px 26px 8px; max-width: 620px; margin: 0 auto; }
+  .d-wordmark { font-family: var(--font-d-display); font-size: 17px; letter-spacing: 0.02em; }
+  .d-nav-tag { font-family: var(--font-d-body); font-style: italic; font-size: 12px; color: var(--d-ink-soft); }
+
+  .d-hero { padding: 30px 26px 46px; max-width: 620px; margin: 0 auto; }
+  .d-stamp {
+    display: inline-block;
+    font-family: var(--font-d-display);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--d-red);
+    border: 1.5px dashed var(--d-red);
+    padding: 5px 10px;
+    transform: rotate(-3deg);
+  }
+  .d-hero h1 { font-size: clamp(28px, 5vw, 42px); line-height: 1.2; margin: 22px 0 16px; letter-spacing: -0.01em; }
+  .d-hero p { max-width: 44ch; color: var(--d-ink-soft); font-size: 16px; margin: 0 0 24px; }
+  .d-btn {
+    font-family: var(--font-d-display);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    background: var(--d-ink);
+    color: var(--d-page);
+    border: none;
+    padding: 13px 20px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .d-btn:hover { background: var(--d-teal); }
+  .d-btn:focus-visible { outline: 2px solid var(--d-red); outline-offset: 3px; }
+  .d-hand { font-family: var(--font-d-hand); font-size: 17px; color: var(--d-teal); margin-left: 10px; }
+
+  .d-entry { max-width: 620px; margin: 0 auto 50px; padding: 0 26px; }
+  .d-entry-date { font-family: var(--font-d-display); font-size: 11px; letter-spacing: 0.06em; color: var(--d-ink-soft); text-transform: uppercase; }
+  .d-entry blockquote { font-family: var(--font-d-body); font-style: italic; font-size: 18px; line-height: 1.6; margin: 14px 0 12px; }
+  .d-entry .d-sig { font-family: var(--font-d-hand); font-size: 24px; color: var(--d-ink); }
+
+  .d-polaroid {
+    background: var(--d-page);
+    padding: 10px 10px 34px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    transform: rotate(-1.4deg);
+    width: 240px;
+    margin: 0 auto 4px;
+  }
+  .d-polaroid-inner { aspect-ratio: 4/3; background: linear-gradient(140deg, #7C8C4A 0%, #C9A227 55%, #E8B25C 100%); }
+  .d-polaroid-cap { font-family: var(--font-d-hand); font-size: 14px; text-align: center; margin-top: 8px; color: var(--d-ink); }
+  .d-tape-strip {
+    width: 70px; height: 22px;
+    background: var(--d-tape);
+    margin: 0 auto -14px;
+    position: relative;
+    z-index: 2;
+    transform: rotate(-4deg);
+  }
+
+  .d-page-card {
+    background: var(--d-page);
+    max-width: 620px;
+    margin: 0 auto 60px;
+    padding: 36px 30px;
+    border: 1px solid var(--d-line-strong);
+  }
+  .d-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .d-badge { font-family: var(--font-d-display); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--d-red); border: 1.5px dashed var(--d-red); padding: 5px 10px; transform: rotate(-3deg); display: inline-block; }
+  .d-date-tag { font-family: var(--font-d-display); font-size: 12px; color: var(--d-ink-soft); text-align: right; }
+  .d-page-card h2 { font-size: clamp(22px, 3.6vw, 28px); margin-bottom: 14px; }
+  .d-page-card p.d-desc { color: var(--d-ink-soft); max-width: 52ch; margin: 0 0 20px; }
+  .d-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 14px; }
+  .d-list li { display: flex; gap: 12px; font-size: 15px; }
+  .d-list li::before { content: "—"; color: var(--d-teal); flex: none; }
+  .d-waitlist { display: flex; gap: 10px; flex-wrap: wrap; }
+  .d-waitlist input { font-family: var(--font-d-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--d-line-strong); background: var(--d-paper); color: var(--d-ink); flex: 1 1 200px; }
+  .d-waitlist input:focus-visible { outline: 2px solid var(--d-red); outline-offset: 2px; }
+  .d-form-note { font-family: var(--font-d-display); font-size: 10px; color: var(--d-ink-soft); margin-top: 12px; }
+
+  .d-origin { max-width: 620px; margin: 0 auto 60px; padding: 0 26px; }
+  .d-origin-date { font-family: var(--font-d-display); font-size: 11px; letter-spacing: 0.06em; color: var(--d-ink-soft); text-transform: uppercase; display: block; margin-bottom: 12px; }
+  .d-origin p { color: var(--d-ink); max-width: 56ch; font-size: 15.5px; }
+
+  .d-footer { border-top: 1px dashed var(--d-line-strong); padding: 30px 26px 50px; max-width: 620px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .d-footer .d-wordmark { font-size: 14px; }
+  .d-footer .d-foot-meta { font-family: var(--font-d-display); font-size: 10.5px; color: var(--d-ink-soft); text-align: right; }
+</style>
+</head>
+<body>
+
+
+<div class="d-root">
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción D para Residente: estética de cuaderno de viaje, con renglones de libreta, sellos de tinta y anotaciones a mano.</h2>
+  <div class="d-nav">
+    <span class="d-wordmark">RESIDENTE</span>
+    <span class="d-nav-tag">— cuaderno de Romi</span>
+  </div>
+
+  <section class="d-hero">
+    <span class="d-stamp">Mendoza · Oct 2026</span>
+    <h1>No visitás el lugar.<br>Lo vivís.</h1>
+    <p>Notas de viaje reales, de la gente que ya vive ahí. Esto es lo que anotamos antes de invitarte.</p>
+    <a class="d-btn" href="#d-mendoza">Leer la página de Mendoza</a><span class="d-hand">¡vení!</span>
+  </section>
+
+  <section class="d-entry">
+    <span class="d-entry-date">Entrada · antes de armar el viaje</span>
+    <blockquote>"Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</blockquote>
+    <div class="d-sig">Romi</div>
+  </section>
+
+  <div class="d-tape-strip"></div>
+  <div class="d-polaroid">
+    <div class="d-polaroid-inner"></div>
+    <div class="d-polaroid-cap">viñedo, atardecer — Mendoza</div>
+  </div>
+
+  <section class="d-page-card" id="d-mendoza" style="margin-top:40px;">
+    <div class="d-card-top">
+      <span class="d-badge">Solo mujeres</span>
+      <span class="d-date-tag">4 días<br>octubre 2026<br>cupo 10</span>
+    </div>
+    <h2>Viñedo, atardecer y bienestar</h2>
+    <p class="d-desc">Cuatro días viviendo Mendoza desde adentro: la cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local.</p>
+    <ul class="d-list">
+      <li>Cosecha y atardecer en un viñedo, guiadas por quien lo trabaja todos los días</li>
+      <li>Ritual de bienestar en una clínica de residente, pensado para mujeres</li>
+      <li>Casa compartida y comidas en grupo, sin el apuro de un tour</li>
+    </ul>
+    <form class="d-waitlist" onsubmit="return false;">
+      <input type="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" />
+      <button type="submit" class="d-btn">Sumarme</button>
+    </form>
+    <p class="d-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+  </section>
+
+  <section class="d-origin">
+    <span class="d-origin-date">Entrada anterior · Patagonia, invierno</span>
+    <p>Salimos a remar temprano, cuando el lago todavía tenía hielo en los bordes. Después subimos la montaña para bajarla haciendo snow. De esa entrada del cuaderno salió la pregunta que arma cada viaje: ¿qué hace alguien que ya vive ahí?</p>
+  </section>
+
+  <footer class="d-footer">
+    <span class="d-wordmark">RESIDENTE</span>
+    <div class="d-foot-meta">@residente.viajes<br>mockup de diseño</div>
+  </footer>
+</div>
+
+</body>
+</html>

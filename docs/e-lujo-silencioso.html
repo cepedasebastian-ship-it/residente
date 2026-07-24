@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Residente — opción E, lujo silencioso</title>
+<style>
+  :root {
+    --e-base: #F2F0EB;
+    --e-panel: #F8F7F3;
+    --e-ink: #2C2B27;
+    --e-ink-soft: #7A776D;
+    --e-accent: #7C8974;
+    --e-line: rgba(44, 43, 39, 0.13);
+    --e-line-strong: rgba(44, 43, 39, 0.26);
+    --font-e-display: "Helvetica Neue", Arial, system-ui, sans-serif;
+    --font-e-body: Charter, "Iowan Old Style", Georgia, serif;
+  }
+  :root[data-theme="dark"] {
+    --e-base: #1C1B18;
+    --e-panel: #242320;
+    --e-ink: #EDE9E0;
+    --e-ink-soft: #A8A296;
+    --e-accent: #A3B097;
+    --e-line: rgba(237, 233, 224, 0.13);
+    --e-line-strong: rgba(237, 233, 224, 0.26);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --e-base: #1C1B18;
+      --e-panel: #242320;
+      --e-ink: #EDE9E0;
+      --e-ink-soft: #A8A296;
+      --e-accent: #A3B097;
+      --e-line: rgba(237, 233, 224, 0.13);
+      --e-line-strong: rgba(237, 233, 224, 0.26);
+    }
+  }
+  * { box-sizing: border-box; }
+  .e-root {
+    background: var(--e-base);
+    color: var(--e-ink);
+    font-family: var(--font-e-body);
+    line-height: 1.75;
+  }
+  .e-root h1, .e-root h2, .e-root h3 {
+    font-family: var(--font-e-display);
+    font-weight: 300;
+    text-transform: lowercase;
+    letter-spacing: 0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .e-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 40px 32px 12px; max-width: 600px; margin: 0 auto; }
+  .e-wordmark { font-family: var(--font-e-display); font-weight: 300; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .e-nav-tag { font-family: var(--font-e-display); font-size: 11px; letter-spacing: 0.1em; color: var(--e-ink-soft); text-transform: uppercase; }
+
+  .e-hero { padding: 60px 32px 80px; max-width: 600px; margin: 0 auto; }
+  .e-eyebrow { font-family: var(--font-e-display); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--e-ink-soft); display: block; margin-bottom: 26px; }
+  .e-hero h1 { font-size: clamp(22px, 3.4vw, 30px); letter-spacing: 0.04em; line-height: 1.5; max-width: 20ch; margin-bottom: 30px; }
+  .e-hero p { max-width: 46ch; color: var(--e-ink-soft); font-size: 16px; margin: 0 0 34px; font-family: var(--font-e-body); }
+  .e-link {
+    font-family: var(--font-e-display);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--e-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--e-ink);
+    padding-bottom: 4px;
+  }
+  .e-link:hover { color: var(--e-accent); border-color: var(--e-accent); }
+  .e-link:focus-visible { outline: 2px solid var(--e-accent); outline-offset: 4px; }
+
+  .e-note { max-width: 460px; margin: 0 auto 90px; padding: 0 32px; }
+  .e-note p { font-family: var(--font-e-body); font-style: italic; font-size: 18px; line-height: 1.8; margin: 0; }
+  .e-note .e-sig { font-family: var(--font-e-display); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--e-ink-soft); margin-top: 18px; display: block; }
+
+  .e-visual { max-width: 600px; margin: 0 auto 60px; padding: 0 32px; }
+  .e-visual-frame { aspect-ratio: 21/9; border: 1px solid var(--e-line-strong); padding: 1px; }
+  .e-visual-inner { width: 100%; height: 100%; background: linear-gradient(100deg, #DAD4C3 0%, #B9B29C 100%); }
+
+  .e-card { max-width: 600px; margin: 0 auto 90px; padding: 0 32px; }
+  .e-card-label { font-family: var(--font-e-display); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--e-accent); display: block; margin-bottom: 18px; }
+  .e-card h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 22px; max-width: 14ch; }
+  .e-card p.e-desc { color: var(--e-ink-soft); max-width: 54ch; margin: 0 0 30px; font-size: 16px; }
+  .e-spec {
+    border-top: 1px solid var(--e-line);
+    margin-bottom: 30px;
+  }
+  .e-spec-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--e-line);
+    font-size: 14.5px;
+  }
+  .e-spec-row dt { font-family: var(--font-e-display); letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; color: var(--e-ink-soft); margin: 0; }
+  .e-spec-row dd { margin: 0; text-align: right; color: var(--e-ink); }
+  .e-waitlist { display: flex; gap: 0; border: 1px solid var(--e-line-strong); max-width: 420px; }
+  .e-waitlist input {
+    font-family: var(--font-e-body);
+    font-size: 14px;
+    padding: 14px 16px;
+    border: none;
+    background: transparent;
+    color: var(--e-ink);
+    flex: 1;
+    min-width: 0;
+  }
+  .e-waitlist input:focus-visible { outline: none; background: var(--e-panel); }
+  .e-waitlist button {
+    font-family: var(--font-e-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--e-accent);
+    color: var(--e-base);
+    border: none;
+    padding: 0 22px;
+    cursor: pointer;
+  }
+  .e-waitlist button:hover { opacity: 0.88; }
+  .e-form-note { font-family: var(--font-e-display); font-size: 10.5px; letter-spacing: 0.04em; color: var(--e-ink-soft); margin-top: 14px; }
+
+  .e-origin { max-width: 460px; margin: 0 auto 90px; padding: 0 32px; }
+  .e-origin p { color: var(--e-ink-soft); font-size: 15.5px; font-family: var(--font-e-body); }
+
+  .e-principles { max-width: 600px; margin: 0 auto 90px; padding: 0 32px; display: flex; justify-content: space-between; border-top: 1px solid var(--e-line); border-bottom: 1px solid var(--e-line); }
+  .e-principles div { padding: 22px 12px; text-align: center; flex: 1; }
+  .e-principles div + div { border-left: 1px solid var(--e-line); }
+  .e-principles span { font-family: var(--font-e-display); font-size: 12px; letter-spacing: 0.06em; text-transform: lowercase; color: var(--e-ink); }
+
+  .e-footer { max-width: 600px; margin: 0 auto; padding: 0 32px 60px; display: flex; justify-content: space-between; align-items: center; }
+  .e-footer .e-wordmark { font-size: 12px; letter-spacing: 0.18em; }
+  .e-footer .e-foot-meta { font-family: var(--font-e-display); font-size: 10.5px; color: var(--e-ink-soft); text-align: right; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+
+<div class="e-root">
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción E para Residente: dirección minimalista de lujo silencioso, con foco en bienestar y mucho espacio en blanco.</h2>
+  <div class="e-nav">
+    <span class="e-wordmark">Residente</span>
+    <span class="e-nav-tag">Mendoza, oct 2026</span>
+  </div>
+
+  <section class="e-hero">
+    <span class="e-eyebrow">Viajes para vivir un lugar, no recorrerlo</span>
+    <h1>no visitás el lugar.<br>lo vivís.</h1>
+    <p>Cuatro días en Mendoza, para un grupo pequeño de mujeres. Tiempo, no itinerario.</p>
+    <a class="e-link" href="#e-mendoza">Ver el viaje</a>
+  </section>
+
+  <section class="e-note">
+    <p>"Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</p>
+    <span class="e-sig">Romi, fundadora</span>
+  </section>
+
+  <div class="e-visual">
+    <div class="e-visual-frame"><div class="e-visual-inner"></div></div>
+  </div>
+
+  <section class="e-card" id="e-mendoza">
+    <span class="e-card-label">Próximo viaje</span>
+    <h2>viñedo, atardecer y bienestar</h2>
+    <p class="e-desc">La cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local — no un spa de hotel.</p>
+    <dl class="e-spec">
+      <div class="e-spec-row"><dt>Fecha</dt><dd>Octubre 2026</dd></div>
+      <div class="e-spec-row"><dt>Duración</dt><dd>4 días</dd></div>
+      <div class="e-spec-row"><dt>Grupo</dt><dd>Cupo 10, solo mujeres</dd></div>
+      <div class="e-spec-row"><dt>Incluye</dt><dd>Casa compartida, comidas y ritual de bienestar</dd></div>
+    </dl>
+    <form class="e-waitlist" onsubmit="return false;">
+      <input type="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" />
+      <button type="submit">Sumarme</button>
+    </form>
+    <p class="e-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+  </section>
+
+  <section class="e-origin">
+    <p>Empezó en la Patagonia, remando un lago que todavía tenía hielo y bajando una montaña haciendo snow. Quedó una pregunta: qué hace alguien que ya vive ahí, un fin de semana cualquiera.</p>
+  </section>
+
+  <section class="e-principles">
+    <div><span>anfitriona local</span></div>
+    <div><span>grupo chico</span></div>
+    <div><span>sin circuito</span></div>
+  </section>
+
+  <footer class="e-footer">
+    <span class="e-wordmark">RESIDENTE</span>
+    <div class="e-foot-meta">@residente.viajes<br>mockup de diseño</div>
+  </footer>
+</div>
+
+</body>
+</html>

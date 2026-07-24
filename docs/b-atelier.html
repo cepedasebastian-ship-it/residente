@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Residente — opción B, atelier editorial</title>
+<style>
+  :root {
+    --b-ivory: #F1E9DD;
+    --b-paper: #F8F3EA;
+    --b-ink: #3B1F2B;
+    --b-ink-soft: #6B5560;
+    --b-rose: #A24E67;
+    --b-gold: #A9832E;
+    --b-sage: #7C8B6E;
+    --b-line: rgba(59, 31, 43, 0.16);
+    --b-line-strong: rgba(59, 31, 43, 0.3);
+    --font-b-display: Didot, "Big Caslon", "Bodoni MT", Georgia, serif;
+    --font-b-body: "Avenir Next", "Century Gothic", "Futura", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Roboto Mono", monospace;
+  }
+  :root[data-theme="dark"] {
+    --b-ivory: #241B1F;
+    --b-paper: #2B2025;
+    --b-ink: #F0E3E8;
+    --b-ink-soft: #C7B4BE;
+    --b-rose: #E39AAE;
+    --b-gold: #D9B15C;
+    --b-sage: #A3B393;
+    --b-line: rgba(240, 227, 232, 0.16);
+    --b-line-strong: rgba(240, 227, 232, 0.3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --b-ivory: #241B1F;
+      --b-paper: #2B2025;
+      --b-ink: #F0E3E8;
+      --b-ink-soft: #C7B4BE;
+      --b-rose: #E39AAE;
+      --b-gold: #D9B15C;
+      --b-sage: #A3B393;
+      --b-line: rgba(240, 227, 232, 0.16);
+      --b-line-strong: rgba(240, 227, 232, 0.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  .b-root {
+    background: var(--b-ivory);
+    color: var(--b-ink);
+    font-family: var(--font-b-body);
+    line-height: 1.65;
+  }
+  .b-root h1, .b-root h2, .b-root h3 { font-family: var(--font-b-display); font-weight: 400; margin: 0; text-wrap: balance; }
+  .b-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 30px 30px 10px; max-width: 680px; margin: 0 auto; }
+  .b-wordmark { font-family: var(--font-b-display); font-size: 20px; letter-spacing: 0.04em; }
+  .b-nav-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--b-ink-soft); text-transform: uppercase; }
+  .b-hero { padding: 40px 30px 60px; text-align: center; }
+  .b-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--b-rose); }
+  .b-hero h1 { font-size: clamp(34px, 6vw, 54px); font-style: italic; line-height: 1.12; margin: 20px auto 22px; max-width: 13ch; }
+  .b-hero p { max-width: 42ch; margin: 0 auto 28px; color: var(--b-ink-soft); font-size: 16px; }
+  .b-rule { width: 46px; height: 1px; background: var(--b-gold); margin: 0 auto 26px; }
+  .b-btn { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; background: transparent; color: var(--b-rose); border: 1px solid var(--b-rose); padding: 13px 24px; text-decoration: none; display: inline-block; }
+  .b-btn:hover { background: var(--b-rose); color: var(--b-paper); }
+  .b-btn.filled { background: var(--b-rose); color: var(--b-paper); }
+  .b-btn.filled:hover { background: var(--b-gold); border-color: var(--b-gold); }
+  .b-btn:focus-visible { outline: 2px solid var(--b-gold); outline-offset: 3px; }
+
+  .b-letter { padding: 10px 30px 70px; max-width: 560px; margin: 0 auto; text-align: center; }
+  .b-letter blockquote { font-family: var(--font-b-display); font-style: italic; font-size: 21px; line-height: 1.6; margin: 18px 0; color: var(--b-ink); }
+  .b-sig { font-family: var(--font-b-display); font-style: italic; font-size: 22px; color: var(--b-rose); margin-top: 8px; }
+  .b-sig-role { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--b-ink-soft); margin-top: 4px; }
+
+  .b-photo { aspect-ratio: 16/9; border: 1px solid var(--b-line-strong); padding: 6px; margin-bottom: 10px; }
+  .b-photo-inner { width: 100%; height: 100%; background: linear-gradient(135deg, #E8B98A 0%, #C97A6B 45%, #7C5A6B 100%); }
+  .b-caption { font-family: var(--font-b-display); font-style: italic; font-size: 13px; color: var(--b-ink-soft); text-align: center; margin: 0 0 50px; }
+
+  .b-card { padding: 42px 30px; max-width: 680px; margin: 0 auto 60px; }
+  .b-card-top { text-align: center; margin-bottom: 20px; }
+  .b-badge { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b-gold); }
+  .b-card h2 { font-size: clamp(26px, 4vw, 34px); font-style: italic; margin: 10px 0 6px; }
+  .b-card .b-date { font-family: var(--font-mono); font-size: 12px; color: var(--b-ink-soft); letter-spacing: 0.04em; }
+  .b-card p.b-desc { text-align: center; max-width: 50ch; margin: 20px auto; color: var(--b-ink-soft); }
+  .b-numlist { max-width: 440px; margin: 26px auto; display: grid; gap: 16px; padding: 0; }
+  .b-numlist li { list-style: none; display: flex; gap: 14px; font-size: 15px; text-align: left; }
+  .b-numlist .roman { font-family: var(--font-b-display); font-style: italic; color: var(--b-gold); flex: none; width: 26px; }
+  .b-waitlist { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+  .b-waitlist input { font-family: var(--font-b-body); font-size: 14px; padding: 13px 16px; border: 1px solid var(--b-line-strong); background: var(--b-paper); color: var(--b-ink); flex: 1 1 220px; max-width: 260px; }
+  .b-waitlist input:focus-visible { outline: 2px solid var(--b-gold); outline-offset: 2px; }
+  .b-form-note { font-family: var(--font-mono); font-size: 10.5px; color: var(--b-ink-soft); text-align: center; margin-top: 12px; }
+
+  .b-origin { max-width: 500px; margin: 0 auto 60px; padding: 0 30px; text-align: center; border-top: 1px solid var(--b-line); padding-top: 40px; }
+  .b-origin .b-eyebrow { display: block; margin-bottom: 12px; }
+  .b-origin p { color: var(--b-ink-soft); font-size: 15px; }
+
+  .b-footer { border-top: 1px solid var(--b-line); padding: 34px 30px 50px; max-width: 680px; margin: 0 auto; text-align: center; }
+  .b-footer .b-wordmark { display: block; margin-bottom: 6px; }
+  .b-footer .b-foot-meta { font-family: var(--font-mono); font-size: 11px; color: var(--b-ink-soft); }
+</style>
+</head>
+<body>
+
+
+<div class="b-root">
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción B para Residente: dirección editorial elegante con tono de carta personal de la fundadora, primer viaje a Mendoza en octubre para mujeres.</h2>
+  <div class="b-nav">
+    <span class="b-wordmark">Residente</span>
+    <span class="b-nav-tag">por Romi</span>
+  </div>
+
+  <section class="b-hero">
+    <span class="b-eyebrow">Mendoza · Octubre 2026</span>
+    <h1>Vivir el lugar,<br>no visitarlo</h1>
+    <p>Viajes pensados por y para mujeres, con el ritmo de quien no tiene apuro por volver.</p>
+    <div class="b-rule"></div>
+    <a class="b-btn filled" href="#b-mendoza">Conocer el viaje a Mendoza</a>
+  </section>
+
+  <section class="b-letter">
+    <span class="b-eyebrow">Una carta, no un folleto</span>
+    <blockquote>"Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</blockquote>
+    <div class="b-sig">Romi</div>
+    <div class="b-sig-role">Fundadora de Residente</div>
+  </section>
+
+  <section class="b-card" id="b-mendoza">
+    <div class="b-photo"><div class="b-photo-inner"></div></div>
+    <p class="b-caption">Viñedo al atardecer — Mendoza</p>
+    <div class="b-card-top">
+      <span class="b-badge">Solo mujeres</span>
+      <h2>Viñedo, atardecer y bienestar</h2>
+      <div class="b-date">4 días · octubre 2026 · cupo 10</div>
+    </div>
+    <p class="b-desc">Cuatro días viviendo Mendoza desde adentro: la cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local.</p>
+    <ul class="b-numlist">
+      <li><span class="roman">I.</span> Cosecha y atardecer en un viñedo, guiadas por quien lo trabaja todos los días</li>
+      <li><span class="roman">II.</span> Ritual de bienestar en una clínica de residente, pensado para mujeres</li>
+      <li><span class="roman">III.</span> Casa compartida y comidas en grupo, sin el apuro de un tour</li>
+    </ul>
+    <form class="b-waitlist" onsubmit="return false;">
+      <input type="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" />
+      <button type="submit" class="b-btn filled">Sumarme</button>
+    </form>
+    <p class="b-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+  </section>
+
+  <section class="b-origin">
+    <span class="b-eyebrow">De dónde viene la idea</span>
+    <p>Todo empezó en la Patagonia, remando un lago que todavía tenía hielo y bajando una montaña haciendo snow. La pregunta quedó: ¿qué hace alguien que ya vive ahí, un fin de semana cualquiera?</p>
+  </section>
+
+  <footer class="b-footer">
+    <span class="b-wordmark">Residente</span>
+    <div class="b-foot-meta">@residente.viajes — mockup de diseño</div>
+  </footer>
+</div>
+
+</body>
+</html>
