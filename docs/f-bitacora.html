@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Experiencia Residente — opción F, bitácora</title>
+<style>
+  :root {
+    --f-ground: #E6DFCE;
+    --f-page: #F1EAD9;
+    --f-ink: #241F1C;
+    --f-ink-soft: #5B5650;
+    --f-wine: #5B1626;
+    --f-wine-soft: #7A2A3D;
+    --f-stamp: #B23A2E;
+    --f-sage: #5C6B49;
+    --f-rule: rgba(36, 31, 28, 0.12);
+    --f-line-strong: rgba(36, 31, 28, 0.28);
+    --f-tape: rgba(201, 184, 150, 0.55);
+    --font-f-display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
+    --font-f-label: "American Typewriter", "Courier New", ui-monospace, monospace;
+    --font-f-body: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    --font-f-hand: "Noteworthy", "Bradley Hand", "Segoe Script", cursive;
+  }
+  :root[data-theme="dark"] {
+    --f-ground: #201C16; --f-page: #2A251D; --f-ink: #ECE4D3; --f-ink-soft: #B7AC96;
+    --f-wine: #D97A90; --f-wine-soft: #E8A5B4; --f-stamp: #E2725B; --f-sage: #93A87A;
+    --f-rule: rgba(236, 228, 211, 0.12); --f-line-strong: rgba(236, 228, 211, 0.26); --f-tape: rgba(201, 184, 150, 0.26);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --f-ground: #201C16; --f-page: #2A251D; --f-ink: #ECE4D3; --f-ink-soft: #B7AC96;
+      --f-wine: #D97A90; --f-wine-soft: #E8A5B4; --f-stamp: #E2725B; --f-sage: #93A87A;
+      --f-rule: rgba(236, 228, 211, 0.12); --f-line-strong: rgba(236, 228, 211, 0.26); --f-tape: rgba(201, 184, 150, 0.26);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .f-root {
+    background: var(--f-ground);
+    color: var(--f-ink);
+    font-family: var(--font-f-body);
+    line-height: 1.65;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--f-rule) 28px);
+    position: relative;
+  }
+  .f-root h1, .f-root h2, .f-root h3 { font-family: var(--font-f-display); font-weight: 700; margin: 0; text-wrap: balance; }
+  .f-margin {
+    position: absolute; left: 44px; top: 0; bottom: 0; width: 1px; background: var(--f-stamp); opacity: 0.32;
+  }
+  @media (max-width: 640px) { .f-margin { display: none; } }
+  .f-shell { max-width: 700px; margin: 0 auto; padding-left: 64px; padding-right: 26px; }
+  @media (max-width: 640px) { .f-shell { padding-left: 26px; } }
+
+  .f-nav { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 0 8px; }
+  .f-wordmark { font-size: 17px; letter-spacing: 0.04em; }
+  .f-nav-tag { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.08em; color: var(--f-ink-soft); text-transform: uppercase; }
+
+  .f-hero { position: relative; padding: 34px 0 56px; overflow: hidden; }
+  .f-topo { position: absolute; inset: -20px -26px auto auto; width: 420px; height: 260px; opacity: 0.4; pointer-events: none; }
+  .f-coord { font-family: var(--font-f-label); font-size: 11.5px; letter-spacing: 0.08em; color: var(--f-wine); text-transform: uppercase; position: relative; }
+  .f-hero h1 { font-size: clamp(32px, 6vw, 52px); line-height: 1.06; text-transform: uppercase; margin: 16px 0 18px; position: relative; max-width: 11ch; }
+  .f-hero p { max-width: 44ch; color: var(--f-ink-soft); font-size: 16px; margin: 0 0 26px; position: relative; }
+  .f-btn {
+    font-family: var(--font-f-label); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    background: var(--f-wine); color: var(--f-page); border: none; padding: 13px 20px;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px; position: relative;
+  }
+  .f-btn:hover { background: var(--f-wine-soft); }
+  .f-btn:focus-visible { outline: 2px solid var(--f-stamp); outline-offset: 3px; }
+  .f-meta { margin-top: 12px; font-family: var(--font-f-label); font-size: 11.5px; color: var(--f-ink-soft); letter-spacing: 0.03em; position: relative; }
+
+  .f-entry { padding: 6px 0 46px; max-width: 540px; }
+  .f-entry-label { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--f-ink-soft); }
+  .f-entry blockquote { font-family: var(--font-f-body); font-style: italic; font-size: 18px; margin: 14px 0 12px; }
+  .f-sig { font-family: var(--font-f-hand); font-size: 24px; color: var(--f-ink); }
+
+  .f-tape-strip { width: 68px; height: 22px; background: var(--f-tape); margin: 0 0 -14px 18px; transform: rotate(-4deg); position: relative; z-index: 2; }
+  .f-polaroid { background: var(--f-page); padding: 10px 10px 30px; box-shadow: 0 6px 14px rgba(0,0,0,0.18); transform: rotate(-1.2deg); width: 220px; margin: 0 0 40px; }
+  .f-polaroid-inner { aspect-ratio: 4/3; background: linear-gradient(140deg, #7C8C4A 0%, #C9A227 55%, #E8B25C 100%); }
+  .f-polaroid-cap { font-family: var(--font-f-hand); font-size: 14px; text-align: center; margin-top: 8px; }
+
+  .f-card { background: var(--f-page); border: 1px solid var(--f-line-strong); padding: 36px 30px; margin-bottom: 60px; position: relative; }
+  .f-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+  .f-stamp-badge {
+    font-family: var(--font-f-label); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--f-stamp);
+    border: 1.5px dashed var(--f-stamp); padding: 6px 11px; transform: rotate(-3deg); display: inline-block;
+  }
+  .f-date-tag { font-family: var(--font-f-label); font-size: 12px; color: var(--f-ink-soft); text-align: right; }
+  .f-card h2 { font-size: clamp(24px, 3.6vw, 30px); text-transform: uppercase; margin-bottom: 14px; }
+  .f-card p.f-desc { color: var(--f-ink-soft); max-width: 54ch; margin: 0 0 20px; }
+  .f-list { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 13px; }
+  .f-list li { display: flex; gap: 12px; font-size: 15px; }
+  .f-list li::before { content: ""; width: 6px; height: 6px; background: var(--f-sage); border-radius: 50%; flex: none; margin-top: 6px; }
+  .f-waitlist { display: flex; gap: 10px; flex-wrap: wrap; }
+  .f-waitlist input { font-family: var(--font-f-body); font-size: 14px; padding: 12px 14px; border: 1px solid var(--f-line-strong); background: var(--f-ground); color: var(--f-ink); flex: 1 1 200px; }
+  .f-waitlist input:focus-visible { outline: 2px solid var(--f-stamp); outline-offset: 2px; }
+  .f-form-note { font-family: var(--font-f-label); font-size: 10px; color: var(--f-ink-soft); margin-top: 12px; }
+
+  .f-origin { max-width: 560px; margin-bottom: 60px; }
+  .f-origin p { color: var(--f-ink); max-width: 56ch; font-size: 15.5px; }
+
+  .f-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--f-line-strong); border: 1px solid var(--f-line-strong); margin-bottom: 56px; }
+  @media (max-width: 560px) { .f-principles { grid-template-columns: 1fr; } }
+  .f-principle { background: var(--f-ground); padding: 22px 18px; }
+  .f-principle .tag { font-family: var(--font-f-label); font-size: 10.5px; letter-spacing: 0.06em; color: var(--f-sage); text-transform: uppercase; }
+  .f-principle p { margin: 8px 0 0; font-size: 13.5px; color: var(--f-ink-soft); }
+
+  .f-footer { border-top: 1px dashed var(--f-line-strong); padding: 28px 0 50px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  .f-footer .f-wordmark { font-size: 14px; }
+  .f-footer .f-foot-meta { font-family: var(--font-f-label); font-size: 10.5px; color: var(--f-ink-soft); text-align: right; }
+</style>
+</head>
+<body>
+<div class="f-root">
+  <div class="f-margin" aria-hidden="true"></div>
+  <h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Opción F para Experiencia Residente: bitácora de expedición, mezcla del sistema de coordenadas y mapas de la opción A con la textura de cuaderno y sellos de la opción D.</h2>
+
+  <div class="f-shell">
+    <div class="f-nav">
+      <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
+      <span class="f-nav-tag">Bitácora de Romi</span>
+    </div>
+
+    <header class="f-hero">
+      <svg class="f-topo" viewBox="0 0 420 260" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="var(--f-ink-soft)" stroke-width="1" opacity="0.4">
+          <path d="M -10 40 C 90 10, 180 60, 280 30 S 460 0, 520 40" />
+          <path d="M -10 80 C 100 50, 190 100, 290 70 S 450 40, 520 80" />
+          <path d="M -10 120 C 110 90, 200 140, 300 110 S 440 80, 520 120" />
+        </g>
+        <g fill="none" stroke="var(--f-wine)" stroke-width="1.2" opacity="0.4">
+          <path d="M 30 240 C 80 190, 60 150, 110 110" />
+        </g>
+      </svg>
+      <span class="f-coord">33.9°S · MENDOZA — VIAJES N.º 001</span>
+      <h1>No visitás el lugar. Lo vivís.</h1>
+      <p>Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.</p>
+      <a class="f-btn" href="#f-mendoza">Ver la página de Mendoza →</a>
+      <div class="f-meta">PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO</div>
+    </header>
+
+    <section class="f-entry">
+      <span class="f-entry-label">Entrada · antes de armar el viaje</span>
+      <blockquote>"Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</blockquote>
+      <div class="f-sig">Romi</div>
+    </section>
+
+    <div class="f-tape-strip"></div>
+    <div class="f-polaroid">
+      <div class="f-polaroid-inner"></div>
+      <div class="f-polaroid-cap">viñedo, atardecer — Mendoza</div>
+    </div>
+
+    <section class="f-card" id="f-mendoza">
+      <div class="f-card-top">
+        <span class="f-stamp-badge">Solo mujeres</span>
+        <span class="f-date-tag">4 días<br>octubre 2026<br>cupo 10</span>
+      </div>
+      <h2>Viñedo, atardecer y bienestar</h2>
+      <p class="f-desc">Cuatro días viviendo Mendoza desde adentro: la cosecha, el atardecer entre las hileras de un viñedo en producción, y un ritual pensado por la dueña de una clínica de bienestar local.</p>
+      <ul class="f-list">
+        <li>Cosecha y atardecer en un viñedo, guiadas por quien lo trabaja todos los días</li>
+        <li>Ritual de bienestar en una clínica de residente, pensado para mujeres</li>
+        <li>Casa compartida y comidas en grupo, sin el apuro de un tour</li>
+      </ul>
+      <form class="f-waitlist" onsubmit="return false;">
+        <input type="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" />
+        <button type="submit" class="f-btn">Sumarme</button>
+      </form>
+      <p class="f-form-note">MOCKUP DE DISEÑO — EL FORMULARIO TODAVÍA NO ESTÁ CONECTADO.</p>
+    </section>
+
+    <section class="f-origin">
+      <span class="f-entry-label">40.1°S · SAN MARTÍN DE LOS ANDES — entrada anterior</span>
+      <p style="margin-top:12px;">Salimos a remar temprano, cuando el lago todavía tenía hielo en los bordes. Después subimos la montaña para bajarla haciendo snow. De esa entrada del cuaderno salió la pregunta que arma cada viaje: ¿qué hace alguien que ya vive ahí?</p>
+    </section>
+
+    <section>
+      <span class="f-entry-label" style="display:block; margin-bottom:12px;">La idea, en tres partes</span>
+      <div class="f-principles">
+        <div class="f-principle"><span class="tag">Anfitriona local</span><p>Cada viaje lo arma alguien que ya vive ahí, no una agencia con folleto genérico.</p></div>
+        <div class="f-principle"><span class="tag">Grupo chico</span><p>Cupo reducido para que se sienta como una junta de amigas, no una excursión.</p></div>
+        <div class="f-principle"><span class="tag">Sin circuito</span><p>Se hace lo que hace un residente un fin de semana — no la lista de imperdibles de internet.</p></div>
+      </div>
+    </section>
+
+    <footer class="f-footer">
+      <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
+      <div class="f-foot-meta">@residente.viajes<br>mockup de diseño</div>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
