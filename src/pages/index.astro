@@ -7,7 +7,9 @@ import settings from '../data/settings.json';
 
 const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.data.order);
 const featuredTrip = trips.find((t) => t.data.status === 'proximo') ?? trips[0];
-const { Content } = await render(featuredTrip);
+const tripsWithContent = await Promise.all(
+  trips.map(async (trip) => ({ trip, Content: (await render(trip)).Content }))
+);
 ---
 
 <Layout
@@ -17,7 +19,7 @@ const { Content } = await render(featuredTrip);
   <div class="f-nav">
     <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
     <div class="f-nav-links">
-      <a href={`#${featuredTrip.id}`}>Mendoza</a>
+      {trips.map((trip) => <a href={`#${trip.id}`}>{trip.data.navLabel}</a>)}
       <a href="#sobre-romi">Sobre Romi</a>
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
@@ -39,7 +41,7 @@ const { Content } = await render(featuredTrip);
     <h1>No visitás el lugar. Lo vivís.</h1>
     <p>Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.</p>
     <div class="f-hero-ctas">
-      <a class="f-btn" href={`#${featuredTrip.id}`}>Ver la página de Mendoza →</a>
+      <a class="f-btn" href="#viajes">Ver los viajes →</a>
       <WhatsAppButton
         number={settings.whatsappNumber}
         message="Hola Romi, quiero saber más del viaje a Mendoza"
@@ -55,7 +57,12 @@ const { Content } = await render(featuredTrip);
     <div class="f-sig">Romi</div>
   </section>
 
-  <TripCard trip={featuredTrip} Content={Content} />
+  <section id="viajes">
+    {tripsWithContent.length > 1 && (
+      <span class="f-entry-label" style="display:block; margin-bottom:20px;">Viajes</span>
+    )}
+    {tripsWithContent.map(({ trip, Content }) => <TripCard trip={trip} Content={Content} />)}
+  </section>
 
   <section class="f-para-quien">
     <span class="f-entry-label">¿Para quién es esto?</span>

@@ -20,6 +20,19 @@ const formName = `lista-espera-${id}`;
   <div class="f-polaroid-cap">{data.coverCaption}</div>
 </div>
 
+{data.gallery && data.gallery.length > 0 && (
+  <div class="f-gallery-row">
+    {data.gallery.map((item, i) => (
+      <div class={`f-polaroid f-polaroid-sm ${i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'}`}>
+        <div class="f-polaroid-inner">
+          <Image src={item.photo} alt={item.caption || data.title} width={360} height={270} />
+        </div>
+        {item.caption && <div class="f-polaroid-cap">{item.caption}</div>}
+      </div>
+    ))}
+  </div>
+)}
+
 <section class="f-card" id={id}>
   <div class="f-card-top">
     <span class="f-stamp-badge">{data.badge}</span>

@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: entropiastudios/residente
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 media_folder: "src/assets/uploads"
 public_folder: "/uploads"
@@ -17,6 +14,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
+      - { label: "Nombre corto para el menú (ej. Mendoza)", name: "navLabel", widget: "string" }
       - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string", required: false }
       - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string", required: false }
       - label: "Estado"
@@ -46,6 +44,17 @@ collections:
         public_folder: "../../assets/uploads"
       - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string", required: false }
       - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string", required: false }
+      - label: "Más fotos (opcional)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - label: "Foto"
+            name: "photo"
+            widget: "image"
+            media_folder: "/src/assets/uploads"
+            public_folder: "../../assets/uploads"
+          - { label: "Pie de foto", name: "caption", widget: "string", required: false }
       - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1, required: false }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }
 

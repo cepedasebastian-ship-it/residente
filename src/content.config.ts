@@ -6,6 +6,7 @@ const trips = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      navLabel: z.string(),
       coordLabel: z.string(),
       badge: z.string(),
       status: z.enum(['proximo', 'cupo-lleno', 'pasado']),
@@ -18,6 +19,10 @@ const trips = defineCollection({
       coverImage: image(),
       coverAlt: z.string(),
       coverCaption: z.string(),
+      gallery: z
+        .array(z.object({ photo: image(), caption: z.string().optional().default('') }))
+        .optional()
+        .default([]),
       order: z.number().default(0),
     }),
 });

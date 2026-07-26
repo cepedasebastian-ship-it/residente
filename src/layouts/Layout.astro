@@ -133,10 +133,10 @@ const { title, description, noindex = true } = Astro.props;
     }
   }
   .f-shell {
-    max-width: 700px;
+    max-width: 900px;
     margin: 0 auto;
     padding-left: 64px;
-    padding-right: 26px;
+    padding-right: 40px;
   }
   @media (max-width: 640px) {
     .f-shell {
@@ -325,6 +325,23 @@ const { title, description, noindex = true } = Astro.props;
     font-size: 14px;
     text-align: center;
     margin-top: 8px;
+  }
+
+  .f-gallery-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0 0 40px;
+  }
+  .f-polaroid-sm {
+    width: 160px;
+    margin: 0;
+  }
+  .f-rotate-left {
+    transform: rotate(-2deg);
+  }
+  .f-rotate-right {
+    transform: rotate(2deg);
   }
 
   .f-card {
