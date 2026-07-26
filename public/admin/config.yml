@@ -1,5 +1,9 @@
 backend:
-  name: test-repo
+  name: github
+  repo: entropiastudios/residente
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: "src/assets/uploads"
 public_folder: "/uploads"
@@ -13,26 +17,32 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string" }
-      - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string" }
+      - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string", required: false }
+      - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string", required: false }
       - label: "Estado"
         name: "status"
         widget: "select"
+        required: false
+        default: "proximo"
         options:
           - { label: "Próximo", value: "proximo" }
           - { label: "Cupo lleno", value: "cupo-lleno" }
           - { label: "Pasado", value: "pasado" }
-      - { label: "Fecha (texto libre, ej. octubre 2026)", name: "dateLabel", widget: "string" }
-      - { label: "Duración (ej. 5 días · 4 noches)", name: "durationLabel", widget: "string" }
-      - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string" }
-      - { label: "Valor", name: "priceLabel", widget: "string" }
-      - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string" }
-      - { label: "Incluye (lista de puntos)", name: "includes", widget: "list" }
-      - { label: "Foto de portada", name: "coverImage", widget: "image" }
-      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string" }
-      - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string" }
-      - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1 }
-      - { label: "Descripción", name: "body", widget: "markdown" }
+      - { label: "Fecha (texto libre, ej. octubre 2026)", name: "dateLabel", widget: "string", required: false }
+      - { label: "Duración (ej. 5 días · 4 noches)", name: "durationLabel", widget: "string", required: false }
+      - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string", required: false }
+      - { label: "Valor", name: "priceLabel", widget: "string", required: false }
+      - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string", required: false }
+      - label: "Incluye (lista de puntos)"
+        name: "includes"
+        widget: "list"
+        required: false
+        field: { label: "Punto", name: "item", widget: "string", required: false }
+      - { label: "Foto de portada", name: "coverImage", widget: "image", required: false }
+      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string", required: false }
+      - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string", required: false }
+      - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1, required: false }
+      - { label: "Descripción", name: "body", widget: "markdown", required: false }
 
   - name: "settings"
     label: "Textos generales"
@@ -41,28 +51,33 @@ collections:
         label: "Configuración del sitio"
         name: "settings"
         fields:
-          - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string" }
-          - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string" }
+          - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string", required: false }
+          - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string", required: false }
           - label: "Bio de Romi (un párrafo por línea)"
             name: "aboutBio"
             widget: "list"
-            field: { label: "Párrafo", name: "paragraph", widget: "text" }
-          - { label: "Para quién es esto (texto)", name: "paraQuienText", widget: "text" }
+            required: false
+            field: { label: "Párrafo", name: "paragraph", widget: "text", required: false }
+          - { label: "Para quién es esto (texto)", name: "paraQuienText", widget: "text", required: false }
           - label: "Para quién es esto (etiquetas cortas)"
             name: "paraQuienTags"
             widget: "list"
-          - { label: "Origen: etiqueta de ruta", name: "originCoordLabel", widget: "string" }
-          - { label: "Origen: texto", name: "originText", widget: "text" }
-          - { label: "Origen: precio de referencia", name: "originPrice", widget: "string" }
+            required: false
+            field: { label: "Etiqueta", name: "item", widget: "string", required: false }
+          - { label: "Origen: etiqueta de ruta", name: "originCoordLabel", widget: "string", required: false }
+          - { label: "Origen: texto", name: "originText", widget: "text", required: false }
+          - { label: "Origen: precio de referencia", name: "originPrice", widget: "string", required: false }
           - label: "Principios de la marca"
             name: "principles"
             widget: "list"
+            required: false
             fields:
-              - { label: "Etiqueta", name: "tag", widget: "string" }
-              - { label: "Texto", name: "text", widget: "text" }
+              - { label: "Etiqueta", name: "tag", widget: "string", required: false }
+              - { label: "Texto", name: "text", widget: "text", required: false }
           - label: "Preguntas frecuentes"
             name: "faq"
             widget: "list"
+            required: false
             fields:
-              - { label: "Pregunta", name: "q", widget: "string" }
-              - { label: "Respuesta", name: "a", widget: "text" }
+              - { label: "Pregunta", name: "q", widget: "string", required: false }
+              - { label: "Respuesta", name: "a", widget: "text", required: false }

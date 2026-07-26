@@ -1,6 +1,6 @@
 ---
 title: "Viñedo, atardecer y bienestar"
-coordLabel: "33.9°S · MENDOZA — VIAJES N.º 001"
+coordLabel: "32.9°S · 68.8°O — MENDOZA, VIAJES N.º 001"
 badge: "Solo mujeres"
 status: "proximo"
 dateLabel: "octubre 2026"

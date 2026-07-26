@@ -8,5 +8,95 @@
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      var TripPreview = createClass({
+        render: function () {
+          var entry = this.props.entry;
+          var data = entry.get('data');
+          var image = data.get('coverImage');
+          var imageUrl = image ? this.props.getAsset(image).toString() : null;
+          var includes = data.get('includes');
+
+          return h(
+            'div',
+            { className: 'preview-wrap' },
+            h(
+              'div',
+              {},
+              h('div', { className: 'f-tape-strip' }),
+              h(
+                'div',
+                { className: 'f-polaroid' },
+                h(
+                  'div',
+                  { className: 'f-polaroid-inner' },
+                  imageUrl ? h('img', { src: imageUrl, alt: data.get('coverAlt') || '' }) : null
+                ),
+                h('div', { className: 'f-polaroid-cap' }, data.get('coverCaption') || 'sin foto todavía')
+              )
+            ),
+            h(
+              'div',
+              { className: 'f-card' },
+              h(
+                'div',
+                { className: 'f-card-top' },
+                h('span', { className: 'f-stamp-badge' }, data.get('badge') || 'sin badge'),
+                h(
+                  'span',
+                  { className: 'f-date-tag' },
+                  data.get('durationLabel') || '(duración)',
+                  h('br'),
+                  data.get('dateLabel') || '(fecha)',
+                  h('br'),
+                  data.get('capacityLabel') || '(cupo)'
+                )
+              ),
+              h('h2', {}, data.get('title') || 'Sin título todavía'),
+              h('div', { className: 'f-desc' }, this.props.widgetFor('body')),
+              h(
+                'div',
+                { className: 'f-price-row' },
+                h(
+                  'div',
+                  { className: 'f-price-item' },
+                  h('span', { className: 'f-price-label' }, 'Duración'),
+                  h('span', { className: 'f-price-value' }, data.get('durationLabel') || '—')
+                ),
+                h(
+                  'div',
+                  { className: 'f-price-item' },
+                  h('span', { className: 'f-price-label' }, 'Incluye'),
+                  h('span', { className: 'f-price-value' }, data.get('includesLabel') || '—')
+                ),
+                h(
+                  'div',
+                  { className: 'f-price-item' },
+                  h('span', { className: 'f-price-label' }, 'Valor'),
+                  h('span', { className: 'f-price-value' }, data.get('priceLabel') || '—')
+                )
+              ),
+              includes && includes.size
+                ? h(
+                    'ul',
+                    { className: 'f-list' },
+                    includes.map(function (item, i) {
+                      return h('li', { key: i }, item);
+                    }).toArray()
+                  )
+                : null
+            ),
+            h(
+              'p',
+              { className: 'preview-note' },
+              'PREVIEW — así se va a ver esta tarjeta en la home. Los campos vacíos se muestran entre paréntesis, no van a aparecer así en el sitio real.'
+            )
+          );
+        },
+      });
+
+      CMS.registerPreviewStyle('/admin/preview.css');
+      CMS.registerPreviewTemplate('trips', TripPreview);
+    </script>
   </body>
 </html>
