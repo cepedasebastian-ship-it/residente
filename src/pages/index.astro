@@ -1,17 +1,137 @@
 ---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import TripCard from '../components/TripCard.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import settings from '../data/settings.json';
 
+const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.data.order);
+const featuredTrip = trips.find((t) => t.data.status === 'proximo') ?? trips[0];
+const { Content } = await render(featuredTrip);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Experiencia Residente — viajes para vivir cada lugar como quien ya vive ahí"
+  description="Viajes chicos, armados por Romi, para vivir cada destino como residente y no como turista. Próximo viaje: Mendoza, octubre 2026, solo mujeres."
+>
+  <div class="f-nav">
+    <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
+    <div class="f-nav-links">
+      <a href={`#${featuredTrip.id}`}>Mendoza</a>
+      <a href="#sobre-romi">Sobre Romi</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+
+  <header class="f-hero">
+    <svg class="f-topo" viewBox="0 0 420 260" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="var(--f-ink-soft)" stroke-width="1" opacity="0.4">
+        <path d="M -10 40 C 90 10, 180 60, 280 30 S 460 0, 520 40" />
+        <path d="M -10 80 C 100 50, 190 100, 290 70 S 450 40, 520 80" />
+        <path d="M -10 120 C 110 90, 200 140, 300 110 S 440 80, 520 120" />
+      </g>
+      <g fill="none" stroke="var(--f-wine)" stroke-width="1.2" opacity="0.4">
+        <path d="M 30 240 C 80 190, 60 150, 110 110" />
+      </g>
+    </svg>
+    <span class="f-coord">{featuredTrip.data.coordLabel}</span>
+    <h1>No visitás el lugar. Lo vivís.</h1>
+    <p>Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.</p>
+    <div class="f-hero-ctas">
+      <a class="f-btn" href={`#${featuredTrip.id}`}>Ver la página de Mendoza →</a>
+      <WhatsAppButton
+        number={settings.whatsappNumber}
+        message="Hola Romi, quiero saber más del viaje a Mendoza"
+        label="Escribinos por WhatsApp"
+      />
+    </div>
+    <div class="f-meta">PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO</div>
+  </header>
+
+  <section class="f-entry">
+    <span class="f-entry-label">Entrada · antes de armar el viaje</span>
+    <blockquote>"Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</blockquote>
+    <div class="f-sig">Romi</div>
+  </section>
+
+  <TripCard trip={featuredTrip} Content={Content} />
+
+  <section class="f-para-quien">
+    <span class="f-entry-label">¿Para quién es esto?</span>
+    <p>{settings.paraQuienText}</p>
+    <div class="f-tags">
+      {settings.paraQuienTags.map((tag) => <span class="f-tag-pill">{tag}</span>)}
+    </div>
+  </section>
+
+  <section class="f-about" id="sobre-romi">
+    <div class="f-about-head">
+      <h2>Sobre Romi</h2>
+      <span class="f-entry-label">La entrada más larga del cuaderno</span>
+    </div>
+    {settings.aboutBio.map((paragraph) => <p>{paragraph}</p>)}
+    <span class="f-sig">Romi</span>
+  </section>
+
+  <section class="f-origin">
+    <span class="f-entry-label">{settings.originCoordLabel}</span>
+    <p style="margin-top:12px;">{settings.originText}</p>
+    <span class="f-origin-price">{settings.originPrice}</span>
+  </section>
+
+  <section>
+    <span class="f-entry-label" style="display:block; margin-bottom:12px;">La idea, en tres partes</span>
+    <div class="f-principles">
+      {settings.principles.map((p) => (
+        <div class="f-principle">
+          <span class="tag">{p.tag}</span>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="f-faq" id="faq">
+    <span class="f-entry-label" style="display:block; margin-bottom:6px;">Preguntas frecuentes</span>
+    <h2 style="margin-bottom:18px;">Antes de anotarte</h2>
+    {settings.faq.map((item) => (
+      <div class="f-faq-item">
+        <p class="f-faq-q">{item.q}</p>
+        <p class="f-faq-a">{item.a}</p>
+      </div>
+    ))}
+    <p class="f-faq-note">RESPUESTAS DE EJEMPLO — A CONFIRMAR CON ROMI ANTES DE PUBLICAR.</p>
+  </section>
+
+  <section class="f-contact" id="contacto">
+    <h2>Hablemos</h2>
+    <p>¿Dudas antes de anotarte? Escribinos, la que responde del otro lado es Romi.</p>
+    <div class="f-contact-grid">
+      <div class="f-contact-direct">
+        <span class="f-entry-label">Directo</span>
+        <span class="f-phone">{settings.phoneLabel}</span>
+        <WhatsAppButton
+          number={settings.whatsappNumber}
+          message="Hola Romi, tengo una consulta"
+          label="Escribinos por WhatsApp"
+        />
+      </div>
+      <form class="f-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto" />
+        <p class="hidden" style="display:none;"><label>No llenar: <input name="bot-field" /></label></p>
+        <input type="text" name="nombre" placeholder="Tu nombre" aria-label="Nombre" required />
+        <input type="email" name="email" placeholder="tu@email.com" aria-label="Email" required />
+        <textarea name="mensaje" placeholder="Contanos qué querés saber" aria-label="Mensaje" required></textarea>
+        <button type="submit" class="f-btn f-btn-outline">Enviar mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="f-footer">
+    <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
+    <div class="f-foot-meta">@residente.viajes<br />mockup de diseño</div>
+  </footer>
+
+  <WhatsAppButton number={settings.whatsappNumber} message="Hola Romi, quiero saber más" float />
+</Layout>

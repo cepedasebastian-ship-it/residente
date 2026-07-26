@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "trips"
+    label: "Viajes"
+    label_singular: "Viaje"
+    folder: "src/content/trips"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string" }
+      - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string" }
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options:
+          - { label: "Próximo", value: "proximo" }
+          - { label: "Cupo lleno", value: "cupo-lleno" }
+          - { label: "Pasado", value: "pasado" }
+      - { label: "Fecha (texto libre, ej. octubre 2026)", name: "dateLabel", widget: "string" }
+      - { label: "Duración (ej. 5 días · 4 noches)", name: "durationLabel", widget: "string" }
+      - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string" }
+      - { label: "Valor", name: "priceLabel", widget: "string" }
+      - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string" }
+      - { label: "Incluye (lista de puntos)", name: "includes", widget: "list" }
+      - { label: "Foto de portada", name: "coverImage", widget: "image" }
+      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string" }
+      - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string" }
+      - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1 }
+      - { label: "Descripción", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Textos generales"
+    files:
+      - file: "src/data/settings.json"
+        label: "Configuración del sitio"
+        name: "settings"
+        fields:
+          - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string" }
+          - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string" }
+          - label: "Bio de Romi (un párrafo por línea)"
+            name: "aboutBio"
+            widget: "list"
+            field: { label: "Párrafo", name: "paragraph", widget: "text" }
+          - { label: "Para quién es esto (texto)", name: "paraQuienText", widget: "text" }
+          - label: "Para quién es esto (etiquetas cortas)"
+            name: "paraQuienTags"
+            widget: "list"
+          - { label: "Origen: etiqueta de ruta", name: "originCoordLabel", widget: "string" }
+          - { label: "Origen: texto", name: "originText", widget: "text" }
+          - { label: "Origen: precio de referencia", name: "originPrice", widget: "string" }
+          - label: "Principios de la marca"
+            name: "principles"
+            widget: "list"
+            fields:
+              - { label: "Etiqueta", name: "tag", widget: "string" }
+              - { label: "Texto", name: "text", widget: "text" }
+          - label: "Preguntas frecuentes"
+            name: "faq"
+            widget: "list"
+            fields:
+              - { label: "Pregunta", name: "q", widget: "string" }
+              - { label: "Respuesta", name: "a", widget: "text" }

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "residente-dev",
+      "runtimeExecutable": "corepack",
+      "runtimeArgs": ["pnpm", "run", "dev"],
+      "port": 4321
+    }
+  ]
+}

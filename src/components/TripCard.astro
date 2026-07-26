@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  trip: CollectionEntry<'trips'>;
+  Content: any;
+}
+
+const { trip, Content } = Astro.props;
+const { data, id } = trip;
+const formName = `lista-espera-${id}`;
+---
+
+<div class="f-tape-strip"></div>
+<div class="f-polaroid">
+  <div class="f-polaroid-inner">
+    <Image src={data.coverImage} alt={data.coverAlt} width={520} height={390} />
+  </div>
+  <div class="f-polaroid-cap">{data.coverCaption}</div>
+</div>
+
+<section class="f-card" id={id}>
+  <div class="f-card-top">
+    <span class="f-stamp-badge">{data.badge}</span>
+    <span class="f-date-tag">
+      {data.durationLabel}<br />
+      {data.dateLabel}<br />
+      {data.capacityLabel}
+    </span>
+  </div>
+  <h2>{data.title}</h2>
+  <div class="f-desc">
+    <Content />
+  </div>
+  <div class="f-price-row">
+    <div class="f-price-item">
+      <span class="f-price-label">Duración</span>
+      <span class="f-price-value">{data.durationLabel}</span>
+    </div>
+    <div class="f-price-item">
+      <span class="f-price-label">Incluye</span>
+      <span class="f-price-value">{data.includesLabel}</span>
+    </div>
+    <div class="f-price-item">
+      <span class="f-price-label">Valor</span>
+      <span class="f-price-value">{data.priceLabel}</span>
+    </div>
+  </div>
+  <ul class="f-list">
+    {data.includes.map((item: string) => <li>{item}</li>)}
+  </ul>
+  <form class="f-waitlist" name={formName} method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value={formName} />
+    <p class="hidden" style="display:none;"><label>No llenar: <input name="bot-field" /></label></p>
+    <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" required />
+    <button type="submit" class="f-btn">Sumarme</button>
+  </form>
+  <p class="f-form-note">EL VALOR TODAVÍA NO ESTÁ CONFIRMADO — ESCRIBINOS POR WHATSAPP PARA CONSULTARLO.</p>
+</section>

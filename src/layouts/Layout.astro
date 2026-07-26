@@ -1,0 +1,670 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{title}</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" is:inline></script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="f-root">
+      <div class="f-margin" aria-hidden="true"></div>
+      <div class="f-shell">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --f-ground: #e6dfce;
+    --f-page: #f1ead9;
+    --f-ink: #241f1c;
+    --f-ink-soft: #5b5650;
+    --f-wine: #5b1626;
+    --f-wine-soft: #7a2a3d;
+    --f-stamp: #b23a2e;
+    --f-sage: #5c6b49;
+    --f-rule: rgba(36, 31, 28, 0.12);
+    --f-line-strong: rgba(36, 31, 28, 0.28);
+    --f-tape: rgba(201, 184, 150, 0.55);
+    --f-whatsapp: #3f6d58;
+    --font-f-display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
+    --font-f-label: "American Typewriter", "Courier New", ui-monospace, monospace;
+    --font-f-body: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    --font-f-hand: "Noteworthy", "Bradley Hand", "Segoe Script", cursive;
+  }
+  :root[data-theme="dark"] {
+    --f-ground: #201c16;
+    --f-page: #2a251d;
+    --f-ink: #ece4d3;
+    --f-ink-soft: #b7ac96;
+    --f-wine: #d97a90;
+    --f-wine-soft: #e8a5b4;
+    --f-stamp: #e2725b;
+    --f-sage: #93a87a;
+    --f-rule: rgba(236, 228, 211, 0.12);
+    --f-line-strong: rgba(236, 228, 211, 0.26);
+    --f-tape: rgba(201, 184, 150, 0.26);
+    --f-whatsapp: #6fa98d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --f-ground: #201c16;
+      --f-page: #2a251d;
+      --f-ink: #ece4d3;
+      --f-ink-soft: #b7ac96;
+      --f-wine: #d97a90;
+      --f-wine-soft: #e8a5b4;
+      --f-stamp: #e2725b;
+      --f-sage: #93a87a;
+      --f-rule: rgba(236, 228, 211, 0.12);
+      --f-line-strong: rgba(236, 228, 211, 0.26);
+      --f-tape: rgba(201, 184, 150, 0.26);
+      --f-whatsapp: #6fa98d;
+    }
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+  .f-root {
+    background: var(--f-ground);
+    color: var(--f-ink);
+    font-family: var(--font-f-body);
+    line-height: 1.65;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 27px,
+      var(--f-rule) 28px
+    );
+    position: relative;
+  }
+  .f-root h1,
+  .f-root h2,
+  .f-root h3 {
+    font-family: var(--font-f-display);
+    font-weight: 700;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .f-margin {
+    position: absolute;
+    left: 44px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--f-stamp);
+    opacity: 0.32;
+  }
+  @media (max-width: 640px) {
+    .f-margin {
+      display: none;
+    }
+  }
+  .f-shell {
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 64px;
+    padding-right: 26px;
+  }
+  @media (max-width: 640px) {
+    .f-shell {
+      padding-left: 26px;
+    }
+  }
+
+  .f-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 28px 0 8px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .f-wordmark {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+  }
+  .f-nav-tag {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--f-ink-soft);
+    text-transform: uppercase;
+  }
+  .f-nav-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .f-nav-links a {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--f-ink-soft);
+    text-decoration: none;
+  }
+  .f-nav-links a:hover {
+    color: var(--f-wine);
+  }
+
+  .f-hero {
+    position: relative;
+    padding: 34px 0 56px;
+    overflow: hidden;
+  }
+  .f-topo {
+    position: absolute;
+    inset: -20px -26px auto auto;
+    width: 420px;
+    height: 260px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .f-coord {
+    font-family: var(--font-f-label);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--f-wine);
+    text-transform: uppercase;
+    position: relative;
+  }
+  .f-hero h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    line-height: 1.06;
+    text-transform: uppercase;
+    margin: 16px 0 18px;
+    position: relative;
+    max-width: 11ch;
+  }
+  .f-hero p {
+    max-width: 44ch;
+    color: var(--f-ink-soft);
+    font-size: 16px;
+    margin: 0 0 26px;
+    position: relative;
+  }
+  .f-btn {
+    font-family: var(--font-f-label);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--f-wine);
+    color: var(--f-page);
+    border: none;
+    padding: 13px 20px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    cursor: pointer;
+  }
+  .f-btn:hover {
+    background: var(--f-wine-soft);
+  }
+  .f-btn:focus-visible {
+    outline: 2px solid var(--f-stamp);
+    outline-offset: 3px;
+  }
+  .f-btn.f-btn-outline {
+    background: transparent;
+    color: var(--f-wine);
+    border: 1.5px solid var(--f-wine);
+  }
+  .f-btn.f-btn-outline:hover {
+    background: var(--f-wine);
+    color: var(--f-page);
+  }
+  .f-btn.f-btn-whatsapp {
+    background: var(--f-whatsapp);
+  }
+  .f-btn.f-btn-whatsapp:hover {
+    filter: brightness(1.08);
+  }
+  .f-meta {
+    margin-top: 12px;
+    font-family: var(--font-f-label);
+    font-size: 11.5px;
+    color: var(--f-ink-soft);
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+  .f-hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .f-entry {
+    padding: 6px 0 46px;
+    max-width: 540px;
+  }
+  .f-entry-label {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--f-ink-soft);
+  }
+  .f-entry blockquote {
+    font-family: var(--font-f-body);
+    font-style: italic;
+    font-size: 18px;
+    margin: 14px 0 12px;
+  }
+  .f-sig {
+    font-family: var(--font-f-hand);
+    font-size: 24px;
+    color: var(--f-ink);
+  }
+
+  .f-tape-strip {
+    width: 68px;
+    height: 22px;
+    background: var(--f-tape);
+    margin: 0 0 -14px 18px;
+    transform: rotate(-4deg);
+    position: relative;
+    z-index: 2;
+  }
+  .f-polaroid {
+    background: var(--f-page);
+    padding: 10px 10px 30px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    transform: rotate(-1.2deg);
+    width: 260px;
+    margin: 0 0 40px;
+  }
+  .f-polaroid-inner {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--f-ground);
+  }
+  .f-polaroid-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .f-polaroid-cap {
+    font-family: var(--font-f-hand);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .f-card {
+    background: var(--f-page);
+    border: 1px solid var(--f-line-strong);
+    padding: 36px 30px;
+    margin-bottom: 60px;
+    position: relative;
+  }
+  .f-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .f-stamp-badge {
+    font-family: var(--font-f-label);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--f-stamp);
+    border: 1.5px dashed var(--f-stamp);
+    padding: 6px 11px;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+  .f-date-tag {
+    font-family: var(--font-f-label);
+    font-size: 12px;
+    color: var(--f-ink-soft);
+    text-align: right;
+  }
+  .f-card h2 {
+    font-size: clamp(24px, 3.6vw, 30px);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .f-card p.f-desc {
+    color: var(--f-ink-soft);
+    max-width: 54ch;
+    margin: 0 0 20px;
+  }
+  .f-list {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+    display: grid;
+    gap: 13px;
+  }
+  .f-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+  }
+  .f-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--f-sage);
+    border-radius: 50%;
+    flex: none;
+    margin-top: 6px;
+  }
+  .f-price-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin: 0 0 22px;
+    padding: 14px 0;
+    border-top: 1px dashed var(--f-line-strong);
+    border-bottom: 1px dashed var(--f-line-strong);
+  }
+  .f-price-item .f-price-label {
+    display: block;
+    font-family: var(--font-f-label);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--f-ink-soft);
+    margin-bottom: 4px;
+  }
+  .f-price-item .f-price-value {
+    font-family: var(--font-f-display);
+    font-size: 16px;
+  }
+  .f-waitlist {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .f-waitlist input {
+    font-family: var(--font-f-body);
+    font-size: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--f-line-strong);
+    background: var(--f-ground);
+    color: var(--f-ink);
+    flex: 1 1 200px;
+  }
+  .f-waitlist input:focus-visible {
+    outline: 2px solid var(--f-stamp);
+    outline-offset: 2px;
+  }
+  .f-form-note {
+    font-family: var(--font-f-label);
+    font-size: 10px;
+    color: var(--f-ink-soft);
+    margin-top: 12px;
+  }
+
+  .f-origin {
+    max-width: 560px;
+    margin-bottom: 60px;
+  }
+  .f-origin p {
+    color: var(--f-ink);
+    max-width: 56ch;
+    font-size: 15.5px;
+  }
+  .f-origin-price {
+    font-family: var(--font-f-label);
+    font-size: 12px;
+    color: var(--f-wine);
+    margin-top: 10px;
+    display: block;
+  }
+
+  .f-para-quien {
+    max-width: 560px;
+    margin-bottom: 60px;
+  }
+  .f-para-quien p {
+    font-size: 17px;
+    margin: 12px 0 0;
+    max-width: 46ch;
+  }
+  .f-para-quien .f-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .f-para-quien .f-tag-pill {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--f-line-strong);
+    padding: 5px 10px;
+    color: var(--f-ink-soft);
+  }
+
+  .f-about {
+    background: var(--f-page);
+    border: 1px solid var(--f-line-strong);
+    padding: 36px 30px;
+    margin-bottom: 60px;
+  }
+  .f-about-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .f-about h2 {
+    font-size: clamp(22px, 3.4vw, 27px);
+    text-transform: uppercase;
+  }
+  .f-about p {
+    margin: 0 0 14px;
+    font-size: 15.5px;
+  }
+  .f-about p:last-of-type {
+    margin-bottom: 0;
+  }
+  .f-about .f-sig {
+    margin-top: 16px;
+    display: block;
+  }
+
+  .f-principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--f-line-strong);
+    border: 1px solid var(--f-line-strong);
+    margin-bottom: 56px;
+  }
+  @media (max-width: 560px) {
+    .f-principles {
+      grid-template-columns: 1fr;
+    }
+  }
+  .f-principle {
+    background: var(--f-ground);
+    padding: 22px 18px;
+  }
+  .f-principle .tag {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--f-sage);
+    text-transform: uppercase;
+  }
+  .f-principle p {
+    margin: 8px 0 0;
+    font-size: 13.5px;
+    color: var(--f-ink-soft);
+  }
+
+  .f-faq {
+    max-width: 620px;
+    margin-bottom: 60px;
+  }
+  .f-faq-item {
+    border-bottom: 1px solid var(--f-line-strong);
+    padding: 18px 0;
+  }
+  .f-faq-item:first-of-type {
+    border-top: 1px solid var(--f-line-strong);
+  }
+  .f-faq-q {
+    font-family: var(--font-f-display);
+    font-size: 15.5px;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  .f-faq-a {
+    margin: 0;
+    color: var(--f-ink-soft);
+    font-size: 14.5px;
+    max-width: 54ch;
+  }
+  .f-faq-note {
+    font-family: var(--font-f-label);
+    font-size: 10px;
+    color: var(--f-ink-soft);
+    margin-top: 14px;
+  }
+
+  .f-contact {
+    background: var(--f-page);
+    border: 1px solid var(--f-line-strong);
+    padding: 36px 30px;
+    margin-bottom: 70px;
+  }
+  .f-contact h2 {
+    font-size: clamp(22px, 3.4vw, 27px);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .f-contact > p {
+    color: var(--f-ink-soft);
+    max-width: 50ch;
+    margin: 0 0 22px;
+  }
+  .f-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media (max-width: 560px) {
+    .f-contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .f-contact-direct .f-phone {
+    font-family: var(--font-f-label);
+    font-size: 15px;
+    margin: 10px 0 16px;
+    display: block;
+  }
+  .f-form {
+    display: grid;
+    gap: 10px;
+  }
+  .f-form input,
+  .f-form textarea {
+    font-family: var(--font-f-body);
+    font-size: 14px;
+    padding: 11px 13px;
+    border: 1px solid var(--f-line-strong);
+    background: var(--f-ground);
+    color: var(--f-ink);
+    width: 100%;
+  }
+  .f-form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .f-form input:focus-visible,
+  .f-form textarea:focus-visible {
+    outline: 2px solid var(--f-stamp);
+    outline-offset: 2px;
+  }
+
+  .f-whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 10;
+    background: var(--f-whatsapp);
+    color: #fff;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+    text-decoration: none;
+  }
+  .f-whatsapp-float:hover {
+    filter: brightness(1.08);
+  }
+  .f-whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .f-footer {
+    border-top: 1px dashed var(--f-line-strong);
+    padding: 28px 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .f-footer .f-wordmark {
+    font-size: 14px;
+  }
+  .f-footer .f-foot-meta {
+    font-family: var(--font-f-label);
+    font-size: 10.5px;
+    color: var(--f-ink-soft);
+    text-align: right;
+  }
+</style>
