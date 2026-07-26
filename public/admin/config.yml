@@ -38,7 +38,12 @@ collections:
         widget: "list"
         required: false
         field: { label: "Punto", name: "item", widget: "string", required: false }
-      - { label: "Foto de portada", name: "coverImage", widget: "image", required: false }
+      - label: "Foto de portada"
+        name: "coverImage"
+        widget: "image"
+        required: false
+        media_folder: "/src/assets/uploads"
+        public_folder: "../../assets/uploads"
       - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string", required: false }
       - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string", required: false }
       - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1, required: false }
