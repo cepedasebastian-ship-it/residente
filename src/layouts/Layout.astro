@@ -236,13 +236,18 @@ const schemas = [organizationSchema, ...extraSchemas];
     color: var(--f-wine);
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 640px) {
     .f-nav {
       position: sticky;
       top: 0;
       z-index: 40;
       background: var(--f-ground);
       border-bottom: 1px solid var(--f-line-strong);
+      margin-left: -26px;
+      margin-right: -56px;
+      padding-left: 26px;
+      padding-right: 26px;
+      box-sizing: border-box;
     }
     .f-nav-toggle > summary {
       display: flex;

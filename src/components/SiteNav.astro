@@ -9,7 +9,7 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.dat
   <a href="/" aria-label="Ir al inicio" class="f-brand">
     <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="204" height="74" class="f-brand-lockup" />
   </a>
-  <details class="f-nav-toggle">
+  <details class="f-nav-toggle" open>
     <summary class="f-nav-toggle-btn" aria-label="Abrir menú">
       <span class="f-burger"></span>
     </summary>
@@ -24,11 +24,16 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.dat
 </div>
 
 <script is:inline>
-  document.querySelectorAll('.f-nav-toggle').forEach(function (toggle) {
+  (function () {
+    var toggle = document.currentScript.previousElementSibling.querySelector('.f-nav-toggle');
+    if (!toggle) return;
+    if (window.innerWidth <= 640) {
+      toggle.removeAttribute('open');
+    }
     toggle.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        toggle.removeAttribute('open');
+        if (window.innerWidth <= 640) toggle.removeAttribute('open');
       });
     });
-  });
+  })();
 </script>
