@@ -159,9 +159,9 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
 
   .f-nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 56px;
+    gap: 24px;
     padding: 18px 0;
     flex-wrap: wrap;
   }
@@ -413,15 +413,28 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     color: var(--f-ink-soft);
     text-align: right;
   }
+  .f-card h1,
   .f-card h2 {
     font-size: clamp(24px, 3.6vw, 30px);
     text-transform: uppercase;
     margin-bottom: 14px;
   }
+  .f-card .f-desc,
   .f-card p.f-desc {
     color: var(--f-ink-soft);
     max-width: 54ch;
     margin: 0 0 20px;
+  }
+  .f-card .f-desc p {
+    margin: 0 0 14px;
+  }
+  .f-card .f-desc p:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 900px) {
+    .f-desc-wide {
+      max-width: 66ch;
+    }
   }
   .f-list {
     list-style: none;
@@ -517,31 +530,22 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   .f-more-link:hover {
     text-decoration: underline;
   }
-  .f-trip-hero {
-    padding: 6px 0 30px;
-    max-width: 640px;
-  }
-  .f-trip-hero h1 {
-    font-size: clamp(30px, 5.5vw, 46px);
-    line-height: 1.06;
-    text-transform: uppercase;
-    margin: 14px 0 0;
-  }
-  .f-gallery-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin: 30px 0 50px;
-  }
   .f-itinerary {
     margin: 0 0 60px;
+  }
+  .f-itinerary-grid {
+    border-bottom: 1px dashed var(--f-line-strong);
+  }
+  @media (min-width: 900px) {
+    .f-itinerary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 48px;
+    }
   }
   .f-itinerary-stop {
     padding: 18px 0;
     border-top: 1px dashed var(--f-line-strong);
-  }
-  .f-itinerary-stop:last-child {
-    border-bottom: 1px dashed var(--f-line-strong);
   }
   .f-itinerary-day {
     font-family: var(--font-f-label);

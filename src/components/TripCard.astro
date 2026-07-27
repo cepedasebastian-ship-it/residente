@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import settings from '../data/settings.json';
 
 interface Props {
   trip: CollectionEntry<'trips'>;
@@ -66,15 +67,15 @@ const formName = `lista-espera-${id}`;
   <ul class="f-list">
     {data.includes.map((item: string) => <li>{item}</li>)}
   </ul>
-  <a class="f-more-link" href={`/viajes/${id}`}>Ver el viaje completo →</a>
+  <a class="f-more-link" href={`/viajes/${id}`}>{settings.viewTripLabel}</a>
   <form class="f-waitlist" action="/api/submit" method="POST">
     <input type="hidden" name="_tipo" value="lista-de-espera" />
     <input type="hidden" name="viaje" value={data.title} />
     <input type="hidden" name="_next_hash" value={id} />
     <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
-    <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" required />
-    <button type="submit" class="f-btn">Sumarme</button>
+    <input type="email" name="email" placeholder={settings.contactEmailPlaceholder} aria-label="Email para la lista de espera" required />
+    <button type="submit" class="f-btn">{settings.waitlistButtonLabel}</button>
   </form>
-  <p class="f-form-note">EL VALOR TODAVÍA NO ESTÁ CONFIRMADO — ESCRIBINOS POR WHATSAPP PARA CONSULTARLO.</p>
+  <p class="f-form-note">{settings.waitlistPriceNote}</p>
 </section>
 </div>

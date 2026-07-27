@@ -89,25 +89,39 @@ collections:
             media_folder: "/public/uploads"
             public_folder: "/uploads"
           - { label: "Etiqueta de la sección de viajes", name: "viajesLabel", widget: "string", required: false }
+          - { widget: "hr", name: "divider-nav" }
+          - { label: "Menú — texto del link a Sobre Romi", name: "navAboutLabel", widget: "string", required: false }
+          - { label: "Menú — texto del link a FAQ", name: "navFaqLabel", widget: "string", required: false }
+          - { label: "Menú — texto del link a Contacto", name: "navContactLabel", widget: "string", required: false }
           - { label: "Usuario de Instagram a mostrar (footer)", name: "footerHandle", widget: "string", required: false }
           - { label: "Link de Instagram", name: "instagramUrl", widget: "string", required: false }
           - { label: "Email donde recibir los formularios", name: "notifyEmail", widget: "string", required: false }
           - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string", required: false }
           - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string", required: false }
+          - { widget: "hr", name: "divider-entry" }
+          - { label: "Entrada — etiqueta pequeña arriba de la frase", name: "entryLabel", widget: "string", required: false }
           - label: "Bio de Romi (un párrafo por línea)"
             name: "aboutBio"
             widget: "list"
             required: false
             field: { label: "Párrafo", name: "paragraph", widget: "text", required: false }
+          - { widget: "hr", name: "divider-para-quien" }
+          - { label: "Para quién es esto (título)", name: "paraQuienLabel", widget: "string", required: false }
           - { label: "Para quién es esto (texto)", name: "paraQuienText", widget: "text", required: false }
           - label: "Para quién es esto (etiquetas cortas)"
             name: "paraQuienTags"
             widget: "list"
             required: false
             field: { label: "Etiqueta", name: "item", widget: "string", required: false }
+          - { widget: "hr", name: "divider-about" }
+          - { label: "Sobre Romi (título)", name: "aboutLabel", widget: "string", required: false }
+          - { label: "Sobre Romi (etiqueta chica)", name: "aboutSubLabel", widget: "string", required: false }
+          - { widget: "hr", name: "divider-origin" }
           - { label: "Origen: etiqueta de ruta", name: "originCoordLabel", widget: "string", required: false }
           - { label: "Origen: texto", name: "originText", widget: "text", required: false }
           - { label: "Origen: precio de referencia", name: "originPrice", widget: "string", required: false }
+          - { widget: "hr", name: "divider-principles" }
+          - { label: "La idea, en tres partes (título)", name: "principlesLabel", widget: "string", required: false }
           - label: "Principios de la marca"
             name: "principles"
             widget: "list"
@@ -115,6 +129,10 @@ collections:
             fields:
               - { label: "Etiqueta", name: "tag", widget: "string", required: false }
               - { label: "Texto", name: "text", widget: "text", required: false }
+          - { widget: "hr", name: "divider-faq" }
+          - { label: "FAQ — etiqueta chica", name: "faqLabel", widget: "string", required: false }
+          - { label: "FAQ — título", name: "faqTitle", widget: "string", required: false }
+          - { label: "FAQ — nota de advertencia (dejar vacío para ocultarla)", name: "faqNote", widget: "string", required: false }
           - label: "Preguntas frecuentes"
             name: "faq"
             widget: "list"
@@ -122,6 +140,27 @@ collections:
             fields:
               - { label: "Pregunta", name: "q", widget: "string", required: false }
               - { label: "Respuesta", name: "a", widget: "text", required: false }
+          - { widget: "hr", name: "divider-contact" }
+          - { label: "Contacto — título", name: "contactLabel", widget: "string", required: false }
+          - { label: "Contacto — texto", name: "contactText", widget: "text", required: false }
+          - { label: "Contacto — etiqueta \"Directo\"", name: "contactDirectLabel", widget: "string", required: false }
+          - { label: "Contacto — placeholder nombre", name: "contactNamePlaceholder", widget: "string", required: false }
+          - { label: "Contacto — placeholder email", name: "contactEmailPlaceholder", widget: "string", required: false }
+          - { label: "Contacto — placeholder mensaje", name: "contactMessagePlaceholder", widget: "string", required: false }
+          - { label: "Contacto — texto del botón enviar", name: "contactSubmitLabel", widget: "string", required: false }
+          - { widget: "hr", name: "divider-trips" }
+          - { label: "Tarjeta de viaje — texto \"ver viaje completo\"", name: "viewTripLabel", widget: "string", required: false }
+          - { label: "Página de viaje — texto \"volver a todos los viajes\"", name: "backToTripsLabel", widget: "string", required: false }
+          - { label: "Página de viaje — etiqueta \"día por día\"", name: "itineraryLabel", widget: "string", required: false }
+          - { label: "Lista de espera — título", name: "waitlistTitle", widget: "string", required: false }
+          - { label: "Lista de espera — texto", name: "waitlistText", widget: "text", required: false }
+          - { label: "Lista de espera — texto del botón", name: "waitlistButtonLabel", widget: "string", required: false }
+          - { label: "Lista de espera — nota de precio a confirmar", name: "waitlistPriceNote", widget: "string", required: false }
+          - { widget: "hr", name: "divider-newsletter" }
+          - { label: "Newsletter — etiqueta chica", name: "newsletterLabel", widget: "string", required: false }
+          - { label: "Newsletter — título", name: "newsletterTitle", widget: "string", required: false }
+          - { label: "Newsletter — texto", name: "newsletterText", widget: "text", required: false }
+          - { label: "Newsletter — texto del botón", name: "newsletterButtonLabel", widget: "string", required: false }
 
   - name: "submissions"
     label: "Registros de formularios"
@@ -131,8 +170,8 @@ collections:
     delete: true
     format: "json"
     extension: "json"
-    sortable_fields: ["date"]
-    summary: "{{date}} — {{tipo}} — {{nombre}}"
+    sortable_fields: ["date", "tipo", "nombre"]
+    summary: "{{date}} — {{tipo}} — {{nombre}} — {{email}} — {{viaje}}"
     fields:
       - { label: "Fecha", name: "date", widget: "datetime", required: false }
       - { label: "Tipo", name: "tipo", widget: "string", required: false }
@@ -140,3 +179,4 @@ collections:
       - { label: "Nombre", name: "nombre", widget: "string", required: false }
       - { label: "Email", name: "email", widget: "string", required: false }
       - { label: "Mensaje", name: "mensaje", widget: "text", required: false }
+      - { label: "Notas internas", name: "notas", widget: "text", required: false, hint: "Solo para uso interno — no se muestra en el sitio." }

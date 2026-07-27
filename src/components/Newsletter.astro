@@ -1,15 +1,16 @@
 ---
+import settings from '../data/settings.json';
 ---
 
 <section class="f-newsletter">
-  <span class="f-entry-label">No te pierdas el próximo viaje</span>
-  <h2>Sumate al newsletter</h2>
-  <p>Dejanos tu email y te avisamos apenas armamos un viaje nuevo — nada más.</p>
+  <span class="f-entry-label">{settings.newsletterLabel}</span>
+  <h2>{settings.newsletterTitle}</h2>
+  <p>{settings.newsletterText}</p>
   <form class="f-newsletter-form" action="/api/submit" method="POST">
     <input type="hidden" name="_tipo" value="newsletter" />
     <input type="hidden" name="_next_hash" value="newsletter" />
     <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
-    <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para el newsletter" required />
-    <button type="submit" class="f-btn">Quiero enterarme</button>
+    <input type="email" name="email" placeholder={settings.contactEmailPlaceholder} aria-label="Email para el newsletter" required />
+    <button type="submit" class="f-btn">{settings.newsletterButtonLabel}</button>
   </form>
 </section>

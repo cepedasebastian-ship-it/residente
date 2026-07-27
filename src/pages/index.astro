@@ -47,7 +47,7 @@ const tripsWithContent = await Promise.all(
   </header>
 
   <section class="f-entry">
-    <span class="f-entry-label">Entrada · antes de armar el viaje</span>
+    <span class="f-entry-label">{settings.entryLabel}</span>
     <blockquote>"{settings.entryQuote}"</blockquote>
     <div class="f-sig">{settings.founderName}</div>
   </section>
@@ -62,7 +62,7 @@ const tripsWithContent = await Promise.all(
   </section>
 
   <section class="f-para-quien">
-    <span class="f-entry-label">¿Para quién es esto?</span>
+    <span class="f-entry-label">{settings.paraQuienLabel}</span>
     <p>{settings.paraQuienText}</p>
     <div class="f-tags">
       {settings.paraQuienTags.map((tag) => <span class="f-tag-pill">{tag}</span>)}
@@ -71,8 +71,8 @@ const tripsWithContent = await Promise.all(
 
   <section class="f-about" id="sobre-romi">
     <div class="f-about-head">
-      <h2>Sobre Romi</h2>
-      <span class="f-entry-label">La entrada más larga del cuaderno</span>
+      <h2>{settings.aboutLabel}</h2>
+      <span class="f-entry-label">{settings.aboutSubLabel}</span>
     </div>
     {settings.founderPhoto && (
       <div class="f-polaroid f-about-photo">
@@ -92,7 +92,7 @@ const tripsWithContent = await Promise.all(
   </section>
 
   <section>
-    <span class="f-entry-label" style="display:block; margin-bottom:12px;">La idea, en tres partes</span>
+    <span class="f-entry-label" style="display:block; margin-bottom:12px;">{settings.principlesLabel}</span>
     <div class="f-principles">
       {settings.principles.map((p) => (
         <div class="f-principle">
@@ -104,23 +104,23 @@ const tripsWithContent = await Promise.all(
   </section>
 
   <section class="f-faq" id="faq">
-    <span class="f-entry-label" style="display:block; margin-bottom:6px;">Preguntas frecuentes</span>
-    <h2 style="margin-bottom:18px;">Antes de anotarte</h2>
+    <span class="f-entry-label" style="display:block; margin-bottom:6px;">{settings.faqLabel}</span>
+    <h2 style="margin-bottom:18px;">{settings.faqTitle}</h2>
     {settings.faq.map((item) => (
       <div class="f-faq-item">
         <p class="f-faq-q">{item.q}</p>
         <p class="f-faq-a">{item.a}</p>
       </div>
     ))}
-    <p class="f-faq-note">RESPUESTAS DE EJEMPLO — A CONFIRMAR CON ROMI ANTES DE PUBLICAR.</p>
+    {settings.faqNote && <p class="f-faq-note">{settings.faqNote}</p>}
   </section>
 
   <section class="f-contact" id="contacto">
-    <h2>Hablemos</h2>
-    <p>¿Dudas antes de anotarte? Escribinos, la que responde del otro lado es Romi.</p>
+    <h2>{settings.contactLabel}</h2>
+    <p>{settings.contactText}</p>
     <div class="f-contact-grid">
       <div class="f-contact-direct">
-        <span class="f-entry-label">Directo</span>
+        <span class="f-entry-label">{settings.contactDirectLabel}</span>
         <span class="f-phone">{settings.phoneLabel}</span>
         <WhatsAppButton
           number={settings.whatsappNumber}
@@ -132,10 +132,10 @@ const tripsWithContent = await Promise.all(
         <input type="hidden" name="_tipo" value="contacto" />
         <input type="hidden" name="_next_hash" value="contacto" />
         <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
-        <input type="text" name="nombre" placeholder="Tu nombre" aria-label="Nombre" required />
-        <input type="email" name="email" placeholder="tu@email.com" aria-label="Email" required />
-        <textarea name="mensaje" placeholder="Contanos qué querés saber" aria-label="Mensaje" required></textarea>
-        <button type="submit" class="f-btn f-btn-outline">Enviar mensaje</button>
+        <input type="text" name="nombre" placeholder={settings.contactNamePlaceholder} aria-label="Nombre" required />
+        <input type="email" name="email" placeholder={settings.contactEmailPlaceholder} aria-label="Email" required />
+        <textarea name="mensaje" placeholder={settings.contactMessagePlaceholder} aria-label="Mensaje" required></textarea>
+        <button type="submit" class="f-btn f-btn-outline">{settings.contactSubmitLabel}</button>
       </form>
     </div>
   </section>

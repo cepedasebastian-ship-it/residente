@@ -142,14 +142,35 @@
           var paraQuienTags = data.get('paraQuienTags');
           var principles = data.get('principles');
           var faq = data.get('faq');
+          var founderPhoto = data.get('founderPhoto');
+          var founderPhotoUrl = founderPhoto ? this.props.getAsset(founderPhoto).toString() : null;
 
           return h(
             'div',
             { className: 'preview-wrap' },
             h(
+              'header',
+              { className: 'f-hero' },
+              h('h1', {}, data.get('heroTitle') || '(título del inicio)'),
+              h('p', {}, data.get('heroSubtitle') || '(subtítulo del inicio)'),
+              h(
+                'div',
+                { className: 'f-hero-ctas' },
+                h('span', { className: 'f-btn' }, data.get('heroCtaLabel') || '(texto del botón)')
+              ),
+              h('div', { className: 'f-meta' }, data.get('heroMeta') || '(línea debajo de los botones)')
+            ),
+            h(
+              'div',
+              { className: 'f-entry' },
+              h('span', { className: 'f-entry-label' }, data.get('entryLabel') || '(etiqueta de la entrada)'),
+              h('blockquote', {}, '"' + (data.get('entryQuote') || '(frase de la entrada)') + '"'),
+              h('div', { className: 'f-sig' }, data.get('founderName') || '(firma)')
+            ),
+            h(
               'div',
               { className: 'f-para-quien' },
-              h('span', { className: 'f-entry-label' }, '¿Para quién es esto?'),
+              h('span', { className: 'f-entry-label' }, data.get('paraQuienLabel') || '(título de para quién es esto)'),
               h('p', {}, data.get('paraQuienText') || '(sin texto todavía)'),
               paraQuienTags && paraQuienTags.size
                 ? h(
@@ -167,9 +188,16 @@
               h(
                 'div',
                 { className: 'f-about-head' },
-                h('h2', {}, 'Sobre Romi'),
-                h('span', { className: 'f-entry-label', style: { marginBottom: 0 } }, 'La entrada más larga del cuaderno')
+                h('h2', {}, data.get('aboutLabel') || 'Sobre Romi'),
+                h('span', { className: 'f-entry-label', style: { marginBottom: 0 } }, data.get('aboutSubLabel') || '(etiqueta chica)')
               ),
+              founderPhotoUrl
+                ? h(
+                    'div',
+                    { className: 'f-polaroid f-about-photo' },
+                    h('div', { className: 'f-polaroid-inner' }, h('img', { src: founderPhotoUrl, alt: data.get('founderName') || '' }))
+                  )
+                : null,
               aboutBio && aboutBio.size
                 ? aboutBio.map(function (p, i) {
                     return h('p', { key: i }, p);
@@ -187,7 +215,7 @@
             h(
               'div',
               {},
-              h('span', { className: 'f-entry-label' }, 'La idea, en tres partes'),
+              h('span', { className: 'f-entry-label' }, data.get('principlesLabel') || '(título de la idea en tres partes)'),
               h(
                 'div',
                 { className: 'f-principles' },
@@ -206,7 +234,8 @@
             h(
               'div',
               { className: 'f-faq' },
-              h('span', { className: 'f-entry-label' }, 'Preguntas frecuentes'),
+              h('span', { className: 'f-entry-label' }, data.get('faqLabel') || 'Preguntas frecuentes'),
+              h('h2', { style: { marginBottom: '10px' } }, data.get('faqTitle') || '(título de la sección FAQ)'),
               faq && faq.size
                 ? faq.map(function (item, i) {
                     return h(
@@ -216,13 +245,16 @@
                       h('p', { className: 'f-faq-a' }, item.get('a'))
                     );
                   }).toArray()
-                : null
+                : null,
+              data.get('faqNote') ? h('p', { className: 'preview-note' }, data.get('faqNote')) : null
             ),
             h('hr', { className: 'f-section-divider' }),
             h(
               'div',
               { className: 'f-contact-direct' },
-              h('span', { className: 'f-entry-label' }, 'Directo'),
+              h('h2', {}, data.get('contactLabel') || 'Hablemos'),
+              h('p', {}, data.get('contactText') || '(texto de contacto)'),
+              h('span', { className: 'f-entry-label' }, data.get('contactDirectLabel') || 'Directo'),
               h('span', { className: 'f-phone' }, data.get('phoneLabel') || '(sin teléfono)'),
               h(
                 'p',

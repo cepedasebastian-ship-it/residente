@@ -25,89 +25,93 @@ const { Content } = await render(trip);
 >
   <SiteNav />
 
-  <a class="f-back-link" href="/#viajes">← Volver a todos los viajes</a>
+  <a class="f-back-link" href="/#viajes">{settings.backToTripsLabel}</a>
 
-  <header class="f-trip-hero">
-    <span class="f-coord">{data.coordLabel}</span>
-    <h1>{data.title}</h1>
-    <div class="f-card-top" style="margin-top:16px;">
-      <span class="f-stamp-badge">{data.badge}</span>
-      <span class="f-date-tag">
-        {data.durationLabel}<br />
-        {data.dateLabel}<br />
-        {data.capacityLabel}
-      </span>
-    </div>
-  </header>
-
-  <div class="f-polaroid" style="width:min(560px, 100%);">
-    <div class="f-polaroid-inner">
-      <Image src={data.coverImage} alt={data.coverAlt} width={720} height={540} />
-    </div>
-    <div class="f-polaroid-cap">{data.coverCaption}</div>
-  </div>
-
-  {data.gallery && data.gallery.length > 0 && (
-    <div class="f-gallery-row">
-      {data.gallery.map((item, i) => (
-        <div class={`f-polaroid f-polaroid-sm ${i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'}`}>
-          <div class="f-polaroid-inner">
-            <Image src={item.photo} alt={item.caption || data.title} width={360} height={270} />
-          </div>
-          {item.caption && <div class="f-polaroid-cap">{item.caption}</div>}
+  <div class="f-trip-grid">
+    <div class="f-trip-media">
+      <div class="f-tape-strip"></div>
+      <div class="f-polaroid">
+        <div class="f-polaroid-inner">
+          <Image src={data.coverImage} alt={data.coverAlt} width={720} height={540} />
         </div>
-      ))}
-    </div>
-  )}
+        <div class="f-polaroid-cap">{data.coverCaption}</div>
+      </div>
 
-  <section class="f-card">
-    <div class="f-desc">
-      <Content />
+      {data.gallery && data.gallery.length > 0 && (
+        <div class="f-gallery-row">
+          {data.gallery.map((item, i) => (
+            <div class={`f-polaroid f-polaroid-sm ${i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'}`}>
+              <div class="f-polaroid-inner">
+                <Image src={item.photo} alt={item.caption || data.title} width={360} height={270} />
+              </div>
+              {item.caption && <div class="f-polaroid-cap">{item.caption}</div>}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-    <div class="f-price-row">
-      <div class="f-price-item">
-        <span class="f-price-label">Duración</span>
-        <span class="f-price-value">{data.durationLabel}</span>
+
+    <section class="f-card">
+      <span class="f-coord">{data.coordLabel}</span>
+      <div class="f-card-top" style="margin-top:14px;">
+        <span class="f-stamp-badge">{data.badge}</span>
+        <span class="f-date-tag">
+          {data.durationLabel}<br />
+          {data.dateLabel}<br />
+          {data.capacityLabel}
+        </span>
       </div>
-      <div class="f-price-item">
-        <span class="f-price-label">Incluye</span>
-        <span class="f-price-value">{data.includesLabel}</span>
+      <h1>{data.title}</h1>
+      <div class="f-desc f-desc-wide">
+        <Content />
       </div>
-      <div class="f-price-item">
-        <span class="f-price-label">Valor</span>
-        <span class="f-price-value">{data.priceLabel}</span>
+      <div class="f-price-row">
+        <div class="f-price-item">
+          <span class="f-price-label">Duración</span>
+          <span class="f-price-value">{data.durationLabel}</span>
+        </div>
+        <div class="f-price-item">
+          <span class="f-price-label">Incluye</span>
+          <span class="f-price-value">{data.includesLabel}</span>
+        </div>
+        <div class="f-price-item">
+          <span class="f-price-label">Valor</span>
+          <span class="f-price-value">{data.priceLabel}</span>
+        </div>
       </div>
-    </div>
-    <ul class="f-list">
-      {data.includes.map((item: string) => <li>{item}</li>)}
-    </ul>
-  </section>
+      <ul class="f-list">
+        {data.includes.map((item: string) => <li>{item}</li>)}
+      </ul>
+    </section>
+  </div>
 
   {data.itinerary && data.itinerary.length > 0 && (
     <section class="f-itinerary">
-      <span class="f-entry-label" style="display:block; margin-bottom:16px;">Día por día</span>
-      {data.itinerary.map((stop) => (
-        <div class="f-itinerary-stop">
-          <span class="f-itinerary-day">{stop.day}</span>
-          <h3>{stop.title}</h3>
-          <p>{stop.description}</p>
-        </div>
-      ))}
+      <span class="f-entry-label" style="display:block; margin-bottom:16px;">{settings.itineraryLabel}</span>
+      <div class="f-itinerary-grid">
+        {data.itinerary.map((stop) => (
+          <div class="f-itinerary-stop">
+            <span class="f-itinerary-day">{stop.day}</span>
+            <h3>{stop.title}</h3>
+            <p>{stop.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )}
 
   <section class="f-card" id="anotarme">
-    <h2>Sumarme a este viaje</h2>
-    <p class="f-desc">Dejanos tu email y te escribimos para coordinar la seña y guardarte el cupo.</p>
+    <h2>{settings.waitlistTitle}</h2>
+    <p class="f-desc">{settings.waitlistText}</p>
     <form class="f-waitlist" action="/api/submit" method="POST">
       <input type="hidden" name="_tipo" value="lista-de-espera" />
       <input type="hidden" name="viaje" value={data.title} />
       <input type="hidden" name="_next_hash" value={id} />
       <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
-      <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" required />
-      <button type="submit" class="f-btn">Sumarme</button>
+      <input type="email" name="email" placeholder={settings.contactEmailPlaceholder} aria-label="Email para la lista de espera" required />
+      <button type="submit" class="f-btn">{settings.waitlistButtonLabel}</button>
     </form>
-    <p class="f-form-note">EL VALOR TODAVÍA NO ESTÁ CONFIRMADO — ESCRIBINOS POR WHATSAPP PARA CONSULTARLO.</p>
+    <p class="f-form-note">{settings.waitlistPriceNote}</p>
     <div style="margin-top:20px;">
       <WhatsAppButton
         number={settings.whatsappNumber}
@@ -117,7 +121,7 @@ const { Content } = await render(trip);
     </div>
   </section>
 
-  <a class="f-back-link" href="/#viajes">← Volver a todos los viajes</a>
+  <a class="f-back-link" href="/#viajes">{settings.backToTripsLabel}</a>
 
   <Newsletter />
 
