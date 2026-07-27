@@ -5,9 +5,10 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   trip: CollectionEntry<'trips'>;
   Content: any;
+  notifyEmail: string;
 }
 
-const { trip, Content } = Astro.props;
+const { trip, Content, notifyEmail } = Astro.props;
 const { data, id } = trip;
 const formName = `lista-espera-${id}`;
 ---
@@ -63,9 +64,11 @@ const formName = `lista-espera-${id}`;
   <ul class="f-list">
     {data.includes.map((item: string) => <li>{item}</li>)}
   </ul>
-  <form class="f-waitlist" name={formName} method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value={formName} />
-    <p class="hidden" style="display:none;"><label>No llenar: <input name="bot-field" /></label></p>
+  <form class="f-waitlist" action={`https://formsubmit.co/${notifyEmail}`} method="POST">
+    <input type="hidden" name="_subject" value={`Lista de espera — ${data.title}`} />
+    <input type="hidden" name="_next" value={`https://experiencia-residente.pages.dev/?gracias=1#${id}`} />
+    <input type="hidden" name="viaje" value={data.title} />
+    <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
     <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" required />
     <button type="submit" class="f-btn">Sumarme</button>
   </form>

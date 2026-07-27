@@ -19,18 +19,6 @@ const { title, description, noindex = true } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <title>{title}</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" is:inline></script>
-    <script is:inline>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
-            });
-          }
-        });
-      }
-    </script>
   </head>
   <body>
     <div class="f-root">
@@ -39,6 +27,20 @@ const { title, description, noindex = true } = Astro.props;
         <slot />
       </div>
     </div>
+    <script is:inline>
+      if (new URLSearchParams(location.search).get('gracias') === '1') {
+        var banner = document.createElement('div');
+        banner.textContent = '¡Gracias! Ya recibimos tu mensaje — te vamos a escribir pronto.';
+        banner.style.cssText =
+          'position:fixed;top:0;left:0;right:0;z-index:50;background:#5C6B49;color:#fff;text-align:center;padding:14px 20px;font-family:system-ui,sans-serif;font-size:14px;';
+        document.body.prepend(banner);
+        setTimeout(function () {
+          banner.remove();
+        }, 6000);
+        var cleanUrl = location.pathname + location.hash;
+        history.replaceState(null, '', cleanUrl);
+      }
+    </script>
   </body>
 </html>
 

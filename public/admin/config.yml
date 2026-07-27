@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: cepedasebastian-ship-it/residente
   branch: main
+  base_url: https://residente-cms-auth.cepedasebastian.workers.dev
+  auth_endpoint: auth
 
 media_folder: "src/assets/uploads"
 public_folder: "/uploads"
