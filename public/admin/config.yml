@@ -77,6 +77,16 @@ collections:
         label: "Configuración del sitio"
         name: "settings"
         fields:
+          - label: "Logo (header y footer)"
+            name: "logoImage"
+            widget: "image"
+            required: false
+            hint: "Se usa en el header, el footer y como logo del sitio para buscadores. Funciona con SVG o PNG."
+            media_folder: "/public/uploads"
+            public_folder: "/uploads"
+          - { label: "Ancho del logo en el header (px)", name: "logoHeaderWidth", widget: "number", required: false, value_type: "int", hint: "El alto se ajusta solo, manteniendo la proporción del logo." }
+          - { label: "Ancho del logo en el footer (px)", name: "logoFooterWidth", widget: "number", required: false, value_type: "int" }
+          - { widget: "hr", name: "divider-logo" }
           - { label: "Título grande del inicio", name: "heroTitle", widget: "string", required: false }
           - { label: "Subtítulo del inicio", name: "heroSubtitle", widget: "text", required: false }
           - { label: "Texto del botón principal", name: "heroCtaLabel", widget: "string", required: false }

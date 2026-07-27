@@ -156,10 +156,35 @@
           var faq = data.get('faq');
           var founderPhoto = data.get('founderPhoto');
           var founderPhotoUrl = founderPhoto ? this.props.getAsset(founderPhoto).toString() : null;
+          var logoImage = data.get('logoImage');
+          var logoImageUrl = logoImage ? this.props.getAsset(logoImage).toString() : null;
+          var logoHeaderWidth = data.get('logoHeaderWidth') || 204;
+          var logoFooterWidth = data.get('logoFooterWidth') || 325;
 
           return h(
             'div',
             { className: 'preview-wrap' },
+            h(
+              'div',
+              { style: { display: 'flex', gap: '40px', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap' } },
+              h(
+                'div',
+                {},
+                h('p', { className: 'preview-note' }, 'Header (' + logoHeaderWidth + 'px)'),
+                logoImageUrl
+                  ? h('img', { src: logoImageUrl, alt: '', style: { width: logoHeaderWidth + 'px', height: 'auto' } })
+                  : h('p', { className: 'preview-note' }, '(sin logo cargado — se usa el actual del sitio)')
+              ),
+              h(
+                'div',
+                {},
+                h('p', { className: 'preview-note' }, 'Footer (' + logoFooterWidth + 'px)'),
+                logoImageUrl
+                  ? h('img', { src: logoImageUrl, alt: '', style: { width: logoFooterWidth + 'px', height: 'auto' } })
+                  : null
+              )
+            ),
+            h('hr', { className: 'f-section-divider' }),
             h(
               'header',
               { className: 'f-hero' },

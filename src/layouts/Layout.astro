@@ -31,7 +31,7 @@ const organizationSchema = {
   '@type': 'TravelAgency',
   name: 'Experiencia Residente',
   url: Astro.site?.toString(),
-  logo: new URL('/logo-lockup-vino.png', Astro.site).toString(),
+  logo: new URL(settings.logoImage, Astro.site).toString(),
   sameAs: [settings.instagramUrl].filter(Boolean),
 };
 const extraSchemas = Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [];

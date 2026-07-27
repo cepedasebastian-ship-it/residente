@@ -7,7 +7,12 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.dat
 
 <div class="f-nav">
   <a href="/" aria-label="Ir al inicio" class="f-brand">
-    <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="204" height="74" class="f-brand-lockup" />
+    <img
+      src={settings.logoImage}
+      alt="Experiencia Residente"
+      style={`width:${settings.logoHeaderWidth}px; height:auto;`}
+      class="f-brand-lockup"
+    />
   </a>
   <details class="f-nav-toggle" open>
     <summary class="f-nav-toggle-btn" aria-label="Abrir menú">
