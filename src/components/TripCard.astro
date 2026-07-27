@@ -12,26 +12,29 @@ const { data, id } = trip;
 const formName = `lista-espera-${id}`;
 ---
 
-<div class="f-tape-strip"></div>
-<div class="f-polaroid">
-  <div class="f-polaroid-inner">
-    <Image src={data.coverImage} alt={data.coverAlt} width={520} height={390} />
-  </div>
-  <div class="f-polaroid-cap">{data.coverCaption}</div>
-</div>
-
-{data.gallery && data.gallery.length > 0 && (
-  <div class="f-gallery-row">
-    {data.gallery.map((item, i) => (
-      <div class={`f-polaroid f-polaroid-sm ${i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'}`}>
-        <div class="f-polaroid-inner">
-          <Image src={item.photo} alt={item.caption || data.title} width={360} height={270} />
-        </div>
-        {item.caption && <div class="f-polaroid-cap">{item.caption}</div>}
+<div class="f-trip-grid">
+  <div class="f-trip-media">
+    <div class="f-tape-strip"></div>
+    <div class="f-polaroid">
+      <div class="f-polaroid-inner">
+        <Image src={data.coverImage} alt={data.coverAlt} width={520} height={390} />
       </div>
-    ))}
+      <div class="f-polaroid-cap">{data.coverCaption}</div>
+    </div>
+
+    {data.gallery && data.gallery.length > 0 && (
+      <div class="f-gallery-row">
+        {data.gallery.map((item, i) => (
+          <div class={`f-polaroid f-polaroid-sm ${i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'}`}>
+            <div class="f-polaroid-inner">
+              <Image src={item.photo} alt={item.caption || data.title} width={360} height={270} />
+            </div>
+            {item.caption && <div class="f-polaroid-cap">{item.caption}</div>}
+          </div>
+        ))}
+      </div>
+    )}
   </div>
-)}
 
 <section class="f-card" id={id}>
   <div class="f-card-top">
@@ -73,3 +76,4 @@ const formName = `lista-espera-${id}`;
   </form>
   <p class="f-form-note">EL VALOR TODAVÍA NO ESTÁ CONFIRMADO — ESCRIBINOS POR WHATSAPP PARA CONSULTARLO.</p>
 </section>
+</div>

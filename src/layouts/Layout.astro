@@ -1,11 +1,17 @@
 ---
+import { getImage } from 'astro:assets';
+import defaultOgImage from '../assets/uploads/vinedo-atardecer.jpg';
+
 interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  ogImage?: ImageMetadata;
 }
 
-const { title, description, noindex = true } = Astro.props;
+const { title, description, noindex = true, ogImage } = Astro.props;
+const resolvedOgImage = await getImage({ src: ogImage ?? defaultOgImage, width: 1200, height: 630 });
+const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -18,6 +24,8 @@ const { title, description, noindex = true } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
   </head>
   <body>
@@ -135,10 +143,10 @@ const { title, description, noindex = true } = Astro.props;
     }
   }
   .f-shell {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding-left: 64px;
-    padding-right: 40px;
+    padding-right: 56px;
   }
   @media (max-width: 640px) {
     .f-shell {
@@ -305,10 +313,10 @@ const { title, description, noindex = true } = Astro.props;
   }
   .f-polaroid {
     background: var(--f-page);
-    padding: 10px 10px 30px;
+    padding: 14px 14px 38px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
     transform: rotate(-1.2deg);
-    width: 260px;
+    width: min(420px, 100%);
     margin: 0 0 40px;
   }
   .f-polaroid-inner {
@@ -336,7 +344,7 @@ const { title, description, noindex = true } = Astro.props;
     margin: 0 0 40px;
   }
   .f-polaroid-sm {
-    width: 160px;
+    width: min(240px, 45%);
     margin: 0;
   }
   .f-rotate-left {
@@ -344,6 +352,22 @@ const { title, description, noindex = true } = Astro.props;
   }
   .f-rotate-right {
     transform: rotate(2deg);
+  }
+
+  .f-trip-grid {
+    margin-bottom: 20px;
+  }
+  @media (min-width: 900px) {
+    .f-trip-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .f-trip-media {
+      position: sticky;
+      top: 30px;
+    }
   }
 
   .f-card {
