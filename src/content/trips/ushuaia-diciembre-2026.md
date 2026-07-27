@@ -1,21 +1,21 @@
 ---
-title: "Glaciares, canal de Beagle y fin del mundo"
-navLabel: "Ushuaia"
-coordLabel: "54.8°S · 68.3°O — USHUAIA, VIAJES N.º 002"
-badge: "Grupo reducido"
-status: "proximo"
-dateLabel: "diciembre 2026"
-durationLabel: "5 días · 4 noches"
-includesLabel: "Alojamiento, comidas y Experiencias"
-priceLabel: "A confirmar — consultanos"
-capacityLabel: "cupo 10"
+title: Glaciares, canal de Beagle y fin del mundo
+navLabel: Ushuaia
+coordLabel: 54.8°S · 68.3°O — USHUAIA, VIAJES N.º 002
+badge: Grupo reducido
+status: proximo
+dateLabel: diciembre 2026
+durationLabel: 5 días · 4 noches
+includesLabel: Alojamiento, comidas y Experiencias
+priceLabel: A confirmar — consultanos
+capacityLabel: cupo 10
 includes:
-  - "Navegación por el canal de Beagle, entre lobos marinos y cormoranes"
-  - "Trekking al glaciar Martial con una guía que vive ahí todo el año"
-  - "Noche de asado fueguino en una estancia, lejos del circuito turístico"
-coverImage: "../../assets/uploads/vinedo-atardecer.jpg"
-coverAlt: "Foto de referencia — reemplazar por una foto real de Ushuaia"
-coverCaption: "canal de Beagle — Ushuaia"
+  - Navegación por el canal de Beagle, entre lobos marinos y cormoranes
+  - Trekking al glaciar Martial con una guía que vive ahí todo el año
+  - Noche de asado fueguino en una estancia, lejos del circuito turístico
+coverImage: ../../assets/uploads/navegacion-canal-beagle.jpg
+coverAlt: Foto de referencia — reemplazar por una foto real de Ushuaia
+coverCaption: canal de Beagle — Ushuaia
 order: 2
 ---
 
