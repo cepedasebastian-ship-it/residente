@@ -71,7 +71,7 @@ const schemas = [organizationSchema, ...extraSchemas];
         var banner = document.createElement('div');
         banner.textContent = '¡Gracias! Ya recibimos tu mensaje — te vamos a escribir pronto.';
         banner.style.cssText =
-          'position:fixed;top:0;left:0;right:0;z-index:50;background:#5C6B49;color:#fff;text-align:center;padding:14px 20px;font-family:system-ui,sans-serif;font-size:14px;';
+          'position:fixed;top:0;left:0;right:0;z-index:50;background:#5E2638;color:#fff;text-align:center;padding:14px 20px;font-family:system-ui,sans-serif;font-size:14px;';
         document.body.prepend(banner);
         setTimeout(function () {
           banner.remove();
@@ -85,17 +85,17 @@ const schemas = [organizationSchema, ...extraSchemas];
 
 <style is:global>
   :root {
-    --f-ground: #e6dfce;
-    --f-page: #f1ead9;
-    --f-ink: #241f1c;
-    --f-ink-soft: #5b5650;
-    --f-wine: #5b1626;
-    --f-wine-soft: #7a2a3d;
-    --f-stamp: #b23a2e;
-    --f-sage: #5c6b49;
-    --f-rule: rgba(36, 31, 28, 0.12);
-    --f-line-strong: rgba(36, 31, 28, 0.28);
-    --f-tape: rgba(201, 184, 150, 0.55);
+    --f-ground: #eddab9;
+    --f-page: #f5e5cc;
+    --f-ink: #2b1f16;
+    --f-ink-soft: #5a4433;
+    --f-wine: #5e2638;
+    --f-wine-soft: #7c3c51;
+    --f-stamp: #8c5a38;
+    --f-sage: #7a8339;
+    --f-rule: rgba(58, 40, 26, 0.12);
+    --f-line-strong: rgba(58, 40, 26, 0.28);
+    --f-tape: rgba(200, 168, 141, 0.55);
     --f-whatsapp: #3f6d58;
     --font-f-display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
     --font-f-label: "American Typewriter", "Courier New", ui-monospace, monospace;
@@ -103,32 +103,32 @@ const schemas = [organizationSchema, ...extraSchemas];
     --font-f-hand: "Noteworthy", "Bradley Hand", "Segoe Script", cursive;
   }
   :root[data-theme="dark"] {
-    --f-ground: #201c16;
-    --f-page: #2a251d;
-    --f-ink: #ece4d3;
-    --f-ink-soft: #b7ac96;
-    --f-wine: #d97a90;
-    --f-wine-soft: #e8a5b4;
-    --f-stamp: #e2725b;
-    --f-sage: #93a87a;
-    --f-rule: rgba(236, 228, 211, 0.12);
-    --f-line-strong: rgba(236, 228, 211, 0.26);
-    --f-tape: rgba(201, 184, 150, 0.26);
+    --f-ground: #201a12;
+    --f-page: #2b2318;
+    --f-ink: #f5e5cc;
+    --f-ink-soft: #cbb08e;
+    --f-wine: #dd8299;
+    --f-wine-soft: #e8a3b3;
+    --f-stamp: #d99a68;
+    --f-sage: #b3bd74;
+    --f-rule: rgba(245, 229, 204, 0.12);
+    --f-line-strong: rgba(245, 229, 204, 0.26);
+    --f-tape: rgba(200, 168, 141, 0.26);
     --f-whatsapp: #6fa98d;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --f-ground: #201c16;
-      --f-page: #2a251d;
-      --f-ink: #ece4d3;
-      --f-ink-soft: #b7ac96;
-      --f-wine: #d97a90;
-      --f-wine-soft: #e8a5b4;
-      --f-stamp: #e2725b;
-      --f-sage: #93a87a;
-      --f-rule: rgba(236, 228, 211, 0.12);
-      --f-line-strong: rgba(236, 228, 211, 0.26);
-      --f-tape: rgba(201, 184, 150, 0.26);
+      --f-ground: #201a12;
+      --f-page: #2b2318;
+      --f-ink: #f5e5cc;
+      --f-ink-soft: #cbb08e;
+      --f-wine: #dd8299;
+      --f-wine-soft: #e8a3b3;
+      --f-stamp: #d99a68;
+      --f-sage: #b3bd74;
+      --f-rule: rgba(245, 229, 204, 0.12);
+      --f-line-strong: rgba(245, 229, 204, 0.26);
+      --f-tape: rgba(200, 168, 141, 0.26);
       --f-whatsapp: #6fa98d;
     }
   }

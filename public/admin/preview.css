@@ -1,15 +1,15 @@
 :root {
-  --f-ground: #e6dfce;
-  --f-page: #f1ead9;
-  --f-ink: #241f1c;
-  --f-ink-soft: #5b5650;
-  --f-wine: #5b1626;
-  --f-wine-soft: #7a2a3d;
-  --f-stamp: #b23a2e;
-  --f-sage: #5c6b49;
-  --f-rule: rgba(36, 31, 28, 0.12);
-  --f-line-strong: rgba(36, 31, 28, 0.28);
-  --f-tape: rgba(201, 184, 150, 0.55);
+  --f-ground: #eddab9;
+  --f-page: #f5e5cc;
+  --f-ink: #2b1f16;
+  --f-ink-soft: #5a4433;
+  --f-wine: #5e2638;
+  --f-wine-soft: #7c3c51;
+  --f-stamp: #8c5a38;
+  --f-sage: #7a8339;
+  --f-rule: rgba(58, 40, 26, 0.12);
+  --f-line-strong: rgba(58, 40, 26, 0.28);
+  --f-tape: rgba(200, 168, 141, 0.55);
   --font-f-display: Rockwell, "Rockwell Nova", "Roboto Slab", Georgia, serif;
   --font-f-label: "American Typewriter", "Courier New", ui-monospace, monospace;
   --font-f-body: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
