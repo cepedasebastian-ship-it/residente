@@ -5,10 +5,9 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   trip: CollectionEntry<'trips'>;
   Content: any;
-  notifyEmail: string;
 }
 
-const { trip, Content, notifyEmail } = Astro.props;
+const { trip, Content } = Astro.props;
 const { data, id } = trip;
 const formName = `lista-espera-${id}`;
 ---
@@ -64,10 +63,10 @@ const formName = `lista-espera-${id}`;
   <ul class="f-list">
     {data.includes.map((item: string) => <li>{item}</li>)}
   </ul>
-  <form class="f-waitlist" action={`https://formsubmit.co/${notifyEmail}`} method="POST">
-    <input type="hidden" name="_subject" value={`Lista de espera — ${data.title}`} />
-    <input type="hidden" name="_next" value={`https://experiencia-residente.pages.dev/?gracias=1#${id}`} />
+  <form class="f-waitlist" action="/api/submit" method="POST">
+    <input type="hidden" name="_tipo" value="lista-de-espera" />
     <input type="hidden" name="viaje" value={data.title} />
+    <input type="hidden" name="_next_hash" value={id} />
     <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
     <input type="email" name="email" placeholder="tu@email.com" aria-label="Email para la lista de espera" required />
     <button type="submit" class="f-btn">Sumarme</button>

@@ -62,7 +62,7 @@ const tripsWithContent = await Promise.all(
       <span class="f-entry-label" style="display:block; margin-bottom:20px;">Viajes</span>
     )}
     {tripsWithContent.map(({ trip, Content }) => (
-      <TripCard trip={trip} Content={Content} notifyEmail={settings.notifyEmail} />
+      <TripCard trip={trip} Content={Content} />
     ))}
   </section>
 
@@ -126,9 +126,9 @@ const tripsWithContent = await Promise.all(
           label="Escribinos por WhatsApp"
         />
       </div>
-      <form class="f-form" action={`https://formsubmit.co/${settings.notifyEmail}`} method="POST">
-        <input type="hidden" name="_subject" value="Nueva consulta — Experiencia Residente" />
-        <input type="hidden" name="_next" value="https://experiencia-residente.pages.dev/?gracias=1#contacto" />
+      <form class="f-form" action="/api/submit" method="POST">
+        <input type="hidden" name="_tipo" value="contacto" />
+        <input type="hidden" name="_next_hash" value="contacto" />
         <p style="display:none;"><label>No llenar: <input name="_honey" /></label></p>
         <input type="text" name="nombre" placeholder="Tu nombre" aria-label="Nombre" required />
         <input type="email" name="email" placeholder="tu@email.com" aria-label="Email" required />

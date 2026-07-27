@@ -99,3 +99,21 @@ collections:
             fields:
               - { label: "Pregunta", name: "q", widget: "string", required: false }
               - { label: "Respuesta", name: "a", widget: "text", required: false }
+
+  - name: "submissions"
+    label: "Registros de formularios"
+    label_singular: "Registro"
+    folder: "submissions"
+    create: false
+    delete: true
+    format: "json"
+    extension: "json"
+    sortable_fields: ["date"]
+    summary: "{{date}} — {{tipo}} — {{nombre}}"
+    fields:
+      - { label: "Fecha", name: "date", widget: "datetime", required: false }
+      - { label: "Tipo", name: "tipo", widget: "string", required: false }
+      - { label: "Viaje", name: "viaje", widget: "string", required: false }
+      - { label: "Nombre", name: "nombre", widget: "string", required: false }
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "Mensaje", name: "mensaje", widget: "text", required: false }

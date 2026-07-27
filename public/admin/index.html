@@ -11,11 +11,13 @@
     <script>
       var TripPreview = createClass({
         render: function () {
+          var self = this;
           var entry = this.props.entry;
           var data = entry.get('data');
           var image = data.get('coverImage');
           var imageUrl = image ? this.props.getAsset(image).toString() : null;
           var includes = data.get('includes');
+          var gallery = data.get('gallery');
 
           return h(
             'div',
@@ -35,6 +37,27 @@
                 h('div', { className: 'f-polaroid-cap' }, data.get('coverCaption') || 'sin foto todavía')
               )
             ),
+            gallery && gallery.size
+              ? h(
+                  'div',
+                  { className: 'f-gallery-row' },
+                  gallery.map(function (item, i) {
+                    var photo = item.get('photo');
+                    var photoUrl = photo ? self.props.getAsset(photo).toString() : null;
+                    var caption = item.get('caption');
+                    return h(
+                      'div',
+                      { className: 'f-polaroid f-polaroid-sm ' + (i % 2 === 0 ? 'f-rotate-left' : 'f-rotate-right'), key: i },
+                      h(
+                        'div',
+                        { className: 'f-polaroid-inner' },
+                        photoUrl ? h('img', { src: photoUrl, alt: caption || '' }) : null
+                      ),
+                      caption ? h('div', { className: 'f-polaroid-cap' }, caption) : null
+                    );
+                  }).toArray()
+                )
+              : null,
             h(
               'div',
               { className: 'f-card' },

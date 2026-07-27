@@ -65,6 +65,22 @@ body {
   text-align: center;
   margin-top: 8px;
 }
+.f-gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin: 0 0 30px;
+}
+.f-polaroid-sm {
+  width: 160px;
+  margin: 0;
+}
+.f-rotate-left {
+  transform: rotate(-2deg);
+}
+.f-rotate-right {
+  transform: rotate(2deg);
+}
 .f-card {
   background: var(--f-page);
   border: 1px solid var(--f-line-strong);
