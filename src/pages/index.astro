@@ -17,10 +17,10 @@ const tripsWithContent = await Promise.all(
   description="Viajes chicos, armados por Romi, para vivir cada destino como residente y no como turista. Próximo viaje: Mendoza, octubre 2026, solo mujeres."
 >
   <div class="f-nav">
-    <div class="f-brand">
+    <a href="/" class="f-brand" aria-label="Ir al inicio">
       <img src="/logo-sello-vino.svg" alt="" width="34" height="34" class="f-brand-mark" />
       <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
-    </div>
+    </a>
     <div class="f-nav-links">
       {trips.map((trip) => <a href={`#${trip.id}`}>{trip.data.navLabel}</a>)}
       <a href="#sobre-romi">Sobre Romi</a>
