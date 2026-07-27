@@ -9,11 +9,26 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.dat
   <a href="/" aria-label="Ir al inicio" class="f-brand">
     <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="204" height="74" class="f-brand-lockup" />
   </a>
-  <div class="f-nav-links">
-    {trips.map((trip) => <a href={`/viajes/${trip.id}`}>{trip.data.navLabel}</a>)}
-    <a href="/#sobre-romi">{settings.navAboutLabel}</a>
-    <a href="/cuaderno">{settings.navJournalLabel}</a>
-    <a href="/#faq">{settings.navFaqLabel}</a>
-    <a href="/#contacto">{settings.navContactLabel}</a>
-  </div>
+  <details class="f-nav-toggle">
+    <summary class="f-nav-toggle-btn" aria-label="Abrir menú">
+      <span class="f-burger"></span>
+    </summary>
+    <div class="f-nav-links">
+      {trips.map((trip) => <a href={`/viajes/${trip.id}`}>{trip.data.navLabel}</a>)}
+      <a href="/#sobre-romi">{settings.navAboutLabel}</a>
+      <a href="/cuaderno">{settings.navJournalLabel}</a>
+      <a href="/#faq">{settings.navFaqLabel}</a>
+      <a href="/#contacto">{settings.navContactLabel}</a>
+    </div>
+  </details>
 </div>
+
+<script is:inline>
+  document.querySelectorAll('.f-nav-toggle').forEach(function (toggle) {
+    toggle.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        toggle.removeAttribute('open');
+      });
+    });
+  });
+</script>

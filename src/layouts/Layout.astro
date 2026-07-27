@@ -182,6 +182,15 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     color: var(--f-ink-soft);
     text-transform: uppercase;
   }
+  .f-nav-toggle {
+    margin-left: auto;
+  }
+  .f-nav-toggle > summary {
+    display: none;
+  }
+  .f-nav-toggle > summary::-webkit-details-marker {
+    display: none;
+  }
   .f-nav-links {
     display: flex;
     gap: 16px;
@@ -197,6 +206,80 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   }
   .f-nav-links a:hover {
     color: var(--f-wine);
+  }
+
+  @media (max-width: 700px) {
+    .f-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--f-ground);
+      border-bottom: 1px solid var(--f-line-strong);
+    }
+    .f-nav-toggle > summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .f-burger,
+    .f-burger::before,
+    .f-burger::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--f-ink);
+    }
+    .f-burger {
+      position: relative;
+    }
+    .f-burger::before,
+    .f-burger::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: transform 0.15s ease, top 0.15s ease, opacity 0.15s ease;
+    }
+    .f-burger::before {
+      top: -7px;
+    }
+    .f-burger::after {
+      top: 7px;
+    }
+    .f-nav-toggle[open] .f-burger {
+      background: transparent;
+    }
+    .f-nav-toggle[open] .f-burger::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+    .f-nav-toggle[open] .f-burger::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+    .f-nav-toggle:not([open]) > .f-nav-links {
+      display: none;
+    }
+    .f-nav-toggle[open] > .f-nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: var(--f-ground);
+      border-bottom: 1px solid var(--f-line-strong);
+      padding: 6px 26px 22px;
+    }
+    .f-nav-toggle[open] > .f-nav-links a {
+      padding: 10px 0;
+      font-size: 12px;
+    }
   }
 
   .f-hero {
@@ -652,6 +735,10 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   @media (max-width: 640px) {
     .f-related-card {
       grid-template-columns: 90px 1fr;
+    }
+    .f-related-photo {
+      width: 90px;
+      height: 68px;
     }
     .f-related-link {
       grid-column: 1 / -1;
