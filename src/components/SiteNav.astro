@@ -12,6 +12,7 @@ const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.dat
   <div class="f-nav-links">
     {trips.map((trip) => <a href={`/viajes/${trip.id}`}>{trip.data.navLabel}</a>)}
     <a href="/#sobre-romi">{settings.navAboutLabel}</a>
+    <a href="/cuaderno">{settings.navJournalLabel}</a>
     <a href="/#faq">{settings.navFaqLabel}</a>
     <a href="/#contacto">{settings.navContactLabel}</a>
   </div>

@@ -121,6 +121,43 @@ body {
   text-align: center;
   margin-top: 8px;
 }
+.f-spots-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.f-spots-bar {
+  flex: 1 1 140px;
+  max-width: 200px;
+  height: 6px;
+  background: var(--f-line-strong);
+  position: relative;
+  display: inline-block;
+}
+.f-spots-bar span {
+  position: absolute;
+  inset: 0;
+  background: var(--f-stamp);
+}
+.f-spots-label {
+  font-family: var(--font-f-label);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--f-wine);
+  white-space: nowrap;
+}
+.f-page-hero {
+  padding: 6px 0 20px;
+}
+.f-page-hero h1 {
+  font-size: 30px;
+  line-height: 1.06;
+  text-transform: uppercase;
+  margin: 10px 0 0;
+}
 .f-gallery-row {
   display: flex;
   flex-wrap: wrap;

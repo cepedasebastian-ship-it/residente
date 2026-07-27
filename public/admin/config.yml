@@ -33,6 +33,8 @@ collections:
       - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string" }
       - { label: "Valor", name: "priceLabel", widget: "string" }
       - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string" }
+      - { label: "Cupos — total (opcional, dejar vacío para ocultar la barra de cupos)", name: "capacityTotal", widget: "number", required: false, value_type: "int" }
+      - { label: "Cupos — ocupados (opcional, dejar vacío para ocultar la barra de cupos)", name: "spotsTaken", widget: "number", required: false, value_type: "int" }
       - label: "Incluye (lista de puntos)"
         name: "includes"
         widget: "list"
@@ -88,6 +90,7 @@ collections:
           - { label: "Etiqueta de la sección de viajes", name: "viajesLabel", widget: "string", required: false }
           - { widget: "hr", name: "divider-nav" }
           - { label: "Menú — texto del link a Sobre Romi", name: "navAboutLabel", widget: "string", required: false }
+          - { label: "Menú — texto del link al Cuaderno", name: "navJournalLabel", widget: "string", required: false }
           - { label: "Menú — texto del link a FAQ", name: "navFaqLabel", widget: "string", required: false }
           - { label: "Menú — texto del link a Contacto", name: "navContactLabel", widget: "string", required: false }
           - { label: "Usuario de Instagram a mostrar (footer)", name: "footerHandle", widget: "string", required: false }
@@ -149,6 +152,7 @@ collections:
           - { label: "Tarjeta de viaje — texto \"ver viaje completo\"", name: "viewTripLabel", widget: "string", required: false }
           - { label: "Página de viaje — texto \"volver a todos los viajes\"", name: "backToTripsLabel", widget: "string", required: false }
           - { label: "Página de viaje — etiqueta \"día por día\"", name: "itineraryLabel", widget: "string", required: false }
+          - { label: "Página de viaje — título \"también puede interesarte\"", name: "relatedTripsLabel", widget: "string", required: false }
           - { label: "Lista de espera — título", name: "waitlistTitle", widget: "string", required: false }
           - { label: "Lista de espera — texto", name: "waitlistText", widget: "text", required: false }
           - { label: "Lista de espera — texto del botón", name: "waitlistButtonLabel", widget: "string", required: false }
@@ -158,6 +162,30 @@ collections:
           - { label: "Newsletter — título", name: "newsletterTitle", widget: "string", required: false }
           - { label: "Newsletter — texto", name: "newsletterText", widget: "text", required: false }
           - { label: "Newsletter — texto del botón", name: "newsletterButtonLabel", widget: "string", required: false }
+          - { widget: "hr", name: "divider-journal" }
+          - { label: "Cuaderno — etiqueta chica", name: "journalLabel", widget: "string", required: false }
+          - { label: "Cuaderno — título", name: "journalTitle", widget: "string", required: false }
+          - { label: "Cuaderno — texto \"ver todas las notas\"", name: "journalMoreLabel", widget: "string", required: false }
+
+  - name: "posts"
+    label: "Cuaderno de viaje"
+    label_singular: "Nota"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ["date"]
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Resumen corto (se muestra en las tarjetas)", name: "excerpt", widget: "text" }
+      - label: "Foto de portada"
+        name: "coverImage"
+        widget: "image"
+        media_folder: "/src/assets/uploads"
+        public_folder: "../../assets/uploads"
+      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string" }
+      - { label: "Texto de la nota", name: "body", widget: "markdown" }
 
   - name: "submissions"
     label: "Registros de formularios"

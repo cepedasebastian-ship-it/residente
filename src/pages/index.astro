@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import TripCard from '../components/TripCard.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
@@ -13,6 +14,12 @@ const featuredTrip = trips.find((t) => t.data.status === 'proximo') ?? trips[0];
 const tripsWithContent = await Promise.all(
   trips.map(async (trip) => ({ trip, Content: (await render(trip)).Content }))
 );
+
+const latestPosts = (await getCollection('posts'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
 ---
 
 <Layout
@@ -106,11 +113,11 @@ const tripsWithContent = await Promise.all(
   <section class="f-faq" id="faq">
     <span class="f-entry-label" style="display:block; margin-bottom:6px;">{settings.faqLabel}</span>
     <h2 style="margin-bottom:18px;">{settings.faqTitle}</h2>
-    {settings.faq.map((item) => (
-      <div class="f-faq-item">
-        <p class="f-faq-q">{item.q}</p>
+    {settings.faq.map((item, i) => (
+      <details class="f-faq-item" open={i === 0}>
+        <summary class="f-faq-q">{item.q}</summary>
         <p class="f-faq-a">{item.a}</p>
-      </div>
+      </details>
     ))}
     {settings.faqNote && <p class="f-faq-note">{settings.faqNote}</p>}
   </section>
@@ -139,6 +146,28 @@ const tripsWithContent = await Promise.all(
       </form>
     </div>
   </section>
+
+  {latestPosts.length > 0 && (
+    <section id="cuaderno">
+      <span class="f-entry-label" style="display:block; margin-bottom:6px;">{settings.journalLabel}</span>
+      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
+        <h2>{settings.journalTitle}</h2>
+        <a class="f-more-link" style="margin:0;" href="/cuaderno">{settings.journalMoreLabel}</a>
+      </div>
+      <div class="f-journal-grid">
+        {latestPosts.map((post) => (
+          <a class="f-journal-card" href={`/cuaderno/${post.id}`}>
+            <div class="f-journal-photo">
+              <Image src={post.data.coverImage} alt={post.data.coverAlt} width={400} height={300} />
+            </div>
+            <span class="f-journal-date">{formatDate(post.data.date)}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.excerpt}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <Newsletter />
 

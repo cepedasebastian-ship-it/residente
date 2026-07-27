@@ -11,6 +11,8 @@ interface Props {
 const { trip, Content } = Astro.props;
 const { data, id } = trip;
 const formName = `lista-espera-${id}`;
+const showSpots = typeof data.capacityTotal === 'number' && data.capacityTotal > 0 && typeof data.spotsTaken === 'number';
+const spotsPct = showSpots ? Math.min(100, Math.round((data.spotsTaken! / data.capacityTotal!) * 100)) : 0;
 ---
 
 <div class="f-trip-grid">
@@ -46,6 +48,12 @@ const formName = `lista-espera-${id}`;
       {data.capacityLabel}
     </span>
   </div>
+  {showSpots && (
+    <div class="f-spots-row">
+      <span class="f-spots-bar"><span style={`width:${spotsPct}%`}></span></span>
+      <span class="f-spots-label">{data.spotsTaken} de {data.capacityTotal} lugares ocupados</span>
+    </div>
+  )}
   <h2>{data.title}</h2>
   <div class="f-desc">
     <Content />

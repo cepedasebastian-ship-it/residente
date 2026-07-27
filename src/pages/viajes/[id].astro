@@ -16,6 +16,12 @@ export async function getStaticPaths() {
 const { trip } = Astro.props;
 const { data, id } = trip;
 const { Content } = await render(trip);
+
+const showSpots = typeof data.capacityTotal === 'number' && data.capacityTotal > 0 && typeof data.spotsTaken === 'number';
+const spotsPct = showSpots ? Math.min(100, Math.round((data.spotsTaken! / data.capacityTotal!) * 100)) : 0;
+
+const otherTrips = (await getCollection('trips')).filter((t) => t.id !== id).sort((a, b) => a.data.order - b.data.order);
+const relatedTrip = otherTrips[0];
 ---
 
 <Layout
@@ -61,6 +67,12 @@ const { Content } = await render(trip);
           {data.capacityLabel}
         </span>
       </div>
+      {showSpots && (
+        <div class="f-spots-row">
+          <span class="f-spots-bar"><span style={`width:${spotsPct}%`}></span></span>
+          <span class="f-spots-label">{data.spotsTaken} de {data.capacityTotal} lugares ocupados</span>
+        </div>
+      )}
       <h1>{data.title}</h1>
       <div class="f-desc f-desc-wide">
         <Content />
@@ -97,6 +109,22 @@ const { Content } = await render(trip);
           </div>
         ))}
       </div>
+    </section>
+  )}
+
+  {relatedTrip && (
+    <section class="f-related">
+      <span class="f-entry-label" style="display:block; margin-bottom:14px;">{settings.relatedTripsLabel}</span>
+      <a class="f-related-card" href={`/viajes/${relatedTrip.id}`}>
+        <div class="f-related-photo">
+          <Image src={relatedTrip.data.coverImage} alt={relatedTrip.data.coverAlt} width={240} height={180} />
+        </div>
+        <div class="f-related-copy">
+          <span class="f-related-eyebrow">{relatedTrip.data.coordLabel}</span>
+          <h3>{relatedTrip.data.title}</h3>
+        </div>
+        <span class="f-related-link">{settings.viewTripLabel}</span>
+      </a>
     </section>
   )}
 

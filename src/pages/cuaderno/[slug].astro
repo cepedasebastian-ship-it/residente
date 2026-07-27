@@ -1,0 +1,52 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import settings from '../../data/settings.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
+---
+
+<Layout
+  title={`${data.title} — ${settings.journalTitle}`}
+  description={data.excerpt}
+  ogImage={data.coverImage}
+>
+  <SiteNav />
+
+  <a class="f-back-link" href="/cuaderno">← Volver al cuaderno</a>
+
+  <header class="f-page-hero">
+    <span class="f-entry-label">{formatDate(data.date)}</span>
+    <h1>{data.title}</h1>
+  </header>
+
+  <div class="f-polaroid" style="width:min(560px, 100%);">
+    <div class="f-polaroid-inner">
+      <Image src={data.coverImage} alt={data.coverAlt} width={720} height={540} />
+    </div>
+  </div>
+
+  <div class="f-desc f-desc-wide">
+    <Content />
+  </div>
+
+  <a class="f-back-link" href="/cuaderno">← Volver al cuaderno</a>
+
+  <Newsletter />
+
+  <SiteFooter />
+</Layout>

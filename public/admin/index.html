@@ -19,6 +19,10 @@
           var includes = data.get('includes');
           var gallery = data.get('gallery');
           var itinerary = data.get('itinerary');
+          var capacityTotal = data.get('capacityTotal');
+          var spotsTaken = data.get('spotsTaken');
+          var showSpots = typeof capacityTotal === 'number' && capacityTotal > 0 && typeof spotsTaken === 'number';
+          var spotsPct = showSpots ? Math.min(100, Math.round((spotsTaken / capacityTotal) * 100)) : 0;
 
           return h(
             'div',
@@ -76,6 +80,14 @@
                   data.get('capacityLabel') || '(cupo)'
                 )
               ),
+              showSpots
+                ? h(
+                    'div',
+                    { className: 'f-spots-row' },
+                    h('span', { className: 'f-spots-bar' }, h('span', { style: { width: spotsPct + '%' } })),
+                    h('span', { className: 'f-spots-label' }, spotsTaken + ' de ' + capacityTotal + ' lugares ocupados')
+                  )
+                : null,
               h('h2', {}, data.get('title') || 'Sin título todavía'),
               h('div', { className: 'f-desc' }, this.props.widgetFor('body')),
               h(
@@ -262,6 +274,19 @@
                 'WhatsApp: ' + (data.get('whatsappNumber') || '(sin número)') + ' — Email de notificaciones: ' + (data.get('notifyEmail') || '(sin email)')
               )
             ),
+            h('hr', { className: 'f-section-divider' }),
+            h(
+              'div',
+              {},
+              h('span', { className: 'f-entry-label' }, data.get('journalLabel') || '(etiqueta chica del cuaderno)'),
+              h('h2', { style: { marginBottom: '6px' } }, data.get('journalTitle') || '(título del cuaderno)'),
+              h('p', { className: 'preview-note' }, 'Texto del link "ver todas": ' + (data.get('journalMoreLabel') || '(sin texto)')),
+              h(
+                'p',
+                { className: 'preview-note' },
+                'Texto del link entre viajes ("también puede interesarte"): ' + (data.get('relatedTripsLabel') || '(sin texto)')
+              )
+            ),
             h(
               'p',
               { className: 'preview-note' },
@@ -271,9 +296,41 @@
         },
       });
 
+      var PostPreview = createClass({
+        render: function () {
+          var data = this.props.entry.get('data');
+          var image = data.get('coverImage');
+          var imageUrl = image ? this.props.getAsset(image).toString() : null;
+
+          return h(
+            'div',
+            { className: 'preview-wrap' },
+            h(
+              'header',
+              { className: 'f-page-hero' },
+              h('span', { className: 'f-entry-label' }, data.get('date') ? String(data.get('date')).slice(0, 10) : '(sin fecha)'),
+              h('h1', {}, data.get('title') || 'Sin título todavía')
+            ),
+            h(
+              'div',
+              { className: 'f-polaroid', style: { width: '320px' } },
+              h('div', { className: 'f-polaroid-inner' }, imageUrl ? h('img', { src: imageUrl, alt: data.get('coverAlt') || '' }) : null)
+            ),
+            h('p', { className: 'f-desc' }, data.get('excerpt') || '(sin resumen todavía)'),
+            h('div', { className: 'f-desc' }, this.props.widgetFor('body')),
+            h(
+              'p',
+              { className: 'preview-note' },
+              'PREVIEW — así se ve esta nota en /cuaderno. El resumen también aparece en la tarjeta de la home y del listado.'
+            )
+          );
+        },
+      });
+
       CMS.registerPreviewStyle('/admin/preview.css');
       CMS.registerPreviewTemplate('trips', TripPreview);
       CMS.registerPreviewTemplate('settings', SettingsPreview);
+      CMS.registerPreviewTemplate('posts', PostPreview);
     </script>
   </body>
 </html>

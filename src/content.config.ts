@@ -15,6 +15,8 @@ const trips = defineCollection({
       includesLabel: z.string(),
       priceLabel: z.string(),
       capacityLabel: z.string(),
+      capacityTotal: z.number().optional(),
+      spotsTaken: z.number().optional(),
       includes: z.array(z.string()),
       coverImage: image(),
       coverAlt: z.string(),
@@ -31,4 +33,16 @@ const trips = defineCollection({
     }),
 });
 
-export const collections = { trips };
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.string(),
+      excerpt: z.string(),
+      coverImage: image(),
+      coverAlt: z.string(),
+    }),
+});
+
+export const collections = { trips, posts };

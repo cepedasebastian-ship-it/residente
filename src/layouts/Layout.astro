@@ -415,6 +415,33 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     color: var(--f-ink-soft);
     text-align: right;
   }
+  .f-spots-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .f-spots-bar {
+    flex: 1 1 140px;
+    max-width: 200px;
+    height: 6px;
+    background: var(--f-rule);
+    position: relative;
+  }
+  .f-spots-bar span {
+    position: absolute;
+    inset: 0;
+    background: var(--f-stamp);
+  }
+  .f-spots-label {
+    font-family: var(--font-f-label);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--f-wine);
+    white-space: nowrap;
+  }
   .f-card h1,
   .f-card h2 {
     font-size: clamp(24px, 3.6vw, 30px);
@@ -570,6 +597,134 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     font-size: 15px;
   }
 
+  .f-related {
+    margin-bottom: 60px;
+  }
+  .f-related-card {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    background: var(--f-page);
+    border: 1px solid var(--f-line-strong);
+    padding: 20px;
+    text-decoration: none;
+    color: var(--f-ink);
+  }
+  .f-related-photo {
+    width: 120px;
+    height: 90px;
+    background: var(--f-ground);
+    overflow: hidden;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  }
+  .f-related-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .f-related-eyebrow {
+    display: block;
+    font-family: var(--font-f-label);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--f-ink-soft);
+    margin-bottom: 4px;
+  }
+  .f-related-copy h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  .f-related-link {
+    font-family: var(--font-f-label);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--f-wine);
+    white-space: nowrap;
+  }
+  .f-related-card:hover .f-related-link {
+    text-decoration: underline;
+  }
+  @media (max-width: 640px) {
+    .f-related-card {
+      grid-template-columns: 90px 1fr;
+    }
+    .f-related-link {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .f-page-hero {
+    padding: 6px 0 40px;
+    max-width: 640px;
+  }
+  .f-page-hero h1 {
+    font-size: clamp(30px, 5.5vw, 46px);
+    line-height: 1.06;
+    text-transform: uppercase;
+    margin: 14px 0 0;
+  }
+  .f-journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+  @media (max-width: 800px) {
+    .f-journal-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .f-journal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .f-journal-card {
+    text-decoration: none;
+    color: var(--f-ink);
+    display: block;
+  }
+  .f-journal-photo {
+    aspect-ratio: 4/3;
+    background: var(--f-ground);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .f-journal-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  .f-journal-card:hover .f-journal-photo img {
+    transform: scale(1.04);
+  }
+  .f-journal-date {
+    font-family: var(--font-f-label);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--f-wine);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .f-journal-card h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .f-journal-card p {
+    font-size: 13.5px;
+    color: var(--f-ink-soft);
+    margin: 0;
+  }
+
   .f-origin {
     max-width: 560px;
     margin-bottom: 60px;
@@ -697,8 +852,29 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   .f-faq-q {
     font-family: var(--font-f-display);
     font-size: 15.5px;
-    margin: 0 0 8px;
     font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+    padding-right: 30px;
+    position: relative;
+  }
+  .f-faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .f-faq-q::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: var(--font-f-label);
+    font-size: 20px;
+    color: var(--f-wine);
+  }
+  .f-faq-item[open] .f-faq-q::after {
+    content: "–";
+  }
+  .f-faq-item[open] .f-faq-q {
+    margin-bottom: 8px;
   }
   .f-faq-a {
     margin: 0;

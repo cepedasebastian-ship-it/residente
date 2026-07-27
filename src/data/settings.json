@@ -13,6 +13,7 @@
   "navAboutLabel": "Sobre Romi",
   "navFaqLabel": "FAQ",
   "navContactLabel": "Contacto",
+  "navJournalLabel": "Cuaderno",
   "footerHandle": "@experiencia_residente",
   "instagramUrl": "https://www.instagram.com/experiencia_residente/",
   "entryLabel": "Entrada · antes de armar el viaje",
@@ -55,6 +56,7 @@
   "viewTripLabel": "Ver el viaje completo →",
   "backToTripsLabel": "← Volver a todos los viajes",
   "itineraryLabel": "Día por día",
+  "relatedTripsLabel": "También puede interesarte",
   "waitlistTitle": "Sumarme a este viaje",
   "waitlistText": "Dejanos tu email y te escribimos para coordinar la seña y guardarte el cupo.",
   "waitlistButtonLabel": "Sumarme",
@@ -62,5 +64,8 @@
   "newsletterLabel": "No te pierdas el próximo viaje",
   "newsletterTitle": "Sumate al newsletter",
   "newsletterText": "Dejanos tu email y te avisamos apenas armamos un viaje nuevo — nada más.",
-  "newsletterButtonLabel": "Quiero enterarme"
+  "newsletterButtonLabel": "Quiero enterarme",
+  "journalLabel": "El cuaderno, entre viaje y viaje",
+  "journalTitle": "Cuaderno de viaje",
+  "journalMoreLabel": "Ver todas las notas →"
 }
