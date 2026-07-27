@@ -33,3 +33,36 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Notify search engines (IndexNow) of every page in the sitemap
+        run: |
+          python3 - <<'EOF'
+          import glob, json, re, urllib.request
+
+          urls = []
+          for path in glob.glob('dist/sitemap-*.xml'):
+              content = open(path, encoding='utf-8').read()
+              urls += re.findall(r'<loc>(.*?)</loc>', content)
+          urls = [u for u in urls if not u.endswith('.xml')]
+
+          if not urls:
+              print('No URLs found in sitemap, skipping IndexNow ping.')
+          else:
+              payload = json.dumps({
+                  'host': 'experiencia-residente.pages.dev',
+                  'key': 'd52996abfe88c4ea67e7e1f3a73a590a',
+                  'keyLocation': 'https://experiencia-residente.pages.dev/d52996abfe88c4ea67e7e1f3a73a590a.txt',
+                  'urlList': urls,
+              }).encode('utf-8')
+              req = urllib.request.Request(
+                  'https://api.indexnow.org/indexnow',
+                  data=payload,
+                  headers={'Content-Type': 'application/json; charset=utf-8'},
+                  method='POST',
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=15) as resp:
+                      print('IndexNow response:', resp.status, '-', len(urls), 'URLs submitted')
+              except Exception as e:
+                  print('IndexNow ping failed (non-fatal):', e)
+          EOF
