@@ -17,12 +17,9 @@ const tripsWithContent = await Promise.all(
   description="Viajes chicos, armados por Romi, para vivir cada destino como residente y no como turista. Próximo viaje: Mendoza, octubre 2026, solo mujeres."
 >
   <div class="f-nav">
-    <div class="f-brand">
-      <a href="/" aria-label="Ir al inicio">
-        <img src="/logo-sello-vino.svg" alt="" width="56" height="56" class="f-brand-mark" />
-      </a>
-      <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
-    </div>
+    <a href="/" aria-label="Ir al inicio" class="f-brand">
+      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="150" height="55" class="f-brand-lockup" />
+    </a>
     <div class="f-nav-links">
       {trips.map((trip) => <a href={`#${trip.id}`}>{trip.data.navLabel}</a>)}
       <a href="#sobre-romi">Sobre Romi</a>
@@ -43,28 +40,28 @@ const tripsWithContent = await Promise.all(
       </g>
     </svg>
     <span class="f-coord">{featuredTrip.data.coordLabel}</span>
-    <h1>No visitás el lugar. Lo vivís.</h1>
-    <p>Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.</p>
+    <h1>{settings.heroTitle}</h1>
+    <p>{settings.heroSubtitle}</p>
     <div class="f-hero-ctas">
-      <a class="f-btn" href="#viajes">Ver los viajes →</a>
+      <a class="f-btn" href="#viajes">{settings.heroCtaLabel}</a>
       <WhatsAppButton
         number={settings.whatsappNumber}
         message="Hola Romi, quiero saber más del viaje a Mendoza"
         label="Escribinos por WhatsApp"
       />
     </div>
-    <div class="f-meta">PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO</div>
+    <div class="f-meta">{settings.heroMeta}</div>
   </header>
 
   <section class="f-entry">
     <span class="f-entry-label">Entrada · antes de armar el viaje</span>
-    <blockquote>"Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo."</blockquote>
-    <div class="f-sig">Romi</div>
+    <blockquote>"{settings.entryQuote}"</blockquote>
+    <div class="f-sig">{settings.founderName}</div>
   </section>
 
   <section id="viajes">
     {tripsWithContent.length > 1 && (
-      <span class="f-entry-label" style="display:block; margin-bottom:20px;">Viajes</span>
+      <span class="f-entry-label" style="display:block; margin-bottom:20px;">{settings.viajesLabel}</span>
     )}
     {tripsWithContent.map(({ trip, Content }) => (
       <TripCard trip={trip} Content={Content} />
@@ -84,8 +81,15 @@ const tripsWithContent = await Promise.all(
       <h2>Sobre Romi</h2>
       <span class="f-entry-label">La entrada más larga del cuaderno</span>
     </div>
+    {settings.founderPhoto && (
+      <div class="f-polaroid f-about-photo">
+        <div class="f-polaroid-inner">
+          <img src={settings.founderPhoto} alt={settings.founderName} />
+        </div>
+      </div>
+    )}
     {settings.aboutBio.map((paragraph) => <p>{paragraph}</p>)}
-    <span class="f-sig">Romi</span>
+    <span class="f-sig">{settings.founderName}</span>
   </section>
 
   <section class="f-origin">
@@ -144,13 +148,10 @@ const tripsWithContent = await Promise.all(
   </section>
 
   <footer class="f-footer">
-    <div class="f-brand">
-      <a href="/" aria-label="Ir al inicio">
-        <img src="/logo-sello-vino.svg" alt="" width="56" height="56" class="f-brand-mark" />
-      </a>
-      <span class="f-wordmark">EXPERIENCIA RESIDENTE</span>
-    </div>
-    <div class="f-foot-meta">@residente.viajes</div>
+    <a href="/" aria-label="Ir al inicio" class="f-brand">
+      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="130" height="48" class="f-brand-lockup" />
+    </a>
+    <div class="f-foot-meta">{settings.footerHandle}</div>
   </footer>
 
   <WhatsAppButton number={settings.whatsappNumber} message="Hola Romi, quiero saber más" float />

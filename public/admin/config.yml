@@ -68,6 +68,20 @@ collections:
         label: "Configuración del sitio"
         name: "settings"
         fields:
+          - { label: "Título grande del inicio", name: "heroTitle", widget: "string", required: false }
+          - { label: "Subtítulo del inicio", name: "heroSubtitle", widget: "text", required: false }
+          - { label: "Texto del botón principal", name: "heroCtaLabel", widget: "string", required: false }
+          - { label: "Línea debajo de los botones (ej. próxima salida)", name: "heroMeta", widget: "string", required: false }
+          - { label: "Frase de la entrada del cuaderno", name: "entryQuote", widget: "text", required: false }
+          - { label: "Nombre de la fundadora (firma)", name: "founderName", widget: "string", required: false }
+          - label: "Foto de la fundadora"
+            name: "founderPhoto"
+            widget: "image"
+            required: false
+            media_folder: "/public/uploads"
+            public_folder: "/uploads"
+          - { label: "Etiqueta de la sección de viajes", name: "viajesLabel", widget: "string", required: false }
+          - { label: "Usuario de Instagram (footer)", name: "footerHandle", widget: "string", required: false }
           - { label: "Email donde recibir los formularios", name: "notifyEmail", widget: "string", required: false }
           - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string", required: false }
           - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string", required: false }

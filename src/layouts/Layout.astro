@@ -164,7 +164,9 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     padding: 18px 0;
     flex-wrap: wrap;
     gap: 12px;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 30;
   }
   .f-nav::before {
     content: "";
@@ -178,18 +180,13 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     border-bottom: 1px solid var(--f-line-strong);
     z-index: -1;
   }
-  .f-wordmark {
-    font-size: 17px;
-    letter-spacing: 0.04em;
-  }
   .f-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
   }
-  .f-brand-mark {
+  .f-brand-lockup {
     display: block;
-    flex: none;
+    width: auto;
   }
   .f-nav-tag {
     font-family: var(--font-f-label);
@@ -580,6 +577,17 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     margin-top: 16px;
     display: block;
   }
+  .f-about-photo {
+    width: min(220px, 100%);
+    float: right;
+    margin: 0 0 16px 24px;
+  }
+  @media (max-width: 480px) {
+    .f-about-photo {
+      float: none;
+      margin: 0 0 20px;
+    }
+  }
 
   .f-principles {
     display: grid;
@@ -661,12 +669,16 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    align-items: center;
   }
   @media (max-width: 560px) {
     .f-contact-grid {
       grid-template-columns: 1fr;
     }
+  }
+  .f-contact-direct {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .f-contact-direct .f-phone {
     font-family: var(--font-f-label);
@@ -730,9 +742,6 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     align-items: flex-end;
     flex-wrap: wrap;
     gap: 16px;
-  }
-  .f-footer .f-wordmark {
-    font-size: 14px;
   }
   .f-footer .f-foot-meta {
     font-family: var(--font-f-label);
