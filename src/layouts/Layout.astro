@@ -160,10 +160,23 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   .f-nav {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 28px 0 8px;
+    align-items: center;
+    padding: 18px 0;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 12px;
+    position: relative;
+  }
+  .f-nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: var(--f-page);
+    border-bottom: 1px solid var(--f-line-strong);
+    z-index: -1;
   }
   .f-wordmark {
     font-size: 17px;
