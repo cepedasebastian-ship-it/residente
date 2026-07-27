@@ -18,35 +18,32 @@ collections:
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Nombre corto para el menú (ej. Mendoza)", name: "navLabel", widget: "string" }
-      - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string", required: false }
-      - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string", required: false }
+      - { label: "Etiqueta de ruta (ej. 33.9°S · Mendoza)", name: "coordLabel", widget: "string" }
+      - { label: "Badge (ej. Solo mujeres)", name: "badge", widget: "string" }
       - label: "Estado"
         name: "status"
         widget: "select"
-        required: false
         default: "proximo"
         options:
           - { label: "Próximo", value: "proximo" }
           - { label: "Cupo lleno", value: "cupo-lleno" }
           - { label: "Pasado", value: "pasado" }
-      - { label: "Fecha (texto libre, ej. octubre 2026)", name: "dateLabel", widget: "string", required: false }
-      - { label: "Duración (ej. 5 días · 4 noches)", name: "durationLabel", widget: "string", required: false }
-      - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string", required: false }
-      - { label: "Valor", name: "priceLabel", widget: "string", required: false }
-      - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string", required: false }
+      - { label: "Fecha (texto libre, ej. octubre 2026)", name: "dateLabel", widget: "string" }
+      - { label: "Duración (ej. 5 días · 4 noches)", name: "durationLabel", widget: "string" }
+      - { label: "Qué incluye (resumen corto)", name: "includesLabel", widget: "string" }
+      - { label: "Valor", name: "priceLabel", widget: "string" }
+      - { label: "Cupo (ej. cupo 10)", name: "capacityLabel", widget: "string" }
       - label: "Incluye (lista de puntos)"
         name: "includes"
         widget: "list"
-        required: false
-        field: { label: "Punto", name: "item", widget: "string", required: false }
+        field: { label: "Punto", name: "item", widget: "string" }
       - label: "Foto de portada"
         name: "coverImage"
         widget: "image"
-        required: false
         media_folder: "/src/assets/uploads"
         public_folder: "../../assets/uploads"
-      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string", required: false }
-      - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string", required: false }
+      - { label: "Texto alternativo de la foto", name: "coverAlt", widget: "string" }
+      - { label: "Pie de foto (estilo polaroid)", name: "coverCaption", widget: "string" }
       - label: "Más fotos (opcional)"
         name: "gallery"
         widget: "list"
@@ -66,7 +63,7 @@ collections:
           - { label: "Día (ej. Día 1)", name: "day", widget: "string" }
           - { label: "Título", name: "title", widget: "string" }
           - { label: "Descripción", name: "description", widget: "text" }
-      - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1, required: false }
+      - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 0, required: false }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }
 
   - name: "settings"
