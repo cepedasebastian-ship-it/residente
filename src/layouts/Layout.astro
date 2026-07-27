@@ -168,6 +168,18 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     top: 0;
     z-index: 30;
   }
+  .f-nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: var(--f-page);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: -1;
+  }
   .f-brand {
     display: flex;
     align-items: center;
@@ -175,14 +187,6 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   .f-brand-lockup {
     display: block;
     width: auto;
-  }
-  .f-brand-crop {
-    display: block;
-    height: 78px;
-    overflow: hidden;
-  }
-  .f-brand-crop .f-brand-lockup {
-    margin-top: 0;
   }
   .f-nav-tag {
     font-family: var(--font-f-label);
