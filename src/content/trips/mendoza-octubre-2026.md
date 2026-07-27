@@ -13,7 +13,7 @@ includes:
   - "Cosecha y atardecer en un viñedo, guiadas por quien lo trabaja todos los días"
   - "Ritual de bienestar en una clínica de residente, pensado para mujeres"
   - "Alojamiento y comidas en grupo, sin el apuro de un tour"
-coverImage: "../../assets/vinedo-atardecer.jpg"
+coverImage: "../../assets/uploads/vinedo-atardecer.jpg"
 coverAlt: "Atardecer sobre un viñedo en Mendoza, con la cordillera de fondo"
 coverCaption: "viñedo, atardecer — Mendoza"
 order: 1

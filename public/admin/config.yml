@@ -68,6 +68,7 @@ collections:
         label: "Configuración del sitio"
         name: "settings"
         fields:
+          - { label: "Email donde recibir los formularios", name: "notifyEmail", widget: "string", required: false }
           - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string", required: false }
           - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string", required: false }
           - label: "Bio de Romi (un párrafo por línea)"

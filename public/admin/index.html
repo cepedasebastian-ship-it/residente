@@ -95,8 +95,113 @@
         },
       });
 
+      var SettingsPreview = createClass({
+        render: function () {
+          var data = this.props.entry.get('data');
+          var aboutBio = data.get('aboutBio');
+          var paraQuienTags = data.get('paraQuienTags');
+          var principles = data.get('principles');
+          var faq = data.get('faq');
+
+          return h(
+            'div',
+            { className: 'preview-wrap' },
+            h(
+              'div',
+              { className: 'f-para-quien' },
+              h('span', { className: 'f-entry-label' }, '¿Para quién es esto?'),
+              h('p', {}, data.get('paraQuienText') || '(sin texto todavía)'),
+              paraQuienTags && paraQuienTags.size
+                ? h(
+                    'div',
+                    { className: 'f-tags' },
+                    paraQuienTags.map(function (tag, i) {
+                      return h('span', { className: 'f-tag-pill', key: i }, tag);
+                    }).toArray()
+                  )
+                : null
+            ),
+            h(
+              'div',
+              { className: 'f-about' },
+              h(
+                'div',
+                { className: 'f-about-head' },
+                h('h2', {}, 'Sobre Romi'),
+                h('span', { className: 'f-entry-label', style: { marginBottom: 0 } }, 'La entrada más larga del cuaderno')
+              ),
+              aboutBio && aboutBio.size
+                ? aboutBio.map(function (p, i) {
+                    return h('p', { key: i }, p);
+                  }).toArray()
+                : h('p', {}, '(sin bio todavía)'),
+              h('span', { className: 'f-sig' }, 'Romi')
+            ),
+            h(
+              'div',
+              { className: 'f-origin' },
+              h('span', { className: 'f-entry-label' }, data.get('originCoordLabel') || '(etiqueta de origen)'),
+              h('p', { style: { marginTop: '12px' } }, data.get('originText') || '(sin texto todavía)'),
+              h('span', { className: 'f-origin-price' }, data.get('originPrice') || '')
+            ),
+            h(
+              'div',
+              {},
+              h('span', { className: 'f-entry-label' }, 'La idea, en tres partes'),
+              h(
+                'div',
+                { className: 'f-principles' },
+                principles && principles.size
+                  ? principles.map(function (p, i) {
+                      return h(
+                        'div',
+                        { className: 'f-principle', key: i },
+                        h('span', { className: 'tag' }, p.get('tag')),
+                        h('p', {}, p.get('text'))
+                      );
+                    }).toArray()
+                  : null
+              )
+            ),
+            h(
+              'div',
+              { className: 'f-faq' },
+              h('span', { className: 'f-entry-label' }, 'Preguntas frecuentes'),
+              faq && faq.size
+                ? faq.map(function (item, i) {
+                    return h(
+                      'div',
+                      { className: 'f-faq-item', key: i },
+                      h('p', { className: 'f-faq-q' }, item.get('q')),
+                      h('p', { className: 'f-faq-a' }, item.get('a'))
+                    );
+                  }).toArray()
+                : null
+            ),
+            h('hr', { className: 'f-section-divider' }),
+            h(
+              'div',
+              { className: 'f-contact-direct' },
+              h('span', { className: 'f-entry-label' }, 'Directo'),
+              h('span', { className: 'f-phone' }, data.get('phoneLabel') || '(sin teléfono)'),
+              h(
+                'p',
+                { className: 'preview-note' },
+                'WhatsApp: ' + (data.get('whatsappNumber') || '(sin número)') + ' — Email de notificaciones: ' + (data.get('notifyEmail') || '(sin email)')
+              )
+            ),
+            h(
+              'p',
+              { className: 'preview-note' },
+              'PREVIEW — así se ven estos textos repartidos por la página. No es una sola sección del sitio, es un resumen de todas juntas.'
+            )
+          );
+        },
+      });
+
       CMS.registerPreviewStyle('/admin/preview.css');
       CMS.registerPreviewTemplate('trips', TripPreview);
+      CMS.registerPreviewTemplate('settings', SettingsPreview);
     </script>
   </body>
 </html>
