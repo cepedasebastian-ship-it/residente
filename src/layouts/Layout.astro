@@ -368,13 +368,17 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
       position: sticky;
       top: 30px;
     }
+    .f-trip-grid .f-card {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   .f-card {
     background: var(--f-page);
     border: 1px solid var(--f-line-strong);
     padding: 36px 30px;
-    margin-bottom: 60px;
+    margin: 0 -30px 60px;
     position: relative;
   }
   .f-card-top {
@@ -526,7 +530,7 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     background: var(--f-page);
     border: 1px solid var(--f-line-strong);
     padding: 36px 30px;
-    margin-bottom: 60px;
+    margin: 0 -30px 60px;
   }
   .f-about-head {
     display: flex;
@@ -616,7 +620,7 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     background: var(--f-page);
     border: 1px solid var(--f-line-strong);
     padding: 36px 30px;
-    margin-bottom: 70px;
+    margin: 0 -30px 70px;
   }
   .f-contact h2 {
     font-size: clamp(22px, 3.4vw, 27px);
