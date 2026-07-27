@@ -26,6 +26,9 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
     <title>{title}</title>
   </head>
   <body>
@@ -165,6 +168,15 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   .f-wordmark {
     font-size: 17px;
     letter-spacing: 0.04em;
+  }
+  .f-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .f-brand-mark {
+    display: block;
+    flex: none;
   }
   .f-nav-tag {
     font-family: var(--font-f-label);
