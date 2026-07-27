@@ -38,6 +38,8 @@ collections:
       - label: "Incluye (lista de puntos)"
         name: "includes"
         widget: "list"
+        min: 1
+        hint: "Al menos un punto — una lista vacía rompe la publicación del sitio."
         field: { label: "Punto", name: "item", widget: "string" }
       - label: "Foto de portada"
         name: "coverImage"
