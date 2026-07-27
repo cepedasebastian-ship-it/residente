@@ -46,13 +46,19 @@ export async function onRequestPost(context) {
     // if GitHub write fails, still try to notify by email below
   }
 
+  const subjects = {
+    contacto: 'Nueva consulta — Experiencia Residente',
+    newsletter: 'Nuevo suscriptor al newsletter — Experiencia Residente',
+  };
+  const subject = subjects[tipo] || `Lista de espera — ${viaje}`;
+
   const notifyEmail = env.NOTIFY_EMAIL || 'cepeda.sebastian@gmail.com';
   try {
     await fetch(`https://formsubmit.co/ajax/${notifyEmail}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        _subject: tipo === 'contacto' ? 'Nueva consulta — Experiencia Residente' : `Lista de espera — ${viaje}`,
+        _subject: subject,
         tipo,
         viaje,
         nombre,

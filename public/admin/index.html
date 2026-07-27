@@ -18,6 +18,7 @@
           var imageUrl = image ? this.props.getAsset(image).toString() : null;
           var includes = data.get('includes');
           var gallery = data.get('gallery');
+          var itinerary = data.get('itinerary');
 
           return h(
             'div',
@@ -109,10 +110,26 @@
                   )
                 : null
             ),
+            itinerary && itinerary.size
+              ? h(
+                  'div',
+                  { className: 'f-itinerary' },
+                  h('span', { className: 'f-entry-label', style: { display: 'block', marginBottom: '16px' } }, 'Día por día'),
+                  itinerary.map(function (stop, i) {
+                    return h(
+                      'div',
+                      { className: 'f-itinerary-stop', key: i },
+                      h('span', { className: 'f-itinerary-day' }, stop.get('day') || '(día)'),
+                      h('h3', {}, stop.get('title') || '(título)'),
+                      h('p', {}, stop.get('description') || '(descripción)')
+                    );
+                  }).toArray()
+                )
+              : null,
             h(
               'p',
               { className: 'preview-note' },
-              'PREVIEW — así se va a ver esta tarjeta en la home. Los campos vacíos se muestran entre paréntesis, no van a aparecer así en el sitio real.'
+              'PREVIEW — así se va a ver esta tarjeta en la home. Los campos vacíos se muestran entre paréntesis, no van a aparecer así en el sitio real. El itinerario, si lo cargás, aparece en la página propia del viaje.'
             )
           );
         },

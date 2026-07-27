@@ -3,6 +3,9 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import TripCard from '../components/TripCard.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Newsletter from '../components/Newsletter.astro';
 import settings from '../data/settings.json';
 
 const trips = (await getCollection('trips')).sort((a, b) => a.data.order - b.data.order);
@@ -16,17 +19,7 @@ const tripsWithContent = await Promise.all(
   title="Experiencia Residente — viajes para vivir cada lugar como quien ya vive ahí"
   description="Viajes chicos, armados por Romi, para vivir cada destino como residente y no como turista. Próximo viaje: Mendoza, octubre 2026, solo mujeres."
 >
-  <div class="f-nav">
-    <a href="/" aria-label="Ir al inicio" class="f-brand">
-      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="384" height="141" class="f-brand-lockup" />
-    </a>
-    <div class="f-nav-links">
-      {trips.map((trip) => <a href={`#${trip.id}`}>{trip.data.navLabel}</a>)}
-      <a href="#sobre-romi">Sobre Romi</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contacto">Contacto</a>
-    </div>
-  </div>
+  <SiteNav />
 
   <header class="f-hero">
     <svg class="f-topo" viewBox="0 0 420 260" preserveAspectRatio="none" aria-hidden="true">
@@ -147,12 +140,9 @@ const tripsWithContent = await Promise.all(
     </div>
   </section>
 
-  <footer class="f-footer">
-    <a href="/" aria-label="Ir al inicio" class="f-brand">
-      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="450" height="165" class="f-brand-lockup" />
-    </a>
-    <a class="f-foot-meta" href={settings.instagramUrl} target="_blank" rel="noopener">{settings.footerHandle}</a>
-  </footer>
+  <Newsletter />
+
+  <SiteFooter />
 
   <WhatsAppButton number={settings.whatsappNumber} message="Hola Romi, quiero saber más" float />
 </Layout>

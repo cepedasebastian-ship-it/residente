@@ -23,6 +23,10 @@ const trips = defineCollection({
         .array(z.object({ photo: image(), caption: z.string().optional().default('') }))
         .optional()
         .default([]),
+      itinerary: z
+        .array(z.object({ day: z.string(), title: z.string(), description: z.string() }))
+        .optional()
+        .default([]),
       order: z.number().default(0),
     }),
 });

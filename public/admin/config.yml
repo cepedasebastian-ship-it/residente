@@ -58,6 +58,14 @@ collections:
             media_folder: "/src/assets/uploads"
             public_folder: "../../assets/uploads"
           - { label: "Pie de foto", name: "caption", widget: "string", required: false }
+      - label: "Itinerario día por día (opcional)"
+        name: "itinerary"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Día (ej. Día 1)", name: "day", widget: "string" }
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text" }
       - { label: "Orden (los más chicos aparecen primero)", name: "order", widget: "number", default: 1, required: false }
       - { label: "Descripción", name: "body", widget: "markdown", required: false }
 

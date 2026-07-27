@@ -66,6 +66,7 @@ const formName = `lista-espera-${id}`;
   <ul class="f-list">
     {data.includes.map((item: string) => <li>{item}</li>)}
   </ul>
+  <a class="f-more-link" href={`/viajes/${id}`}>Ver el viaje completo →</a>
   <form class="f-waitlist" action="/api/submit" method="POST">
     <input type="hidden" name="_tipo" value="lista-de-espera" />
     <input type="hidden" name="viaje" value={data.title} />

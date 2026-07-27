@@ -166,6 +166,36 @@ body {
   font-family: var(--font-f-display);
   font-size: 16px;
 }
+.f-itinerary {
+  margin: 30px 0 0;
+}
+.f-itinerary-stop {
+  padding: 18px 0;
+  border-top: 1px dashed var(--f-line-strong);
+}
+.f-itinerary-stop:last-child {
+  border-bottom: 1px dashed var(--f-line-strong);
+}
+.f-itinerary-day {
+  font-family: var(--font-f-label);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--f-wine);
+  display: block;
+  margin-bottom: 6px;
+}
+.f-itinerary-stop h3 {
+  font-family: var(--font-f-display);
+  font-size: 19px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.f-itinerary-stop p {
+  color: var(--f-ink-soft);
+  max-width: 56ch;
+  font-size: 15px;
+}
 .preview-note {
   font-family: var(--font-f-label);
   font-size: 11px;
