@@ -17,8 +17,8 @@ const tripsWithContent = await Promise.all(
   description="Viajes chicos, armados por Romi, para vivir cada destino como residente y no como turista. Próximo viaje: Mendoza, octubre 2026, solo mujeres."
 >
   <div class="f-nav">
-    <a href="/" aria-label="Ir al inicio" class="f-brand">
-      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="150" height="55" class="f-brand-lockup" />
+    <a href="/" aria-label="Ir al inicio" class="f-brand f-brand-crop">
+      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="320" height="117" class="f-brand-lockup" />
     </a>
     <div class="f-nav-links">
       {trips.map((trip) => <a href={`#${trip.id}`}>{trip.data.navLabel}</a>)}
@@ -149,9 +149,9 @@ const tripsWithContent = await Promise.all(
 
   <footer class="f-footer">
     <a href="/" aria-label="Ir al inicio" class="f-brand">
-      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="130" height="48" class="f-brand-lockup" />
+      <img src="/logo-lockup-vino.svg" alt="Experiencia Residente" width="300" height="110" class="f-brand-lockup" />
     </a>
-    <div class="f-foot-meta">{settings.footerHandle}</div>
+    <a class="f-foot-meta" href={settings.instagramUrl} target="_blank" rel="noopener">{settings.footerHandle}</a>
   </footer>
 
   <WhatsAppButton number={settings.whatsappNumber} message="Hola Romi, quiero saber más" float />

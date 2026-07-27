@@ -81,7 +81,8 @@ collections:
             media_folder: "/public/uploads"
             public_folder: "/uploads"
           - { label: "Etiqueta de la sección de viajes", name: "viajesLabel", widget: "string", required: false }
-          - { label: "Usuario de Instagram (footer)", name: "footerHandle", widget: "string", required: false }
+          - { label: "Usuario de Instagram a mostrar (footer)", name: "footerHandle", widget: "string", required: false }
+          - { label: "Link de Instagram", name: "instagramUrl", widget: "string", required: false }
           - { label: "Email donde recibir los formularios", name: "notifyEmail", widget: "string", required: false }
           - { label: "Número de WhatsApp (solo números, con código de país, sin +)", name: "whatsappNumber", widget: "string", required: false }
           - { label: "Teléfono a mostrar", name: "phoneLabel", widget: "string", required: false }
