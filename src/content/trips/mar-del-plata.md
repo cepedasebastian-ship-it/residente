@@ -20,6 +20,7 @@ coverAlt: Foto de referencia — reemplazar por una foto real de Mar del Plata
 coverCaption: Mar del Plata — foto pendiente
 gallery:
   - photo: ../../assets/uploads/vinedo-atardecer.jpg
+  - photo: ../../assets/uploads/navegacion-canal-beagle.jpg
 itinerary:
   - day: Día 1
     title: Llegada y primera vuelta por el puerto
