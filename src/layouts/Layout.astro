@@ -1,17 +1,41 @@
 ---
 import { getImage } from 'astro:assets';
 import defaultOgImage from '../assets/uploads/vinedo-atardecer.jpg';
+import settings from '../data/settings.json';
 
 interface Props {
   title: string;
   description: string;
   noindex?: boolean;
   ogImage?: ImageMetadata;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, noindex = true, ogImage } = Astro.props;
+const {
+  title,
+  description,
+  noindex = true,
+  ogImage,
+  ogType = 'website',
+  publishedTime,
+  structuredData,
+} = Astro.props;
 const resolvedOgImage = await getImage({ src: ogImage ?? defaultOgImage, width: 1200, height: 630 });
 const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TravelAgency',
+  name: 'Experiencia Residente',
+  url: Astro.site?.toString(),
+  logo: new URL('/logo-lockup-vino.png', Astro.site).toString(),
+  sameAs: [settings.instagramUrl].filter(Boolean),
+};
+const extraSchemas = Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [];
+const schemas = [organizationSchema, ...extraSchemas];
 ---
 
 <!doctype html>
@@ -21,15 +45,19 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {noindex && <meta name="robots" content="noindex, nofollow, noarchive" />}
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
     <title>{title}</title>
+    {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
   </head>
   <body>
     <div class="f-root">

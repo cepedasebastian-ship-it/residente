@@ -1,0 +1,24 @@
+# Experiencia Residente
+
+> Viajes chicos y personales por Argentina, armados por Romi, para vivir cada destino como residente y no como turista. Grupos reducidos, anfitriona local, sin circuito armado para turistas.
+
+Experiencia Residente es una marca de viajes boutique con base en Argentina. Cada viaje lo vive Romi primero, y recién después invita a otras personas a sumarse. Cupo máximo de 10 personas por viaje.
+
+## Viajes
+
+- [Viñedo, atardecer y bienestar — Mendoza](https://experiencia-residente.pages.dev/viajes/mendoza-octubre-2026/): cosecha, atardecer entre las hileras de un viñedo y ritual de bienestar. Octubre 2026, solo mujeres.
+- [Glaciares, canal de Beagle y fin del mundo — Ushuaia](https://experiencia-residente.pages.dev/viajes/ushuaia-diciembre-2026/): navegación por el canal de Beagle, trekking al glaciar Martial y asado fueguino. Diciembre 2026.
+
+## Cuaderno de viaje
+
+- [Cuaderno de viaje](https://experiencia-residente.pages.dev/cuaderno/): notas y fotos sueltas de Romi entre viaje y viaje.
+
+## Sobre
+
+- [Sobre Romi](https://experiencia-residente.pages.dev/#sobre-romi): quién arma los viajes y por qué.
+- [Preguntas frecuentes](https://experiencia-residente.pages.dev/#faq)
+- [Contacto](https://experiencia-residente.pages.dev/#contacto): WhatsApp y formulario de contacto.
+
+## Nota
+
+Este sitio está en preparación — algunos precios y contenidos todavía se están confirmando antes del lanzamiento público.

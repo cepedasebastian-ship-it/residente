@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://experiencia-residente.pages.dev/sitemap-index.xml

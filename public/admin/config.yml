@@ -166,6 +166,7 @@ collections:
           - { label: "Cuaderno — etiqueta chica", name: "journalLabel", widget: "string", required: false }
           - { label: "Cuaderno — título", name: "journalTitle", widget: "string", required: false }
           - { label: "Cuaderno — texto \"ver todas las notas\"", name: "journalMoreLabel", widget: "string", required: false }
+          - { label: "Cuaderno — título \"otras notas\" dentro de cada nota", name: "journalRelatedLabel", widget: "string", required: false }
 
   - name: "posts"
     label: "Cuaderno de viaje"

@@ -285,6 +285,11 @@
                 'p',
                 { className: 'preview-note' },
                 'Texto del link entre viajes ("también puede interesarte"): ' + (data.get('relatedTripsLabel') || '(sin texto)')
+              ),
+              h(
+                'p',
+                { className: 'preview-note' },
+                'Título "otras notas" dentro de cada nota: ' + (data.get('journalRelatedLabel') || '(sin texto)')
               )
             ),
             h(

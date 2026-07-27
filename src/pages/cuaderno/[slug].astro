@@ -18,12 +18,31 @@ const { Content } = await render(post);
 
 const formatDate = (date: string) =>
   new Intl.DateTimeFormat('es-AR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
+
+const otherPosts = (await getCollection('posts'))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 2);
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: data.title,
+  description: data.excerpt,
+  image: new URL(data.coverImage.src, Astro.site).toString(),
+  datePublished: data.date,
+  dateModified: data.date,
+  author: { '@type': 'Person', name: settings.founderName },
+};
 ---
 
 <Layout
   title={`${data.title} — ${settings.journalTitle}`}
   description={data.excerpt}
   ogImage={data.coverImage}
+  ogType="article"
+  publishedTime={data.date}
+  structuredData={blogPostingSchema}
 >
   <SiteNav />
 
@@ -43,6 +62,23 @@ const formatDate = (date: string) =>
   <div class="f-desc f-desc-wide">
     <Content />
   </div>
+
+  {otherPosts.length > 0 && (
+    <section style="margin: 20px 0 50px;">
+      <span class="f-entry-label" style="display:block; margin-bottom:18px;">{settings.journalRelatedLabel}</span>
+      <div class="f-journal-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 640px;">
+        {otherPosts.map((other) => (
+          <a class="f-journal-card" href={`/cuaderno/${other.id}`}>
+            <div class="f-journal-photo">
+              <Image src={other.data.coverImage} alt={other.data.coverAlt} width={320} height={240} />
+            </div>
+            <span class="f-journal-date">{formatDate(other.data.date)}</span>
+            <h3>{other.data.title}</h3>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <a class="f-back-link" href="/cuaderno">← Volver al cuaderno</a>
 

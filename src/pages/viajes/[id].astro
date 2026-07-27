@@ -22,12 +22,27 @@ const spotsPct = showSpots ? Math.min(100, Math.round((data.spotsTaken! / data.c
 
 const otherTrips = (await getCollection('trips')).filter((t) => t.id !== id).sort((a, b) => a.data.order - b.data.order);
 const relatedTrip = otherTrips[0];
+
+const touristTripSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristTrip',
+  name: data.title,
+  description: data.includesLabel,
+  image: new URL(data.coverImage.src, Astro.site).toString(),
+  touristType: data.badge,
+  itinerary: data.itinerary.map((stop) => ({
+    '@type': 'TouristAttraction',
+    name: stop.title,
+    description: stop.description,
+  })),
+};
 ---
 
 <Layout
   title={`${data.title} — Experiencia Residente`}
   description={data.includesLabel}
   ogImage={data.coverImage}
+  structuredData={touristTripSchema}
 >
   <SiteNav />
 

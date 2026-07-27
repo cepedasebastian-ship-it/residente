@@ -67,5 +67,6 @@
   "newsletterButtonLabel": "Quiero enterarme",
   "journalLabel": "El cuaderno, entre viaje y viaje",
   "journalTitle": "Cuaderno de viaje",
-  "journalMoreLabel": "Ver todas las notas →"
+  "journalMoreLabel": "Ver todas las notas →",
+  "journalRelatedLabel": "Otras notas del cuaderno"
 }
