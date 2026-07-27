@@ -1,36 +1,65 @@
 {
-  "notifyEmail": "cepeda.sebastian@gmail.com",
-  "whatsappNumber": "5491168841224",
-  "phoneLabel": "+54 9 11 6884-1224",
-  "heroTitle": "No visitás el lugar. Lo vivís.",
-  "heroSubtitle": "Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.",
-  "heroCtaLabel": "Ver los viajes →",
-  "heroMeta": "PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO",
-  "entryQuote": "Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo.",
-  "founderName": "Romi",
-  "founderPhoto": "",
-  "viajesLabel": "Viajes",
+  "originPrice": "Ese viaje costaba USD 990 por persona.",
   "footerHandle": "@residente.viajes",
+  "founderPhoto": "/uploads/romi.jpg",
+  "originCoordLabel": "40.2°S · 71.3°O — SAN MARTÍN DE LOS ANDES, ENTRADA ANTERIOR",
+  "phoneLabel": "+54 9 11 6884-1224",
+  "paraQuienTags": [
+    "25 a 55 años",
+    "Naturaleza",
+    "Grupos chicos",
+    "Sin apuro"
+  ],
+  "entryQuote": "Esto no es una agencia. Cada viaje lo vivo yo primero — recién después invito a que lo vivan conmigo.",
+  "viajesLabel": "Viajes",
+  "heroSubtitle": "Notas de ruta reales, de quien ya vive ahí. Cuaderno y mapa a la vez — así armamos cada viaje antes de invitarte.",
+  "originText": "Salimos a remar temprano, cuando el lago todavía tenía hielo en los bordes. Después subimos la montaña para bajarla haciendo snow. De esa entrada del cuaderno salió la pregunta que arma cada viaje: ¿qué hace alguien que ya vive ahí?",
+  "notifyEmail": "cepeda.sebastian@gmail.com",
+  "faq": [
+    {
+      "q": "¿Voy sola? No conozco a nadie.",
+      "a": "La mayoría viaja sola y arma amigas ahí mismo. El grupo es chico a propósito, para que nadie se sienta de más."
+    },
+    {
+      "q": "¿Qué incluye exactamente?",
+      "a": "Alojamiento, comidas y todas las Experiencias del itinerario — cosecha, atardecer en el viñedo y el ritual de bienestar. El traslado hasta Mendoza se coordina aparte."
+    },
+    {
+      "q": "¿Cuántas somos?",
+      "a": "Grupo reducido, cupo máximo de 10 personas."
+    },
+    {
+      "q": "¿Hay algún requisito físico?",
+      "a": "Nada exigente — se camina entre viñedos, no es un viaje de trekking técnico."
+    },
+    {
+      "q": "¿Cómo reservo mi lugar?",
+      "a": "Escribinos por WhatsApp y coordinamos la seña para guardarte el cupo."
+    }
+  ],
+  "principles": [
+    {
+      "tag": "Anfitriona local",
+      "text": "Cada viaje lo arma alguien que ya vive ahí, no una agencia con folleto genérico."
+    },
+    {
+      "tag": "Grupo chico",
+      "text": "Cupo reducido para que se sienta como una junta de amigas, no una excursión."
+    },
+    {
+      "tag": "Sin circuito",
+      "text": "Se hace lo que hace un residente un fin de semana — no la lista de imperdibles de internet."
+    }
+  ],
+  "founderName": "Romi",
+  "paraQuienText": "Para gente con alma de aventurera. Que prefiere un atardecer entre montañas antes que una vidriera. Que busca vivir el momento, no consumirlo.",
   "aboutBio": [
     "Tengo 38 años y nací en Capital. Crecí en Avellaneda, zona sur del conurbano, hasta que de adolescente nos mudamos al campo — ahí entendí que el aire libre no es un lujo, es necesario.",
     "Estudié Comercio Exterior y pasé más de 12 años trabajando en un banco. Hasta que un día decidí cambiar de vida: viajar más, disfrutar más, y dejar de guardar todo para \"después\".",
     "Desde entonces no paro de moverme. Todavía sueño con encontrar esa ciudad tranquila pero con vida donde plantar una base — mientras tanto, la sigo buscando viaje a viaje. Por eso armo estas experiencias: para compartir esa misma búsqueda con quien quiera sumarse."
   ],
-  "paraQuienText": "Para gente con alma de aventurera. Que prefiere un atardecer entre montañas antes que una vidriera. Que busca vivir el momento, no consumirlo.",
-  "paraQuienTags": ["25 a 55 años", "Naturaleza", "Grupos chicos", "Sin apuro"],
-  "originCoordLabel": "40.2°S · 71.3°O — SAN MARTÍN DE LOS ANDES, ENTRADA ANTERIOR",
-  "originText": "Salimos a remar temprano, cuando el lago todavía tenía hielo en los bordes. Después subimos la montaña para bajarla haciendo snow. De esa entrada del cuaderno salió la pregunta que arma cada viaje: ¿qué hace alguien que ya vive ahí?",
-  "originPrice": "Ese viaje costaba USD 990 por persona.",
-  "principles": [
-    { "tag": "Anfitriona local", "text": "Cada viaje lo arma alguien que ya vive ahí, no una agencia con folleto genérico." },
-    { "tag": "Grupo chico", "text": "Cupo reducido para que se sienta como una junta de amigas, no una excursión." },
-    { "tag": "Sin circuito", "text": "Se hace lo que hace un residente un fin de semana — no la lista de imperdibles de internet." }
-  ],
-  "faq": [
-    { "q": "¿Voy sola? No conozco a nadie.", "a": "La mayoría viaja sola y arma amigas ahí mismo. El grupo es chico a propósito, para que nadie se sienta de más." },
-    { "q": "¿Qué incluye exactamente?", "a": "Alojamiento, comidas y todas las Experiencias del itinerario — cosecha, atardecer en el viñedo y el ritual de bienestar. El traslado hasta Mendoza se coordina aparte." },
-    { "q": "¿Cuántas somos?", "a": "Grupo reducido, cupo máximo de 10 personas." },
-    { "q": "¿Hay algún requisito físico?", "a": "Nada exigente — se camina entre viñedos, no es un viaje de trekking técnico." },
-    { "q": "¿Cómo reservo mi lugar?", "a": "Escribinos por WhatsApp y coordinamos la seña para guardarte el cupo." }
-  ]
+  "whatsappNumber": "5491168841224",
+  "heroCtaLabel": "Ver los viajes →",
+  "heroTitle": "No visitás el lugar. Lo vivís.",
+  "heroMeta": "PRÓXIMA SALIDA: OCTUBRE 2026 — GRUPO REDUCIDO"
 }
