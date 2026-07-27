@@ -107,8 +107,10 @@ const ogImageUrl = new URL(resolvedOgImage.src, Astro.site).toString();
   * {
     box-sizing: border-box;
   }
+  html,
   body {
     margin: 0;
+    background: var(--f-ground);
   }
   .f-root {
     background: var(--f-ground);
