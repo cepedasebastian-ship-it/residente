@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tijuana"
+version = "1.0.0"
+description = "TIJUANA — motor de diálogo de dos compuertas (¿te entendió? / ¿te dice la verdad?)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+llm = ["anthropic>=0.116.0"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+tijuana = "tijuana.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tijuana = ["datos/*.json", "datos/npcs/*.json", "datos/guiones/*.txt"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

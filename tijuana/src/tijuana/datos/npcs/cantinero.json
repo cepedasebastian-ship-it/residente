@@ -1,0 +1,162 @@
+{
+  "id": "cantinero",
+  "nombre": "El Cantinero",
+  "lugar": "Bar Sirena",
+  "presentacion": "El cantinero te mira sin ganas. Sigue limpiando el mismo vaso.",
+
+  "persona": "Cansado, sarcástico, esquiva problemas. Cincuenta y pico. Trabaja acá desde siempre. Mientes por MIEDO, no por maldad: la gente que opera detrás del bar te puede arruinar.",
+
+  "idioma": {
+    "nativo": "es",
+    "ingles": 0.35,
+    "finge_entender": false,
+    "modificadores": {
+      "mostrando_prueba": 0.25,
+      "diccionario": 0.2,
+      "frase_corta": 0.1,
+      "frase_larga": -0.25,
+      "umbral_frase_corta": 4,
+      "umbral_frase_larga": 12,
+      "umbral_alta": 0.65,
+      "umbral_media": 0.4
+    }
+  },
+
+  "conceptos": {
+    "la_chica": {
+      "es": ["chica", "chava", "mina", "mujer", "ella", "novia", "vestido rojo", "muchacha", "marisol"],
+      "en": ["girl", "woman", "she", "her", "red dress", "chick"]
+    },
+    "quienes_te_hicieron_esto": {
+      "es": ["quien", "quienes", "gente", "robaron", "organo", "organos", "rinon", "clinica", "doctor", "hicieron", "hizo"],
+      "en": ["who", "people", "did this", "organ", "organs", "kidney", "clinic", "doctor"]
+    },
+    "a_donde_te_llevaron": {
+      "es": ["donde", "adonde", "lugar", "llevaron", "puerta", "fondo", "atras"],
+      "en": ["where", "took me", "place", "door", "back room"]
+    },
+    "que_dijo_marisol": {
+      "es": ["dijo", "que dijo", "palabras", "advertencia", "advirtio", "susurro", "oido"],
+      "en": ["said", "told me", "warn", "warning", "words", "whisper"]
+    }
+  },
+
+  "verdades": {
+    "marisol_estaba_asustada": {
+      "tablero": "Marisol estaba ASUSTADA, no contenta.",
+      "contradice": "traicion",
+      "requiere": {
+        "concepto": "la_chica",
+        "cualquiera_de": [
+          { "prueba": "aro" },
+          { "presion_min": 2 },
+          { "confianza_min": 2 }
+        ]
+      },
+      "texto": {
+        "es": "...Sí. Estaba aquí. Y estaba asustada, no contenta. Algo no andaba bien esa noche.",
+        "en": "...Yeah. She was here. And she was scared, not happy. Something was wrong that night."
+      }
+    },
+
+    "vino_gente_de_la_clinica": {
+      "tablero": "Gente de la red pasa por el bar.",
+      "contradice": "solo_locales",
+      "requiere": {
+        "concepto": "quienes_te_hicieron_esto",
+        "cualquiera_de": [
+          { "prueba": "pulsera", "confianza_min": 1 }
+        ]
+      },
+      "texto": {
+        "es": "Esa gente... vienen seguido. No son de aquí. Yo no vi nada, ¿entiendes?",
+        "en": "Those people... they come often. Not from here. I saw nothing, you get me?"
+      }
+    },
+
+    "hay_una_puerta_atras": {
+      "tablero": "Puerta del fondo -> desbloquea CLÍNICA.",
+      "contradice": "sin_salida",
+      "requiere": {
+        "concepto": "a_donde_te_llevaron",
+        "verdades_previas": ["vino_gente_de_la_clinica"],
+        "cualquiera_de": [
+          { "presion_min": 1 },
+          { "confianza_min": 2 }
+        ]
+      },
+      "texto": {
+        "es": "Hay una puerta en el fondo. Por ahí se los llevan. Yo no te dije nada.",
+        "en": "There's a door in the back. That's where they take them. I told you nothing."
+      }
+    },
+
+    "marisol_intento_advertirte": {
+      "tablero": "Marisol te ADVIRTIÓ y la malentendiste.",
+      "contradice": "traicion",
+      "requiere": {
+        "concepto": "que_dijo_marisol",
+        "verdades_previas": ["marisol_estaba_asustada"],
+        "confianza_min": 3
+      },
+      "texto": {
+        "es": "Te dijo algo al oído antes de irse. Te reíste, pensaste que era broma. No era broma, amigo.",
+        "en": "She whispered something before she left. You laughed, thought it was a joke. It wasn't a joke, friend."
+      }
+    }
+  },
+
+  "mentiras": {
+    "la_chica": {
+      "verdad": "marisol_estaba_asustada",
+      "tell": "(limpia el mismo vaso dos veces y mira la puerta del fondo)",
+      "texto": {
+        "es": "Aquí entra mucha gente, amigo. No me acuerdo de ninguna chica.",
+        "en": "Lots of people come here, friend. I don't remember any girl."
+      }
+    },
+    "quienes_te_hicieron_esto": {
+      "verdad": "vino_gente_de_la_clinica",
+      "tell": "(baja la voz y chequea quién está escuchando)",
+      "texto": {
+        "es": "Esto es un bar, amigo. No sé de qué hablas.",
+        "en": "This is a bar, friend. I don't know what you're talking about."
+      }
+    },
+    "a_donde_te_llevaron": {
+      "verdad": "hay_una_puerta_atras",
+      "tell": "(se pone tenso)",
+      "texto": {
+        "es": "¿A dónde? Yo cierro y me voy a casa. No sé nada.",
+        "en": "Where? I close up and go home. I know nothing."
+      }
+    },
+    "que_dijo_marisol": {
+      "verdad": "marisol_intento_advertirte",
+      "tell": "(evita tu mirada)",
+      "texto": {
+        "es": "No escuché nada. Había mucho ruido esa noche.",
+        "en": "I didn't hear anything. It was loud that night."
+      }
+    }
+  },
+
+  "reacciones": {
+    "incomprension": {
+      "es": "(entrecerra los ojos) Más despacio, güero... no te entiendo. ¿Qué buscas?",
+      "en": "(entrecerra los ojos) Slow. More slow. I no understand you. What you want?"
+    },
+    "comprension_parcial": {
+      "es": "(duda un segundo, como armando la frase)",
+      "en": "(duda un segundo, como armando la frase)"
+    },
+    "peligro": {
+      "es": "(se endereza) Bájale, amigo. No quiero problemas... o llamo a alguien.",
+      "en": "(se endereza) Easy, friend. I no want problems... or I call someone."
+    },
+    "relleno": {
+      "es": "¿Vas a pedir algo o solo preguntas?",
+      "en": "You gonna order something, or just questions?"
+    }
+  }
+}

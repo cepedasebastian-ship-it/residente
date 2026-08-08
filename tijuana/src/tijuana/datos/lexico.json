@@ -1,0 +1,40 @@
+{
+  "_comentario": "Léxico global del juego: detección de idioma y de tono. Todas las listas se comparan con límite de palabra sobre el texto normalizado (minúsculas, sin tildes).",
+
+  "marcadores_idioma": {
+    "es": [
+      "que", "cual", "cuales", "donde", "adonde", "quien", "quienes", "como",
+      "cuando", "por", "para", "una", "unos", "unas", "esta", "este", "esto",
+      "esa", "ese", "eso", "con", "sin", "del", "las", "los", "muy", "pero",
+      "porque", "si", "hola", "gracias", "favor", "chica", "chava", "anoche",
+      "acuerdas", "ayuda", "sabes", "dijo", "dime", "llevaron", "usted", "vos",
+      "tengo", "estoy", "soy", "hay", "aqui", "amigo", "senor"
+    ],
+    "en": [
+      "the", "you", "your", "what", "where", "who", "whom", "when", "why",
+      "how", "did", "does", "do", "remember", "girl", "woman", "she", "her",
+      "was", "were", "here", "there", "night", "help", "know", "tell", "please",
+      "thanks", "and", "with", "about", "this", "that", "have", "has", "am",
+      "are", "is", "of", "for", "friend", "man"
+    ]
+  },
+
+  "tono": {
+    "amable": [
+      "por favor", "gracias", "tranquilo", "tranquila", "un trago", "cerveza",
+      "invito", "disculpa", "perdon", "amigo", "please", "thanks", "thank you",
+      "sorry", "a drink", "beer", "buddy"
+    ],
+    "agresivo": [
+      "dime ya", "hablame ya", "ahora mismo", "te voy a", "te juro", "maldito",
+      "pendejo", "matar", "callate", "mientes", "estas mintiendo",
+      "tell me now", "right now", "shut up", "fuck", "you are lying",
+      "liar", "kill"
+    ],
+    "victima": [
+      "cicatriz", "banera", "hielo", "robaron", "rinon", "organo", "organos",
+      "victima", "me abrieron", "me operaron", "punto", "puntos",
+      "scar", "bathtub", "ice", "kidney", "organ", "stole", "stitches"
+    ]
+  }
+}

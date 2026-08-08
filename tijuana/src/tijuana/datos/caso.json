@@ -1,0 +1,52 @@
+{
+  "id": "tijuana-v1",
+  "titulo": "TIJUANA — v1",
+  "subtitulo": "Despertaste en una bañera con hielo. Te falta un riñón. No te acordás de nada.",
+  "protagonista": "Un extranjero en Tijuana que no habla bien español y no confía en su propia memoria.",
+
+  "pruebas": {
+    "aro": {
+      "nombre": "Aro de Marisol",
+      "descripcion": "Un aro barato, dorado. Estaba en tu bolsillo. Es de ella."
+    },
+    "pulsera": {
+      "nombre": "Pulsera de hospital",
+      "descripcion": "Plástico blanco cortado. Sin nombre, solo un código y un logo borroneado."
+    },
+    "cicatriz": {
+      "nombre": "La cicatriz",
+      "descripcion": "Del costado. Todavía con puntos. Cuando la mostrás, la gente deja de mentir tan cómoda."
+    }
+  },
+
+  "tablero_inicial": [
+    {
+      "id": "rinon",
+      "tipo": "hecho",
+      "texto": "Me falta un riñón. Desperté en una bañera con hielo."
+    },
+    {
+      "id": "aro_bolsillo",
+      "tipo": "hecho",
+      "texto": "Tenía el aro de Marisol en el bolsillo."
+    },
+    {
+      "id": "traicion",
+      "tipo": "creencia",
+      "texto": "Marisol me traicionó."
+    },
+    {
+      "id": "solo_locales",
+      "tipo": "creencia",
+      "texto": "Al Bar Sirena solo entra gente del barrio."
+    },
+    {
+      "id": "sin_salida",
+      "tipo": "creencia",
+      "texto": "Del Bar Sirena no se sale más que por la puerta de adelante."
+    }
+  ],
+
+  "npcs": ["cantinero"],
+  "npc_inicial": "cantinero"
+}
