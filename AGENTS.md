@@ -8,6 +8,12 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Subprojects
+
+`tijuana/` is a standalone Python project (a dialogue-engine prototype), not
+part of the Astro site or its build. It has its own README, dependencies, and
+test suite — run `pytest` from inside `tijuana/`.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

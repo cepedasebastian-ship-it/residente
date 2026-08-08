@@ -1,0 +1,25 @@
+# Guion de demostración: el camino "limpio" (confianza, sin apretar).
+# Se reproduce con `python -m tijuana --demo`.
+# Los tests lo usan para verificar que las cuatro verdades siguen siendo
+# alcanzables cada vez que alguien toca el contenido.
+
+# 1. Romper el hielo en su idioma: +amabilidad, +idioma_nativo -> confianza 2.
+hola amigo, ¿me invitas una cerveza y charlamos?
+
+# 2. El aro es la llave de la primera verdad.
+/mostrar aro
+¿te acuerdas de esta chica?
+
+# 3. La pulsera + hablar de la cicatriz: confianza suficiente para la clínica.
+/mostrar pulsera
+¿quién me hizo esto? mirá la cicatriz que tengo
+
+# 4. Con la red confirmada, la puerta del fondo se cae sola.
+¿a dónde se los llevaron?
+
+# 5. Última llave: mostrar la cicatriz sube la confianza al máximo.
+/mostrar cicatriz
+¿qué te dijo Marisol antes de irse?
+
+/estado
+/salir
